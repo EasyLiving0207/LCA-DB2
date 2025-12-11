@@ -1,0 +1,193 @@
+WITH CURRENT_RANK AS (SELECT *
+                      FROM T_ADS_TEMP_LCA_SUBCLASS_SEQ_CALC_RANK_POST
+                      WHERE RANK = 1),
+     POST AS (SELECT A.*
+              FROM T_ADS_TEMP_LCA_SUBCLASS_SEQ_CALC_RESOURCE_MAIN A
+                       INNER JOIN CURRENT_RANK B
+                                  ON A.MAT_TRACK_NO = B.MAT_TRACK_NO
+                                      AND A.FAMILY_CODE = B.FAMILY_CODE
+                                      AND A.UNIT_CODE = B.UNIT_CODE),
+     PREV AS (SELECT A.MAT_TRACK_NO,
+                     A.FAMILY_CODE AS POST_FAMILY_CODE,
+                     B.FAMILY_CODE,
+                     B.UNIT_CODE,
+                     B.UNIT_NAME,
+                     B.PRODUCT_CODE,
+                     B.PRODUCT_NAME
+              FROM CURRENT_RANK A
+                       JOIN (SELECT DISTINCT MAT_TRACK_NO,
+                                             FAMILY_CODE,
+                                             UNIT_CODE,
+                                             UNIT_NAME,
+                                             PRODUCT_CODE,
+                                             PRODUCT_NAME
+                             FROM T_ADS_TEMP_LCA_SUBCLASS_SEQ_CALC_PROC_PRODUCT_LIST) B
+                            ON A.MAT_TRACK_NO = B.MAT_TRACK_NO AND
+                               A.PREV_FAMILY_CODE = B.FAMILY_CODE),
+     T1 AS (SELECT A1.*,
+                   B1.FAMILY_CODE AS SOURCE_FAMILY_CODE,
+                   B1.UNIT_CODE   AS SOURCE_UNIT_CODE,
+                   B1.UNIT_NAME   AS SOURCE_UNIT_NAME
+            FROM POST A1
+                     INNER JOIN PREV B1
+                                ON A1.MAT_TRACK_NO = B1.MAT_TRACK_NO
+                                    AND A1.FAMILY_CODE = B1.POST_FAMILY_CODE
+                                    AND A1.ITEM_CODE = B1.PRODUCT_CODE)
+SELECT *
+FROM T1
+UNION
+SELECT A2.SUBCLASS_TAB_NAME,
+       A2.BATCH_NUMBER,
+       A2.MAT_NO,
+       A2.MAT_TRACK_NO,
+       A2.MAT_SEQ_NO,
+       A2.FAMILY_CODE,
+       A2.UNIT_CODE,
+       A2.UNIT_NAME,
+       A2.PRODUCT_CODE,
+       A2.PRODUCT_NAME,
+       B2.TYPE_CODE,
+       B2.TYPE_NAME,
+       B2.ITEM_CODE,
+       B2.ITEM_NAME,
+       B2.VALUE * A2.VALUE / B2.PRODUCT_VALUE,
+       B2.UNITM_AC,
+       A2.PRODUCT_VALUE,
+       A2.UNIT_COST * B2.UNIT_COST,
+       B2.SOURCE_FAMILY_CODE,
+       B2.SOURCE_UNIT_CODE,
+       B2.SOURCE_UNIT_NAME
+FROM (SELECT * FROM T1) A2
+         JOIN (SELECT A.*,
+                      B.FAMILY_CODE AS SOURCE_FAMILY_CODE,
+                      B.UNIT_CODE   AS SOURCE_UNIT_CODE,
+                      B.UNIT_NAME   AS SOURCE_UNIT_NAME
+               FROM (SELECT A.*
+                     FROM (SELECT * FROM T_ADS_TEMP_LCA_SUBCLASS_SEQ_CALC_RESOURCE_MAIN) A
+                              INNER JOIN (SELECT *
+                                          FROM T_ADS_TEMP_LCA_SUBCLASS_SEQ_CALC_RANK_PREV
+                                          WHERE RANK = 2) B
+                                         ON A.MAT_TRACK_NO = B.MAT_TRACK_NO
+                                             AND A.FAMILY_CODE = B.FAMILY_CODE
+                                             AND A.UNIT_CODE = B.UNIT_CODE) A
+                        INNER JOIN (SELECT DISTINCT MAT_TRACK_NO,
+                                                    FAMILY_CODE,
+                                                    UNIT_CODE,
+                                                    UNIT_NAME,
+                                                    PRODUCT_CODE,
+                                                    PRODUCT_NAME
+                                    FROM T_ADS_TEMP_LCA_SUBCLASS_SEQ_CALC_RESOURCE_ALL) B
+                                   ON A.MAT_TRACK_NO = B.MAT_TRACK_NO AND A.ITEM_CODE = B.PRODUCT_CODE) B2
+              ON A2.MAT_TRACK_NO = B2.MAT_TRACK_NO AND A2.SOURCE_FAMILY_CODE = B2.FAMILY_CODE AND
+                 A2.SOURCE_UNIT_CODE = B2.UNIT_CODE;
+
+CREATE TABLE RESULT_UPSTREAM_COST
+(
+    SUBCLASS_TAB_NAME  VARCHAR(64),
+    BATCH_NUMBER       VARCHAR(64),
+    MAT_NO             VARCHAR(64),
+    MAT_TRACK_NO       VARCHAR(64),
+    MAT_SEQ_NO         BIGINT,
+    FAMILY_CODE        VARCHAR(100),
+    UNIT_CODE          VARCHAR(100),
+    UNIT_NAME          VARCHAR(256),
+    PRODUCT_CODE       VARCHAR(100),
+    PRODUCT_NAME       VARCHAR(256),
+    TYPE_CODE          VARCHAR(20),
+    TYPE_NAME          VARCHAR(200),
+    ITEM_CODE          VARCHAR(100),
+    ITEM_NAME          VARCHAR(256),
+    VALUE              DECIMAL(27, 6),
+    UNITM_AC           VARCHAR(20),
+    PRODUCT_VALUE      DECIMAL(27, 6),
+    UNIT_COST          DOUBLE,
+    SOURCE_FAMILY_CODE VARCHAR(100),
+    SOURCE_UNIT_CODE   VARCHAR(100),
+    SOURCE_UNIT_NAME   VARCHAR(256)
+);
+
+call BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_SEQ_CALC(
+        V_COMPANY_CODE => 'TA',
+        V_START_DATE => '202401',
+        V_END_DATE => '202412',
+        V_FACTOR_YEAR => '2024',
+        V_SUBCLASS_TAB_NAME => 'T_ADS_FACT_LCA_SI0001_2024',
+        V_SUB_BATCH_NUMBER => 'MX202401'
+     );
+
+select *
+from T_ADS_TEMP_LCA_SUBCLASS_SEQ_CALC_RANK_PREV
+where MAT_TRACK_NO = '20240107083832045138';
+
+select SUBCLASS_TAB_NAME,
+       BATCH_NUMBER,
+       MAT_NO,
+       MAT_TRACK_NO,
+       FAMILY_CODE,
+       UNIT_CODE,
+       UNIT_NAME,
+       SOURCE_FAMILY_CODE,
+       SOURCE_UNIT_CODE,
+       SOURCE_UNIT_NAME,
+       TYPE_NAME,
+       ITEM_CODE,
+       ITEM_NAME,
+       VALUE,
+       UNITM_AC,
+       PRODUCT_CODE,
+       PRODUCT_NAME,
+       PRODUCT_VALUE,
+       UNIT_COST
+from T_ADS_TEMP_LCA_SUBCLASS_SEQ_CALC_RESULT_UPSTREAM_COST
+where MAT_TRACK_NO = '20240118110609991396'
+order by FAMILY_CODE, SOURCE_FAMILY_CODE;
+
+select *
+from T_ADS_TEMP_LCA_SUBCLASS_SEQ_CALC_PROC_SEQ
+where MAT_TRACK_NO = '20240118110609991396';
+
+select *
+from BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_RESULT_DIST
+where MAT_TRACK_NO = '20230810201504247876'
+order by FAMILY_CODE, UNIT_CODE;
+
+select *
+from BG00MAC102.T_ADS_TEMP_LCA_SUBCLASS_SEQ_CALC_PROC_SEQ
+where MAT_TRACK_NO = '20230810201504247876';
+
+SELECT *
+FROM BG00MAC102.T_ADS_TEMP_LCA_SUBCLASS_SEQ_CALC_RESULT_DIST
+WHERE MAT_TRACK_NO = '20230616194310190063'
+  AND FAMILY_CODE = '010101';
+
+
+SELECT *
+FROM BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_RESULT_DIST_PREV_SUM
+WHERE MAT_TRACK_NO = '20230616194310190063'
+ORDER BY FAMILY_CODE, MAT_SEQ_NO, UNIT_CODE, SOURCE_FAMILY_CODE, SOURCE_UNIT_CODE;
+
+SELECT FAMILY_CODE, UNIT_CODE, UNIT_NAME, SUM(C_CYCLE)
+FROM BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_RESULT_DIST_PREV_SUM
+WHERE MAT_TRACK_NO = '20230616194310190063'
+GROUP BY FAMILY_CODE, UNIT_CODE, UNIT_NAME
+ORDER BY FAMILY_CODE, UNIT_CODE;
+
+SELECT FAMILY_CODE, UNIT_CODE, UNIT_NAME, C_CYCLE
+FROM BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_RESULT
+WHERE MAT_TRACK_NO = '20230616194310190063'
+ORDER BY FAMILY_CODE, UNIT_CODE;
+
+SELECT * FROM T_ADS_FACT_LCA_SUBCLASS_RESULT_DIST
+WHERE MAT_TRACK_NO = '20230810201504247876'
+ORDER BY FAMILY_CODE, MAT_SEQ_NO, UNIT_CODE, TYPE_CODE;
+
+SELECT * FROM T_ADS_TEMP_LCA_SUBCLASS_SEQ_CALC_DATA
+WHERE MAT_TRACK_NO = '20230810201504247876'
+and UNIT_CODE = '2BOF';
+
+
+SELECT * FROM T_ADS_FACT_LCA_SUBCLASS_RESULT_DIST
+WHERE MAT_TRACK_NO = '20240101104903705868'
+ORDER BY FAMILY_CODE, MAT_SEQ_NO, UNIT_CODE, TYPE_CODE;
+
+select * from BG00MAC102.T_ADS_WH_PROC_BACKGROUND_DATA_CONTRAST;

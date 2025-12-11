@@ -1,0 +1,67 @@
+create table BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS
+(
+    REC_ID                 VARCHAR(32),
+    BATCH_NUMBER           VARCHAR(50),
+    START_YM               VARCHAR(8),
+    END_YM                 VARCHAR(8),
+    LCA_PROC_CODE          VARCHAR(10),
+    LCA_PROC_NAME          VARCHAR(50),
+    PRODUCT_CODE           VARCHAR(10),
+    PRODUCT_NAME           VARCHAR(50),
+    LCA_DATA_ITEM_CAT_CODE VARCHAR(10),
+    LCA_DATA_ITEM_CAT_NAME VARCHAR(50),
+    LCA_DATA_ITEM_CODE     VARCHAR(20),
+    LCA_DATA_ITEM_NAME     VARCHAR(50),
+    VALUE                  DECIMAL(19, 6),
+    UNIT                   VARCHAR(20),
+    INDEX_CODE             VARCHAR(50),
+    COMPANY_CODE           VARCHAR(10),
+    REC_CREATE_TIME        VARCHAR(24),
+    REC_CREATOR            VARCHAR(50),
+    MAT_STATUS             VARCHAR(2),
+    WG_PRODUCT_CODE        VARCHAR(32)
+)
+    distribute by hash (REC_ID);
+
+comment on table BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS is '建筑用钢大类产品接入数据表';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.REC_ID is '分区键';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.BATCH_NUMBER is '批次号';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.START_YM is '开始年月';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.END_YM is '结束年月';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.LCA_PROC_CODE is '工序代码';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.LCA_PROC_NAME is '工序名称';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.PRODUCT_CODE is '产品代码';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.PRODUCT_NAME is '产品名称';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.LCA_DATA_ITEM_CAT_CODE is '数据项类别';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.LCA_DATA_ITEM_CAT_NAME is '数据项名称';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.LCA_DATA_ITEM_CODE is '数据项代码';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.LCA_DATA_ITEM_NAME is '数据项名称';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.VALUE is '值';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.UNIT is '单位';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.INDEX_CODE is '指标代码';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.COMPANY_CODE is '公司代码';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.REC_CREATE_TIME is '创建时间';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.REC_CREATOR is '创建人';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.MAT_STATUS is '材料状态';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_CONS.WG_PRODUCT_CODE is '外购板坯代码';
+

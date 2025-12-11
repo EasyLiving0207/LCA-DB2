@@ -1,0 +1,46 @@
+create table BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI
+(
+    REC_ID            VARCHAR(32) default NULL,
+    YEAR              VARCHAR(8),
+    UUID              VARCHAR(32),
+    NAME              VARCHAR(100),
+    LCI_ELEMENT_ID    VARCHAR(32),
+    LCI_ELEMENT_NAME  VARCHAR(500),
+    LCI_ELEMENT_VALUE DECIMAL(30, 10),
+    FLAG              VARCHAR(32),
+    REC_CREATOR       VARCHAR(32),
+    REC_CREATE_TIME   VARCHAR(32),
+    REC_REVISOR       VARCHAR(32),
+    REC_REVISE_TIME   VARCHAR(32),
+    REMARK            VARCHAR(100)
+)
+    distribute by hash (REC_ID);
+
+comment on table BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI is 'LCI物料基本流因子库';
+
+comment on column BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI.REC_ID is '记录识别码';
+
+comment on column BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI.YEAR is '年份';
+
+comment on column BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI.UUID is '识别码';
+
+comment on column BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI.NAME is '名称';
+
+comment on column BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI.LCI_ELEMENT_ID is '因子识别码';
+
+comment on column BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI.LCI_ELEMENT_NAME is '因子名称';
+
+comment on column BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI.LCI_ELEMENT_VALUE is '因子值';
+
+comment on column BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI.FLAG is '标注';
+
+comment on column BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI.REC_CREATOR is '记录创建者';
+
+comment on column BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI.REC_CREATE_TIME is '记录创建时间';
+
+comment on column BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI.REC_REVISOR is '记录修改者';
+
+comment on column BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI.REC_REVISE_TIME is '记录修改时间';
+
+comment on column BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI.REMARK is '备注';
+

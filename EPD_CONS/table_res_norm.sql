@@ -1,0 +1,32 @@
+create table BG00MAC102.T_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_RESULT
+(
+    REC_ID           VARCHAR(64),
+    BATCH_NUMBER     VARCHAR(64),
+    START_YM         VARCHAR(8),
+    END_YM           VARCHAR(8),
+    COMPANY_CODE     VARCHAR(8),
+    PROC_KEY         VARCHAR(64),
+    PROC_CODE        VARCHAR(64),
+    PROC_NAME        VARCHAR(256),
+    PRODUCT_CODE     VARCHAR(64),
+    PRODUCT_NAME     VARCHAR(128),
+    LCI_ELEMENT_NAME VARCHAR(256),
+    DIRECT_POS       DECIMAL(16, 10),
+    DIRECT_NEG       DECIMAL(16, 10),
+    C1_DIRECT        DECIMAL(16, 10),
+    C2_BP            DECIMAL(16, 10),
+    C3_OUT           DECIMAL(16, 10),
+    C4_BP_NEG        DECIMAL(16, 10),
+    C5_TRANS         DECIMAL(16, 10),
+    C_INSITE         DECIMAL(16, 10),
+    C_OUTSITE        DECIMAL(16, 10),
+    C_CYCLE          DECIMAL(16, 10),
+    REC_CREATOR      VARCHAR(32),
+    REC_CREATE_TIME  VARCHAR(32),
+    REC_REVISOR      VARCHAR(32),
+    REC_REVISE_TIME  VARCHAR(32)
+)
+    distribute by hash (REC_ID);
+
+comment on table BG00MAC102.T_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_RESULT is '普通用钢LCA大类EPD结果';
+

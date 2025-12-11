@@ -1,0 +1,308 @@
+-- 建筑CONS
+
+-- EPD固定批次
+-- P_ADS_FACT_LCA_SUBCLASS_EPD_CONS_CALC_BUFF_MONTH
+
+CREATE TABLE BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_EPD_CONS_MONTH_RESULT_TA_HP0001_2024
+(
+    REC_ID                VARCHAR(64),
+    SUBCLASS_TAB_NAME     VARCHAR(64),
+    COMPANY_CODE          VARCHAR(8),
+    MAIN_CAT_BATCH_NUMBER VARCHAR(64),
+    UPDATE_DATE           VARCHAR(6),
+    INDEX_CODE            VARCHAR(1000),
+    MAT_NO                VARCHAR(64),
+    MAT_TRACK_NO          VARCHAR(64),
+    MAT_SEQ_NO            BIGINT,
+    FAMILY_CODE           VARCHAR(1000),
+    UNIT_CODE             VARCHAR(100),
+    UNIT_NAME             VARCHAR(256),
+    PRODUCT_CODE          VARCHAR(100),
+    PRODUCT_NAME          VARCHAR(256),
+    PRODUCT_VALUE         DECIMAL(27, 6),
+    LCI_ELEMENT_CODE      VARCHAR(256),
+    LCI_ELEMENT_CNAME     VARCHAR(256),
+    C_CYCLE               DOUBLE,
+    C1                    DOUBLE,
+    C2                    DOUBLE,
+    C3                    DOUBLE,
+    C4                    DOUBLE,
+    C5                    DOUBLE,
+    C_INSITE              DOUBLE,
+    C_OUTSITE             DOUBLE,
+    REC_CREATOR           VARCHAR(32),
+    REC_CREATE_TIME       VARCHAR(32),
+    REC_REVISOR           VARCHAR(32),
+    REC_REVISE_TIME       VARCHAR(32)
+)
+    IN BG00MAC102
+    DISTRIBUTE BY HASH (REC_ID)
+    ORGANIZE BY ROW;
+
+COMMIT;
+
+-- 自动批次EPD
+-- P_ADS_FACT_LCA_SUBCLASS_EPD_CONS_CALC_AUTO_BATCH
+
+CREATE TABLE BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_EPD_CONS_MONTH_RESULT_TA_HP0001_2024_NEW
+(
+    REC_ID                VARCHAR(64),
+    SUBCLASS_TAB_NAME     VARCHAR(64),
+    COMPANY_CODE          VARCHAR(8),
+    MAIN_CAT_BATCH_NUMBER VARCHAR(64),
+    UPDATE_DATE           VARCHAR(6),
+    INDEX_CODE            VARCHAR(1000),
+    MAT_NO                VARCHAR(64),
+    MAT_TRACK_NO          VARCHAR(64),
+    MAT_SEQ_NO            BIGINT,
+    FAMILY_CODE           VARCHAR(1000),
+    UNIT_CODE             VARCHAR(100),
+    UNIT_NAME             VARCHAR(256),
+    PRODUCT_CODE          VARCHAR(100),
+    PRODUCT_NAME          VARCHAR(256),
+    PRODUCT_VALUE         DECIMAL(27, 6),
+    LCI_ELEMENT_CODE      VARCHAR(256),
+    LCI_ELEMENT_CNAME     VARCHAR(256),
+    C_CYCLE               DOUBLE,
+    C1                    DOUBLE,
+    C2                    DOUBLE,
+    C3                    DOUBLE,
+    C4                    DOUBLE,
+    C5                    DOUBLE,
+    C_INSITE              DOUBLE,
+    C_OUTSITE             DOUBLE,
+    REC_CREATOR           VARCHAR(32),
+    REC_CREATE_TIME       VARCHAR(32),
+    REC_REVISOR           VARCHAR(32),
+    REC_REVISE_TIME       VARCHAR(32)
+)
+    IN BG00MAC102
+    DISTRIBUTE BY HASH (REC_ID)
+    ORGANIZE BY ROW;
+
+COMMENT ON TABLE BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_EPD_CONS_MONTH_RESULT_TA_HP0001_2024_NEW IS 'EPD细类月度结果';
+
+COMMIT;
+
+-- 自动批次EPD认证(中间分布)
+-- P_ADS_FACT_LCA_SUBCLASS_EPD_CONS_CALC_AUTO_BATCH_AUTH
+
+SET CURRENT SCHEMA = BG00MAC102;
+
+CREATE TABLE BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_EPD_CONS_MONTH_RESULT_HP0001_2025_NEW_AUTH
+(
+    REC_ID                VARCHAR(64),
+    SUBCLASS_TAB_NAME     VARCHAR(64),
+    COMPANY_CODE          VARCHAR(8),
+    MAIN_CAT_BATCH_NUMBER VARCHAR(64),
+    UPDATE_DATE           VARCHAR(6),
+    MAT_NO                VARCHAR(64),
+    MAT_TRACK_NO          VARCHAR(64),
+    MAT_SEQ_NO            BIGINT,
+    FAMILY_CODE           VARCHAR(1000),
+    UNIT_CODE             VARCHAR(100),
+    UNIT_NAME             VARCHAR(256),
+    PRODUCT_CODE          VARCHAR(100),
+    PRODUCT_NAME          VARCHAR(256),
+    PRODUCT_VALUE         DECIMAL(27, 6),
+    LCI_ELEMENT_CODE      VARCHAR(256),
+    LCI_ELEMENT_CNAME     VARCHAR(256),
+    C1                    DOUBLE,
+    C2                    DOUBLE,
+    C3                    DOUBLE,
+    C4                    DOUBLE,
+    C5                    DOUBLE,
+    C_INSITE              DOUBLE,
+    C_OUTSITE             DOUBLE,
+    C_CYCLE               DOUBLE,
+    REC_CREATOR           VARCHAR(32),
+    REC_CREATE_TIME       VARCHAR(32),
+    REC_REVISOR           VARCHAR(32),
+    REC_REVISE_TIME       VARCHAR(32)
+)
+    IN BG00MAC102
+    DISTRIBUTE BY HASH (REC_ID)
+    COMPRESS YES ADAPTIVE
+    ORGANIZE BY ROW;
+
+CREATE TABLE BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_EPD_CONS_MONTH_RESULT_HP0001_2025_NEW_AUTH_DIST
+(
+    UPDATE_DATE      VARCHAR(10),
+    INDEX_CODE       VARCHAR(1200),
+    MAT_NO           VARCHAR(64),
+    MAT_TRACK_NO     VARCHAR(64),
+    MAT_SEQ_NO       BIGINT,
+    FAMILY_CODE      VARCHAR(1000),
+    UNIT_CODE        VARCHAR(100),
+    UNIT_NAME        VARCHAR(256),
+    PRODUCT_CODE     VARCHAR(100),
+    PRODUCT_NAME     VARCHAR(256),
+    PRODUCT_VALUE    DECIMAL(27, 6),
+    TYPE_CODE        VARCHAR(20),
+    TYPE_NAME        VARCHAR(200),
+    ITEM_CODE        VARCHAR(100),
+    ITEM_NAME        VARCHAR(256),
+    VALUE            DECIMAL(27, 6),
+    UNITM_AC         VARCHAR(20),
+    UNIT_COST        DOUBLE,
+    LCI_ELEMENT_CODE VARCHAR(256),
+    C1               DOUBLE,
+    C2               DOUBLE,
+    C3               DOUBLE,
+    C4               DOUBLE,
+    C5               DOUBLE,
+    FLAG             VARCHAR(20)
+)
+    IN BG00MAC102
+    DISTRIBUTE BY HASH (UPDATE_DATE)
+    COMPRESS YES ADAPTIVE
+    ORGANIZE BY ROW;
+
+COMMIT;
+
+-- 普通NORM
+
+-- EPD固定批次
+-- P_ADS_FACT_LCA_SUBCLASS_EPD_NORM_CALC
+
+SET CURRENT SCHEMA = BG00MAC102;
+
+CREATE TABLE BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_EPD_NORM_MONTH_RESULT_TA_CR0001_2024
+(
+    REC_ID                VARCHAR(64),
+    SUBCLASS_TAB_NAME     VARCHAR(64),
+    COMPANY_CODE          VARCHAR(8),
+    MAIN_CAT_BATCH_NUMBER VARCHAR(64),
+    FACTOR_VERSION        VARCHAR(100),
+    UPDATE_DATE           VARCHAR(6),
+    INDEX_CODE            VARCHAR(1000),
+    MAT_NO                VARCHAR(64),
+    MAT_TRACK_NO          VARCHAR(64),
+    MAT_SEQ_NO            BIGINT,
+    MAT_WT                DECIMAL(18, 3),
+    MAT_STATUS            VARCHAR(10),
+    FAMILY_CODE           VARCHAR(1000),
+    UNIT_CODE             VARCHAR(100),
+    UNIT_NAME             VARCHAR(256),
+    PRODUCT_CODE          VARCHAR(100),
+    PRODUCT_NAME          VARCHAR(256),
+    PRODUCT_VALUE         DECIMAL(27, 6),
+    LCI_ELEMENT_CODE      VARCHAR(256),
+    LCI_ELEMENT_CNAME     VARCHAR(256),
+    C_CYCLE               DOUBLE,
+    C1                    DOUBLE,
+    C2                    DOUBLE,
+    C3                    DOUBLE,
+    C4                    DOUBLE,
+    C5                    DOUBLE,
+    C_INSITE              DOUBLE,
+    C_OUTSITE             DOUBLE,
+    REC_CREATOR           VARCHAR(32),
+    REC_CREATE_TIME       VARCHAR(32),
+    REC_REVISOR           VARCHAR(32),
+    REC_REVISE_TIME       VARCHAR(32)
+)
+    IN BG00MAC102
+    DISTRIBUTE BY HASH (REC_ID)
+    ORGANIZE BY ROW;
+
+COMMIT;
+
+
+-- GWP中间分布
+-- P_ADS_FACT_LCA_SUBCLASS_GWP_NORM_CALC
+
+CREATE TABLE BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_GWP_NORM_MONTH_RESULT_TA_HP0001_2024
+(
+    REC_ID                VARCHAR(64),
+    SUBCLASS_TAB_NAME     VARCHAR(64),
+    COMPANY_CODE          VARCHAR(8),
+    MAIN_CAT_BATCH_NUMBER VARCHAR(64),
+    FACTOR_VERSION        VARCHAR(100),
+    UPDATE_DATE           VARCHAR(6),
+    INDEX_CODE            VARCHAR(1000),
+    MAT_NO                VARCHAR(64),
+    MAT_TRACK_NO          VARCHAR(64),
+    MAT_SEQ_NO            BIGINT,
+    FAMILY_CODE           VARCHAR(1000),
+    UNIT_CODE             VARCHAR(100),
+    UNIT_NAME             VARCHAR(256),
+    PRODUCT_CODE          VARCHAR(100),
+    PRODUCT_NAME          VARCHAR(256),
+    PRODUCT_VALUE         DECIMAL(27, 6),
+    MAT_WT                DECIMAL(18, 3),
+    MAT_STATUS            VARCHAR(10),
+    DEPT_NAME             VARCHAR(256),
+    DEPT_CODE             VARCHAR(10),
+    DEPT_MID_NAME         VARCHAR(20),
+    LCI_ELEMENT_CODE      VARCHAR(256),
+    LCI_ELEMENT_CNAME     VARCHAR(256),
+    C_CYCLE               DOUBLE,
+    C1                    DOUBLE,
+    C2                    DOUBLE,
+    C3                    DOUBLE,
+    C4                    DOUBLE,
+    C5                    DOUBLE,
+    C_INSITE              DOUBLE,
+    C_OUTSITE             DOUBLE,
+    REC_CREATOR           VARCHAR(32),
+    REC_CREATE_TIME       VARCHAR(32),
+    REC_REVISOR           VARCHAR(32),
+    REC_REVISE_TIME       VARCHAR(32)
+)
+    IN BG00MAC102
+    DISTRIBUTE BY HASH (REC_ID)
+    ORGANIZE BY ROW;
+
+
+CREATE TABLE BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_GWP_NORM_MONTH_RESULT_TA_HP0001_2024_PARALLEL
+(
+    REC_ID                VARCHAR(64),
+    SUBCLASS_TAB_NAME     VARCHAR(64),
+    COMPANY_CODE          VARCHAR(8),
+    MAIN_CAT_BATCH_NUMBER VARCHAR(64),
+    FACTOR_VERSION        VARCHAR(100),
+    UPDATE_DATE           VARCHAR(6),
+    INDEX_CODE            VARCHAR(1000),
+    MAT_NO                VARCHAR(64),
+    MAT_TRACK_NO          VARCHAR(64),
+    MAT_SEQ_NO            BIGINT,
+    FAMILY_CODE           VARCHAR(1000),
+    UNIT_CODE             VARCHAR(100),
+    UNIT_NAME             VARCHAR(256),
+    PRODUCT_CODE          VARCHAR(100),
+    PRODUCT_NAME          VARCHAR(256),
+    PRODUCT_VALUE         DECIMAL(27, 6),
+    MAT_WT                DECIMAL(18, 3),
+    MAT_STATUS            VARCHAR(10),
+    TYPE_CODE             VARCHAR(20),
+    TYPE_NAME             VARCHAR(64),
+    ITEM_CODE             VARCHAR(100),
+    ITEM_NAME             VARCHAR(256),
+    VALUE                 DECIMAL(27, 6),
+    UNITM_AC              VARCHAR(64),
+    UNIT_COST             DOUBLE,
+    DEPT_NAME             VARCHAR(256),
+    DEPT_CODE             VARCHAR(10),
+    DEPT_MID_NAME         VARCHAR(20),
+    LCI_ELEMENT_CODE      VARCHAR(256),
+    LCI_ELEMENT_CNAME     VARCHAR(256),
+    C_CYCLE               DOUBLE,
+    C1                    DOUBLE,
+    C2                    DOUBLE,
+    C3                    DOUBLE,
+    C4                    DOUBLE,
+    C5                    DOUBLE,
+    C_INSITE              DOUBLE,
+    C_OUTSITE             DOUBLE,
+    FLAG                  VARCHAR(32),
+    REC_CREATOR           VARCHAR(32),
+    REC_CREATE_TIME       VARCHAR(32),
+    REC_REVISOR           VARCHAR(32),
+    REC_REVISE_TIME       VARCHAR(32)
+)
+    IN BG00MAC102
+    DISTRIBUTE BY HASH (REC_ID)
+    ORGANIZE BY ROW;
+
+COMMIT;
