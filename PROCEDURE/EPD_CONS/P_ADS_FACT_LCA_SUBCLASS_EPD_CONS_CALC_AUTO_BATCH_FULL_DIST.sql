@@ -1,12 +1,14 @@
-CREATE OR REPLACE PROCEDURE BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_EPD_CONS_CALC_AUTO_BATCH(IN V_COMPANY_CODE VARCHAR(4),
-                                                                                        IN V_FACTOR_YEAR VARCHAR(4),
-                                                                                        IN V_FACTOR_VERSION VARCHAR(100),
-                                                                                        IN V_BATCH_SUFFIX VARCHAR(100),
-                                                                                        IN V_DEFAULT_BATCH VARCHAR(100),
-                                                                                        IN V_MAIN_CAT_RESULT_TAB_NAME VARCHAR(100),
-                                                                                        IN V_SUBCLASS_TAB_NAME VARCHAR(100),
-                                                                                        IN V_SUBCLASS_RESULT_TAB_NAME VARCHAR(100))
-    SPECIFIC P_ADS_FACT_LCA_SUBCLASS_EPD_CONS_CALC_AUTO_BATCH
+CREATE OR REPLACE PROCEDURE BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_EPD_CONS_CALC_AUTO_BATCH_FULL_DIST(IN V_COMPANY_CODE VARCHAR(4),
+                                                                                             IN V_FACTOR_YEAR VARCHAR(4),
+                                                                                             IN V_FACTOR_VERSION VARCHAR(100),
+                                                                                             IN V_BATCH_SUFFIX VARCHAR(100),
+                                                                                             IN V_DEFAULT_BATCH VARCHAR(100),
+                                                                                             IN V_MAIN_CAT_RESULT_TAB_NAME VARCHAR(100),
+                                                                                             IN V_SUBCLASS_TAB_NAME VARCHAR(100),
+                                                                                             IN V_SUBCLASS_RESULT_TAB_NAME VARCHAR(100),
+                                                                                             IN V_SUBCLASS_RESULT_DIST_TAB_NAME VARCHAR(100)
+)
+    SPECIFIC P_ADS_FACT_LCA_SUBCLASS_EPD_CONS_CALC_AUTO_BATCH_FULL_DIST
     LANGUAGE SQL
     NOT DETERMINISTIC
     EXTERNAL ACTION
@@ -20,7 +22,7 @@ BEGIN
     DECLARE V_LAST_TIMESTAMP TIMESTAMP;
 
     DECLARE V_LOG_SCHEMA VARCHAR(32) DEFAULT 'BG00MAC102'; --日志表所在SCHEMA
-    DECLARE V_ROUTINE_NAME VARCHAR(128) DEFAULT 'P_ADS_FACT_LCA_SUBCLASS_EPD_CONS_CALC_AUTO_BATCH'; --存储过程名
+    DECLARE V_ROUTINE_NAME VARCHAR(128) DEFAULT 'P_ADS_FACT_LCA_SUBCLASS_EPD_CONS_CALC_AUTO_BATCH_FULL_DIST'; --存储过程名
     DECLARE V_PARM_INFO VARCHAR(4096) DEFAULT NULL;
     DECLARE SQLCODE INTEGER;
     DECLARE SQLSTATE CHAR (5);
@@ -28,7 +30,7 @@ BEGIN
 
     ------------------------------------日志变量定义------------------------------------
     DECLARE V_TMP_SCHEMA VARCHAR(32) DEFAULT 'BG00MAC102'; --临时表SCHEMA
-    DECLARE V_TMP_TAB VARCHAR(50) DEFAULT 'T_ADS_TEMP_LCA_SUBCLASS_EPD_CONS_CALC_AUTO_BATCH'; --临时表名
+    DECLARE V_TMP_TAB VARCHAR(58) DEFAULT 'T_ADS_TEMP_LCA_SUBCLASS_EPD_CONS_CALC_AUTO_BATCH_FULL_DIST'; --临时表名
     DECLARE V_QUERY_STR CLOB(1 M);
     --查询SQL
     --完整的临时表名
@@ -55,12 +57,21 @@ BEGIN
         MAT_NO VARCHAR(64),
         MAT_TRACK_NO VARCHAR(64),
         MAT_SEQ_NO BIGINT,
+        MAT_WT DECIMAL(18, 3),
+        MAT_STATUS VARCHAR(10),
         FAMILY_CODE VARCHAR(1000),
         UNIT_CODE VARCHAR(100),
         UNIT_NAME VARCHAR(256),
         PRODUCT_CODE VARCHAR(100),
         PRODUCT_NAME VARCHAR(256),
         PRODUCT_VALUE DECIMAL(27, 6),
+        TYPE_CODE VARCHAR(20),
+        TYPE_NAME VARCHAR(64),
+        ITEM_CODE VARCHAR(100),
+        ITEM_NAME VARCHAR(256),
+        VALUE DECIMAL(27, 6),
+        UNITM_AC VARCHAR(64),
+        UNIT_COST DOUBLE,
         LCI_ELEMENT_CODE VARCHAR(256),
         C1 DOUBLE,
         C2 DOUBLE,
@@ -76,18 +87,28 @@ BEGIN
         MAT_NO VARCHAR(64),
         MAT_TRACK_NO VARCHAR(64),
         MAT_SEQ_NO BIGINT,
+        MAT_WT DECIMAL(18, 3),
+        MAT_STATUS VARCHAR(10),
         FAMILY_CODE VARCHAR(1000),
         UNIT_CODE VARCHAR(100),
         UNIT_NAME VARCHAR(256),
         PRODUCT_CODE VARCHAR(100),
         PRODUCT_NAME VARCHAR(256),
         PRODUCT_VALUE DECIMAL(27, 6),
+        TYPE_CODE VARCHAR(20),
+        TYPE_NAME VARCHAR(64),
+        ITEM_CODE VARCHAR(100),
+        ITEM_NAME VARCHAR(256),
+        VALUE DECIMAL(27, 6),
+        UNITM_AC VARCHAR(64),
+        UNIT_COST DOUBLE,
         LCI_ELEMENT_CODE VARCHAR(256),
         C1 DOUBLE,
         C2 DOUBLE,
         C3 DOUBLE,
         C4 DOUBLE,
-        C5 DOUBLE
+        C5 DOUBLE,
+        FLAG VARCHAR(32)
         ) ON COMMIT PRESERVE ROWS;
 
 
@@ -110,7 +131,6 @@ BEGIN
     VALUES ('data', 'begin', null, CURRENT_TIMESTAMP);
 
     --取大类结果
-
     IF V_BATCH_SUFFIX IS NOT NULL THEN
         SET V_QUERY_STR = 'WITH UPDATE_DATE AS (SELECT DISTINCT UPDATE_DATE FROM ' || V_TMP_SCHEMA || '.' ||
                           V_SUBCLASS_TAB_NAME || '),
@@ -119,8 +139,7 @@ BEGIN
                                              FROM UPDATE_DATE A,
                                                   ' || V_TMP_SCHEMA || '.' || V_MAIN_CAT_RESULT_TAB_NAME || ' B
                                              WHERE B.BATCH_NUMBER LIKE A.UPDATE_DATE || A.UPDATE_DATE || ''%YS_' ||
-                          V_BATCH_SUFFIX || '_CONS''
-                                            AND B.COMPANY_CODE = ''' || V_COMPANY_CODE || '''),
+                          V_BATCH_SUFFIX || '_CONS''),
                              BATCH_RANK AS (SELECT *, RANK() OVER (PARTITION BY UPDATE_DATE ORDER BY BATCH_NUMBER DESC ) AS BATCH_RANK
                                             FROM BATCH_MATCH),
                              BATCH AS (SELECT * FROM BATCH_RANK WHERE BATCH_RANK = 1) ';
@@ -131,8 +150,7 @@ BEGIN
                                                              B.BATCH_NUMBER
                                              FROM UPDATE_DATE A,
                                                   ' || V_TMP_SCHEMA || '.' || V_MAIN_CAT_RESULT_TAB_NAME || ' B
-                                             WHERE B.BATCH_NUMBER LIKE A.UPDATE_DATE || A.UPDATE_DATE || ''%YS_CONS''
-                                            AND B.COMPANY_CODE = ''' || V_COMPANY_CODE || '''),
+                                             WHERE B.BATCH_NUMBER LIKE A.UPDATE_DATE || A.UPDATE_DATE || ''%YS_CONS''),
                              BATCH_RANK AS (SELECT *, RANK() OVER (PARTITION BY UPDATE_DATE ORDER BY BATCH_NUMBER DESC ) AS BATCH_RANK
                                             FROM BATCH_MATCH),
                              BATCH AS (SELECT * FROM BATCH_RANK WHERE BATCH_RANK = 1)';
@@ -152,135 +170,215 @@ BEGIN
     END IF;
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'DATE_BATCH', V_QUERY_STR);
 
+
     SET V_QUERY_STR = 'SELECT * FROM ' || V_TMP_SCHEMA || '.' || V_MAIN_CAT_RESULT_TAB_NAME || '
                        WHERE BATCH_NUMBER IN (SELECT DISTINCT BATCH_NUMBER FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DATE_BATCH)
                        AND COMPANY_CODE = ''' || V_COMPANY_CODE || '''
-                       AND FACTOR_VERSION = ''' || V_FACTOR_VERSION || '''
                        AND LCI_ELEMENT_CODE IS NOT NULL';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'ENERGY_RESULT', V_QUERY_STR);
 
+
     --取活动数据
-    SET V_QUERY_STR = '
-               SELECT UPDATE_DATE,
-                      MAT_TRACK_NO,
-                      MAT_NO,
-                      MAT_SEQ_NO,
-                      CASE WHEN FAMILY_CODE IS NULL THEN ''00''
-                      WHEN FAMILY_CODE = '''' THEN ''00''
-                      ELSE FAMILY_CODE END AS FAMILY_CODE,
-                      UNIT_CODE,
-                      UNIT_NAME,
-                      TYPE_CODE,
-                      TYPE_NAME,
-                      ITEM_CODE,
-                      ITEM_NAME,
-                      CASE WHEN UNITM_AC = ''万度'' THEN VALUE * 10000
-                      WHEN UNITM_AC = ''吨'' THEN VALUE * 1000
-                      WHEN UNITM_AC = ''千立方米'' THEN VALUE * 1000
-                      ELSE VALUE END AS VALUE,
-                      CASE WHEN UNITM_AC = ''万度'' THEN ''度''
-                      WHEN UNITM_AC = ''吨'' THEN ''千克''
-                      WHEN UNITM_AC = ''公斤'' THEN ''千克''
-                      WHEN UNITM_AC = ''千立方米'' THEN ''立方米''
-                      ELSE UNITM_AC END AS UNITM_AC
-                      FROM ' || V_TMP_SCHEMA || '.' || V_SUBCLASS_TAB_NAME || '
-                      WHERE VALUE IS NOT NULL AND VALUE != 0
-                      AND MAT_TRACK_NO NOT IN (SELECT DISTINCT MAT_TRACK_NO
-                           FROM (SELECT MAT_TRACK_NO, MAX(FAMILY_CODE) AS MAX_NO
-                                 FROM ' || V_TMP_SCHEMA || '.' || V_SUBCLASS_TAB_NAME || '
-                                 GROUP BY MAT_TRACK_NO)
-                           WHERE MAX_NO IS NULL)';
+    SET V_QUERY_STR = 'SELECT UPDATE_DATE, ' ||
+                      'MAT_TRACK_NO, ' ||
+                      'MAT_NO, ' ||
+                      'MAT_SEQ_NO, ' ||
+                      'MAT_WT, ' ||
+                      'MAT_STATUS, ' ||
+                      'CASE WHEN FAMILY_CODE IS NULL THEN ''00'' ' ||
+                      'WHEN FAMILY_CODE = '''' THEN ''00'' ' ||
+                      'ELSE FAMILY_CODE END AS FAMILY_CODE, ' ||
+                      'UNIT_CODE, ' ||
+                      'UNIT_NAME, ' ||
+                      'TYPE_CODE, ' ||
+                      'TYPE_NAME, ' ||
+                      'ITEM_CODE, ' ||
+                      'ITEM_NAME, ' ||
+                      'CASE WHEN UNITM_AC = ''万度'' THEN VALUE * 10000 ' ||
+                      'WHEN UNITM_AC = ''吨'' THEN VALUE * 1000 ' ||
+                      'WHEN UNITM_AC = ''千立方米'' THEN VALUE * 1000 ' ||
+                      'ELSE VALUE END AS VALUE, ' ||
+                      'CASE WHEN UNITM_AC = ''万度'' THEN ''度'' ' ||
+                      'WHEN UNITM_AC = ''吨'' THEN ''千克'' ' ||
+                      'WHEN UNITM_AC = ''公斤'' THEN ''千克'' ' ||
+                      'WHEN UNITM_AC = ''千立方米'' THEN ''立方米'' ' ||
+                      'ELSE UNITM_AC END AS UNITM_AC ' ||
+                      'FROM ' || V_TMP_SCHEMA || '.' || V_SUBCLASS_TAB_NAME || ' WHERE ' ||
+                      'VALUE != 0 AND MAT_TRACK_NO NOT IN (select DISTINCT MAT_TRACK_NO
+                           from (select MAT_TRACK_NO, max(FAMILY_CODE) as max_no
+                                 from ' || V_TMP_SCHEMA || '.' || V_SUBCLASS_TAB_NAME || '
+                                 group by MAT_TRACK_NO)
+                           where MAX_NO is null)';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'TEMP_DATA', V_QUERY_STR);
 
 
     IF V_COMPANY_CODE = 'TA' THEN
         SET V_QUERY_STR = 'UPDATE ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_TEMP_DATA
-                           SET VALUE = VALUE * 0.9877
-                           WHERE UNIT_CODE LIKE ''%BOF''
-                             AND TYPE_CODE != ''04''';
+                        SET VALUE = VALUE * 0.9877
+                        WHERE UNIT_CODE LIKE ''%BOF''
+                          AND TYPE_CODE != ''04''';
     ELSEIF V_COMPANY_CODE = 'ZG' THEN
         SET V_QUERY_STR = 'UPDATE ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_TEMP_DATA
-                           SET VALUE = VALUE * 0.9877
-                           WHERE UNIT_CODE = ''LG04''
-                             AND TYPE_CODE != ''04''';
+                        SET VALUE = VALUE * 0.9877
+                        WHERE UNIT_CODE = ''LG04''
+                          AND TYPE_CODE != ''04''';
     END IF;
     PREPARE stmt FROM V_QUERY_STR;
     EXECUTE stmt;
 
 
-    SET V_QUERY_STR = 'SELECT DISTINCT MAT_TRACK_NO FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_TEMP_DATA';
+    SET V_QUERY_STR = 'SELECT DISTINCT MAT_TRACK_NO ' ||
+                      'FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_TEMP_DATA';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'MAT_TRACK_NO', V_QUERY_STR);
 
 
+    --     SET V_QUERY_STR = '
+--         SELECT A.* FROM (SELECT UPDATE_DATE,
+--                MAT_TRACK_NO,
+--                MAT_NO,
+--                MAT_SEQ_NO,
+--                CASE
+--                    WHEN FAMILY_CODE IS NULL THEN ''00''
+--                    WHEN FAMILY_CODE = '''' THEN ''00''
+--                    ELSE FAMILY_CODE
+--                    END
+--                     AS FAMILY_CODE,
+--                UNIT_CODE,
+--                UNIT_NAME,
+--                TYPE_CODE,
+--                TYPE_NAME,
+--                ITEM_CODE,
+--                ITEM_NAME,
+--                CASE
+--                    WHEN UNITM_AC = ''万度'' THEN VALUE * 10000
+--                    WHEN UNITM_AC = ''吨'' THEN VALUE * 1000
+--                    WHEN UNITM_AC = ''千立方米'' THEN VALUE * 1000
+--                    ELSE VALUE
+--                    END
+--                     AS VALUE,
+--                CASE
+--                    WHEN UNITM_AC = ''万度'' THEN ''度''
+--                    WHEN UNITM_AC = ''吨'' THEN ''千克''
+--                    WHEN UNITM_AC = ''公斤'' THEN ''千克''
+--                    WHEN UNITM_AC = ''千立方米'' THEN ''立方米''
+--                    ELSE UNITM_AC
+--                    END
+--                      AS UNITM_AC
+--         FROM ' || V_TMP_SCHEMA || '.' || V_SUBCLASS_TAB_NAME || '
+--         WHERE 1 = 1';
+--     IF V_END_MONTH IS NOT NULL THEN
+--         SET V_QUERY_STR = V_QUERY_STR || ' AND UPDATE_DATE <= ''' || V_END_MONTH || '''';
+--     END IF;
+--     SET V_QUERY_STR = V_QUERY_STR || ' AND VALUE != 0) A JOIN (
+--         SELECT DISTINCT MAT_TRACK_NO
+--         FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_MAT_TRACK_NO) B ON A.MAT_TRACK_NO = B.MAT_TRACK_NO
+--     ';
+--     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'PREV_TEMP_DATA', V_QUERY_STR);
+
+
     --PROC信息
-    SET V_QUERY_STR = 'SELECT DISTINCT UPDATE_DATE,
-                                  CASE
-                                     WHEN FAMILY_CODE = ''00'' THEN CONCAT(CONCAT(CONCAT(CONCAT(MAT_TRACK_NO, ''_''), FAMILY_CODE), ''_''), MAT_SEQ_NO)
-                                     ELSE CONCAT(CONCAT(MAT_TRACK_NO, ''_''), FAMILY_CODE) END      AS INDEX_CODE,
-                                  MAT_TRACK_NO,
-                                  MAT_SEQ_NO,
-                                  FAMILY_CODE,
-                                  UNIT_CODE,
-                                  UNIT_NAME,
-                                  ITEM_CODE AS PRODUCT_CODE,
-                                  ITEM_NAME AS PRODUCT_NAME,
-                                  VALUE AS PRODUCT_VALUE
-                             FROM
-                                 ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_TEMP_DATA
-                             WHERE TYPE_CODE = ''04''';
+    SET V_QUERY_STR = '
+         SELECT DISTINCT
+            UPDATE_DATE,
+            CASE
+               WHEN FAMILY_CODE = ''00'' THEN CONCAT(CONCAT(CONCAT(CONCAT(MAT_TRACK_NO, ''_''), FAMILY_CODE), ''_''), MAT_SEQ_NO)
+               ELSE CONCAT(CONCAT(MAT_TRACK_NO, ''_''), FAMILY_CODE) END      AS INDEX_CODE,
+            MAT_TRACK_NO,
+            MAT_SEQ_NO,
+            FAMILY_CODE,
+            UNIT_CODE,
+            UNIT_NAME,
+            ITEM_CODE AS PRODUCT_CODE,
+            ITEM_NAME AS PRODUCT_NAME,
+            VALUE AS PRODUCT_VALUE
+        FROM
+            ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_TEMP_DATA
+        WHERE TYPE_CODE = ''04''
+     ';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'PROC_PRODUCT_LIST', V_QUERY_STR);
 
+    --     SET V_QUERY_STR = '
+--         SELECT ''' || V_SUBCLASS_TAB_NAME || ''' AS SUBCLASS_TAB_NAME,
+--                A.UPDATE_DATE,
+--                MAT_NO,
+--                A.MAT_TRACK_NO,
+--                MAT_SEQ_NO,
+--                A.FAMILY_CODE,
+--                A.UNIT_CODE,
+--                A.UNIT_NAME,
+--                PRODUCT_CODE,
+--                PRODUCT_NAME,
+--                TYPE_CODE,
+--                TYPE_NAME,
+--                ITEM_CODE,
+--                ITEM_NAME,
+--                ABS(VALUE) AS VALUE,
+--                UNITM_AC,
+--                PRODUCT_VALUE,
+--                CAST(ABS(VALUE) AS DOUBLE) / CAST(PRODUCT_VALUE AS DOUBLE) AS UNIT_COST
+--         FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_PREV_TEMP_DATA A
+--                JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_PROC_PRODUCT_LIST B
+--                ON A.MAT_TRACK_NO = B.MAT_TRACK_NO
+--                 AND A.FAMILY_CODE = B.FAMILY_CODE
+--                 AND A.UNIT_CODE = B.UNIT_CODE
+--                 AND A.UPDATE_DATE = B.UPDATE_DATE
+--      ';
+--     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'PREV_DATA', V_QUERY_STR);
 
-    SET V_QUERY_STR = 'SELECT A.UPDATE_DATE,
-                              CASE
-                              WHEN A.FAMILY_CODE = ''00'' THEN CONCAT(CONCAT(CONCAT(CONCAT(A.MAT_TRACK_NO, ''_''), A.FAMILY_CODE), ''_''), A.MAT_SEQ_NO)
-                              ELSE CONCAT(CONCAT(A.MAT_TRACK_NO, ''_''), A.FAMILY_CODE) END      AS INDEX_CODE,
-                              A.MAT_NO,
-                              A.MAT_TRACK_NO,
-                              A.MAT_SEQ_NO,
-                              A.FAMILY_CODE,
-                              A.UNIT_CODE,
-                              A.UNIT_NAME,
-                              PRODUCT_CODE,
-                              PRODUCT_NAME,
-                              TYPE_CODE,
-                              TYPE_NAME,
-                              ITEM_CODE,
-                              ITEM_NAME,
-                              ABS(VALUE) AS VALUE,
-                              UNITM_AC,
-                              PRODUCT_VALUE,
-                              CAST(ABS(VALUE) AS DOUBLE) / CAST(PRODUCT_VALUE AS DOUBLE) AS UNIT_COST
-                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_TEMP_DATA A
-                              JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_PROC_PRODUCT_LIST B
-                              ON A.MAT_TRACK_NO = B.MAT_TRACK_NO
-                               AND A.FAMILY_CODE = B.FAMILY_CODE
-                               AND A.UNIT_CODE = B.UNIT_CODE';
+    SET V_QUERY_STR = '
+        SELECT A.UPDATE_DATE,
+               CASE
+               WHEN A.FAMILY_CODE = ''00'' THEN CONCAT(CONCAT(CONCAT(CONCAT(A.MAT_TRACK_NO, ''_''), A.FAMILY_CODE), ''_''), A.MAT_SEQ_NO)
+               ELSE CONCAT(CONCAT(A.MAT_TRACK_NO, ''_''), A.FAMILY_CODE) END      AS INDEX_CODE,
+               A.MAT_NO,
+               A.MAT_TRACK_NO,
+               A.MAT_SEQ_NO,
+               A.MAT_WT,
+               A.MAT_STATUS,
+               A.FAMILY_CODE,
+               A.UNIT_CODE,
+               A.UNIT_NAME,
+               PRODUCT_CODE,
+               PRODUCT_NAME,
+               TYPE_CODE,
+               TYPE_NAME,
+               ITEM_CODE,
+               ITEM_NAME,
+               ABS(VALUE) AS VALUE,
+               UNITM_AC,
+               PRODUCT_VALUE,
+               CAST(ABS(VALUE) AS DOUBLE) / CAST(PRODUCT_VALUE AS DOUBLE) AS UNIT_COST
+        FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_TEMP_DATA A
+               JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_PROC_PRODUCT_LIST B
+               ON A.MAT_TRACK_NO = B.MAT_TRACK_NO
+                AND A.FAMILY_CODE = B.FAMILY_CODE
+                AND A.UNIT_CODE = B.UNIT_CODE
+     ';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'DATA', V_QUERY_STR);
 
     --工艺路径
-    SET V_QUERY_STR = 'WITH TEMP AS (SELECT A.*, B.PREV_RANK
-                                     FROM (SELECT DISTINCT UPDATE_DATE, INDEX_CODE, MAT_TRACK_NO, MAT_SEQ_NO, FAMILY_CODE, UNIT_CODE, UNIT_NAME
-                                           FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DATA) A
-                                              JOIN (SELECT DISTINCT A.MAT_TRACK_NO, MAX(A.MAT_SEQ_NO) AS PREV_RANK
-                                                    FROM ' || V_TMP_SCHEMA || '.' || V_SUBCLASS_TAB_NAME || ' A
-                                                    JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_MAT_TRACK_NO B
-                                                      ON A.MAT_TRACK_NO = B.MAT_TRACK_NO
-                                                    WHERE A.FAMILY_CODE IS NULL
-                                                    GROUP BY A.MAT_TRACK_NO) B
-                                                   ON A.MAT_TRACK_NO = B.MAT_TRACK_NO)
-                       SELECT *,
-                              CASE
-                                  WHEN FAMILY_CODE = ''00'' AND MAT_SEQ_NO = 1 THEN NULL
-                                  WHEN FAMILY_CODE = ''00'' AND MAT_SEQ_NO > 1 THEN CONCAT(
-                                          CONCAT(CONCAT(CONCAT(MAT_TRACK_NO, ''_''), FAMILY_CODE), ''_''), MAT_SEQ_NO - 1)
-                                  WHEN FAMILY_CODE = ''01'' THEN CONCAT(CONCAT(CONCAT(CONCAT(MAT_TRACK_NO, ''_''), ''00''), ''_''), PREV_RANK)
-                                  ELSE CONCAT(CONCAT(MAT_TRACK_NO, ''_''), LEFT(FAMILY_CODE, LENGTH(FAMILY_CODE) - 2))
-                                  END                                                          AS PREV_INDEX_CODE,
-                              CASE
-                                  WHEN FAMILY_CODE = ''00'' THEN MAT_SEQ_NO
-                                  ELSE CAST(LENGTH(FAMILY_CODE) / 2 AS BIGINT) + PREV_RANK END AS RANK
-                       FROM TEMP';
+    SET V_QUERY_STR = '
+         WITH TEMP AS (SELECT A.*, B.PREV_RANK
+                       FROM (SELECT DISTINCT UPDATE_DATE, INDEX_CODE, MAT_TRACK_NO, MAT_SEQ_NO, FAMILY_CODE, UNIT_CODE, UNIT_NAME
+                             FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DATA) A
+                                JOIN (SELECT DISTINCT MAT_TRACK_NO, MAX(MAT_SEQ_NO) AS PREV_RANK
+                                      FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DATA
+                                      WHERE FAMILY_CODE = ''00''
+                                      GROUP BY MAT_TRACK_NO) B
+                                     ON A.MAT_TRACK_NO = B.MAT_TRACK_NO)
+         SELECT *,
+                CASE
+                    WHEN FAMILY_CODE = ''00'' AND MAT_SEQ_NO = 1 THEN NULL
+                    WHEN FAMILY_CODE = ''00'' AND MAT_SEQ_NO > 1 THEN CONCAT(
+                            CONCAT(CONCAT(CONCAT(MAT_TRACK_NO, ''_''), FAMILY_CODE), ''_''), MAT_SEQ_NO - 1)
+                    WHEN FAMILY_CODE = ''01'' THEN CONCAT(CONCAT(CONCAT(CONCAT(MAT_TRACK_NO, ''_''), ''00''), ''_''), PREV_RANK)
+                    ELSE CONCAT(CONCAT(MAT_TRACK_NO, ''_''), LEFT(FAMILY_CODE, LENGTH(FAMILY_CODE) - 2))
+                    END                                                          AS PREV_INDEX_CODE,
+                CASE
+                    WHEN FAMILY_CODE = ''00'' THEN MAT_SEQ_NO
+                    ELSE CAST(LENGTH(FAMILY_CODE) / 2 AS BIGINT) + PREV_RANK END AS RANK
+         FROM TEMP
+    ';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'PROC_SEQ', V_QUERY_STR);
 
     INSERT INTO BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_EPD_CONS_MONTH_DEBUG(proc_name, step_desc, var_value, log_time)
@@ -289,9 +387,9 @@ BEGIN
     INSERT INTO BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_EPD_CONS_MONTH_DEBUG(proc_name, step_desc, var_value, log_time)
     VALUES ('factor', 'begin', null, CURRENT_TIMESTAMP);
 
-
     --数据项和系数
-    SET V_QUERY_STR = 'SELECT DISTINCT ITEM_CODE, ITEM_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DATA';
+    SET V_QUERY_STR = 'SELECT DISTINCT ITEM_CODE, ITEM_NAME
+         FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DATA';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'ITEM_BASE', V_QUERY_STR);
 
 
@@ -327,124 +425,127 @@ BEGIN
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'UUID', V_QUERY_STR);
 
 
-    SET V_QUERY_STR = 'WITH STREAM AS (SELECT VERSION, UUID AS STREAM_ID,
-                                      NAME AS STREAM_NAME,
-                                      LCI_ELEMENT_CODE,
-                                      LCI_ELEMENT_NAME,
-                                      LCI_ELEMENT_VALUE
-                               FROM BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI_CONS
-                               WHERE VERSION = ''' || V_FACTOR_VERSION || '''
-                                 AND FLAG = ''STREAM'')
-                       SELECT DISTINCT A.DATA_CODE,
-                                       A.UUID AS STREAM_ID,
-                                       B.VERSION,
-                                       B.STREAM_NAME,
-                                       B.LCI_ELEMENT_CODE,
-                                       B.LCI_ELEMENT_NAME,
-                                       B.LCI_ELEMENT_VALUE
-                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI A
-                                JOIN STREAM B ON A.UUID = B.STREAM_ID';
+    SET V_QUERY_STR = '
+        WITH STREAM AS (SELECT VERSION, UUID AS STREAM_ID,
+                       NAME AS STREAM_NAME,
+                       LCI_ELEMENT_CODE,
+                       LCI_ELEMENT_NAME,
+                       LCI_ELEMENT_VALUE
+                FROM BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI_CONS
+                WHERE VERSION = ''' || V_FACTOR_VERSION || '''
+                  AND FLAG = ''STREAM'')
+        SELECT DISTINCT A.DATA_CODE,
+                        A.UUID AS STREAM_ID,
+                        B.VERSION,
+                        B.STREAM_NAME,
+                        B.LCI_ELEMENT_CODE,
+                        B.LCI_ELEMENT_NAME,
+                        B.LCI_ELEMENT_VALUE
+        FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI A
+                 JOIN STREAM B ON A.UUID = B.STREAM_ID';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'LCI_STREAM', V_QUERY_STR);
 
 
-    SET V_QUERY_STR = 'SELECT DISTINCT *
-                       FROM BG00MAC102.T_ADS_WH_LCA_EPD_CONS_FACTOR_VERSION
-                       WHERE VERSION = ''' || V_FACTOR_VERSION || '''
-                       AND LCI_ELEMENT_CODE IS NOT NULL';
+    SET V_QUERY_STR =
+            'SELECT DISTINCT * ' ||
+            'FROM BG00MAC102.T_ADS_WH_LCA_EPD_CONS_FACTOR_VERSION ' ||
+            'WHERE VERSION = ''' || V_FACTOR_VERSION || '''';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'LCI_LIST', V_QUERY_STR);
 
 
-    SET V_QUERY_STR = 'SELECT DATA_CODE AS ITEM_CODE,
-                              LCI_ELEMENT_CODE,
-                              LCI_ELEMENT_NAME,
-                              LCI_ELEMENT_VALUE AS LCI_ELEMENT_VALUE
-                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_STREAM
-                       WHERE VERSION = ''' || V_FACTOR_VERSION || '''
-                       UNION
-                       SELECT A.ITEM_CODE,
-                              A.LCI_ELEMENT_CODE,
-                              A.LCI_ELEMENT_NAME,
-                              A.LCI_ELEMENT_VALUE * B.HOTVALUE AS LCI_ELEMENT_VALUE
-                       FROM
-                           (SELECT DATA_CODE AS ITEM_CODE,
-                                   LCI_ELEMENT_CODE,
-                                   LCI_ELEMENT_NAME,
-                                   LCI_ELEMENT_VALUE
-                            FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_STREAM
-                            WHERE LCI_ELEMENT_CODE IN (''RSF'', ''NRSF'')) A
-                               LEFT JOIN (SELECT *
-                                          FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
-                                          WHERE START_TIME = ''' || V_FACTOR_YEAR || '''
-                                            AND ORG_CODE = ''' || V_COMPANY_CODE ||
-                      ''') B ON A.ITEM_CODE = B.ITEM_CODE';
+    SET V_QUERY_STR = '
+            SELECT DATA_CODE AS ITEM_CODE,
+                   LCI_ELEMENT_CODE,
+                   LCI_ELEMENT_NAME,
+                   LCI_ELEMENT_VALUE AS LCI_ELEMENT_VALUE
+            FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_STREAM
+            WHERE VERSION = ''' || V_FACTOR_VERSION || '''
+            UNION
+            SELECT A.ITEM_CODE,
+                   A.LCI_ELEMENT_CODE,
+                   A.LCI_ELEMENT_NAME,
+                   A.LCI_ELEMENT_VALUE * B.HOTVALUE AS LCI_ELEMENT_VALUE
+            FROM
+                (SELECT DATA_CODE AS ITEM_CODE,
+                        LCI_ELEMENT_CODE,
+                        LCI_ELEMENT_NAME,
+                        LCI_ELEMENT_VALUE
+                 FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_STREAM
+                 WHERE LCI_ELEMENT_CODE IN (''RSF'', ''NRSF'')) A
+                    LEFT JOIN (SELECT *
+                               FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
+                               WHERE START_TIME = ''' || V_FACTOR_YEAR || '''
+                                 AND ORG_CODE = ''' || V_COMPANY_CODE || ''') B ON A.ITEM_CODE = B.ITEM_CODE';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'FACTOR_EP', V_QUERY_STR);
 
 
-    SET V_QUERY_STR = 'SELECT A.ITEM_CODE AS ITEM_CODE,
-                              ''GWP-total'' AS LCI_ELEMENT_CODE,
-                              (SELECT LCI_ELEMENT_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST
-                                 WHERE LCI_ELEMENT_CODE = ''GWP-total'') AS LCI_ELEMENT_NAME,
-                              B.DISCH_COEFF AS LCI_ELEMENT_VALUE
-                       FROM (SELECT ITEM_CODE, ITEM_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE) A
-                             JOIN
-                            (SELECT DISTINCT *
-                             FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
-                             WHERE ORG_CODE = ''' || V_COMPANY_CODE || '''
-                               AND START_TIME = ''' || V_FACTOR_YEAR || ''') B
-                            ON A.ITEM_CODE = B.ITEM_CODE
-                       WHERE B.DISCH_COEFF IS NOT NULL
-                       UNION
-                       SELECT A.ITEM_CODE AS ITEM_CODE,
-                              ''GWP-fossil'' AS LCI_ELEMENT_CODE,
-                           (SELECT LCI_ELEMENT_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST
-                            WHERE LCI_ELEMENT_CODE = ''GWP-fossil'') AS LCI_ELEMENT_NAME,
-                              B.DISCH_COEFF AS LCI_ELEMENT_VALUE
-                       FROM (SELECT ITEM_CODE, ITEM_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE) A
-                                JOIN
-                            (SELECT DISTINCT *
-                             FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
-                             WHERE ORG_CODE = ''' || V_COMPANY_CODE || '''
-                               AND START_TIME = ''' || V_FACTOR_YEAR || ''') B
-                            ON A.ITEM_CODE = B.ITEM_CODE
-                       WHERE B.DISCH_COEFF IS NOT NULL
-                       UNION
-                       SELECT A.ITEM_CODE AS ITEM_CODE,
-                              ''PENRT'' AS LCI_ELEMENT_CODE,
-                              (SELECT LCI_ELEMENT_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST
-                                 WHERE LCI_ELEMENT_CODE = ''PENRT'') AS LCI_ELEMENT_NAME,
-                              B.HOTVALUE AS LCI_ELEMENT_VALUE
-                       FROM (SELECT ITEM_CODE, ITEM_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE) A
-                           JOIN
-                            (SELECT DISTINCT *
-                             FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
-                             WHERE ORG_CODE = ''' || V_COMPANY_CODE || '''
-                               AND START_TIME = ''' || V_FACTOR_YEAR || ''') B
-                             ON A.ITEM_CODE = B.ITEM_CODE
-                       WHERE B.HOTVALUE IS NOT NULL
-                       UNION
-                       SELECT A.ITEM_CODE AS ITEM_CODE,
-                              ''PENRE'' AS LCI_ELEMENT_CODE,
-                              (SELECT LCI_ELEMENT_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST
-                                 WHERE LCI_ELEMENT_CODE = ''PENRE'') AS LCI_ELEMENT_NAME,
-                              B.HOTVALUE AS LCI_ELEMENT_VALUE
-                       FROM (SELECT ITEM_CODE, ITEM_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE) A
-                            JOIN
-                            (SELECT DISTINCT *
-                             FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
-                             WHERE ORG_CODE = ''' || V_COMPANY_CODE || '''
-                               AND START_TIME = ''' || V_FACTOR_YEAR || ''') B
-                            ON A.ITEM_CODE = B.ITEM_CODE
-                       WHERE B.HOTVALUE IS NOT NULL';
+    SET V_QUERY_STR = '
+            SELECT A.ITEM_CODE AS ITEM_CODE,
+                   ''GWP-total'' AS LCI_ELEMENT_CODE,
+                   (SELECT LCI_ELEMENT_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST
+                      WHERE LCI_ELEMENT_CODE = ''GWP-total'') AS LCI_ELEMENT_NAME,
+                   B.DISCH_COEFF AS LCI_ELEMENT_VALUE
+            FROM (SELECT ITEM_CODE, ITEM_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE) A
+                  JOIN
+                 (SELECT DISTINCT *
+                  FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
+                  WHERE ORG_CODE = ''' || V_COMPANY_CODE || '''
+                    AND START_TIME = ''' || V_FACTOR_YEAR || ''') B
+                 ON A.ITEM_CODE = B.ITEM_CODE
+            WHERE B.DISCH_COEFF IS NOT NULL
+            UNION
+            SELECT A.ITEM_CODE AS ITEM_CODE,
+                   ''GWP-fossil'' AS LCI_ELEMENT_CODE,
+                (SELECT LCI_ELEMENT_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST
+                 WHERE LCI_ELEMENT_CODE = ''GWP-fossil'') AS LCI_ELEMENT_NAME,
+                   B.DISCH_COEFF AS LCI_ELEMENT_VALUE
+            FROM (SELECT ITEM_CODE, ITEM_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE) A
+                     JOIN
+                 (SELECT DISTINCT *
+                  FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
+                  WHERE ORG_CODE = ''' || V_COMPANY_CODE || '''
+                    AND START_TIME = ''' || V_FACTOR_YEAR || ''') B
+                 ON A.ITEM_CODE = B.ITEM_CODE
+            WHERE B.DISCH_COEFF IS NOT NULL
+            UNION
+            SELECT A.ITEM_CODE AS ITEM_CODE,
+                   ''PENRT'' AS LCI_ELEMENT_CODE,
+                   (SELECT LCI_ELEMENT_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST
+                      WHERE LCI_ELEMENT_CODE = ''PENRT'') AS LCI_ELEMENT_NAME,
+                   B.HOTVALUE AS LCI_ELEMENT_VALUE
+            FROM (SELECT ITEM_CODE, ITEM_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE) A
+                JOIN
+                 (SELECT DISTINCT *
+                  FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
+                  WHERE ORG_CODE = ''' || V_COMPANY_CODE || '''
+                    AND START_TIME = ''' || V_FACTOR_YEAR || ''') B
+                  ON A.ITEM_CODE = B.ITEM_CODE
+            WHERE B.HOTVALUE IS NOT NULL
+            UNION
+            SELECT A.ITEM_CODE AS ITEM_CODE,
+                   ''PENRE'' AS LCI_ELEMENT_CODE,
+                   (SELECT LCI_ELEMENT_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST
+                      WHERE LCI_ELEMENT_CODE = ''PENRE'') AS LCI_ELEMENT_NAME,
+                   B.HOTVALUE AS LCI_ELEMENT_VALUE
+            FROM (SELECT ITEM_CODE, ITEM_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE) A
+                 JOIN
+                 (SELECT DISTINCT *
+                  FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
+                  WHERE ORG_CODE = ''' || V_COMPANY_CODE || '''
+                    AND START_TIME = ''' || V_FACTOR_YEAR || ''') B
+                 ON A.ITEM_CODE = B.ITEM_CODE
+            WHERE B.HOTVALUE IS NOT NULL';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'FACTOR_FUEL', V_QUERY_STR);
 
 
-    SET V_QUERY_STR = 'SELECT *
-                       FROM
-                       ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_FACTOR_EP
-                       UNION
-                       SELECT *
-                       FROM
-                       ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_FACTOR_FUEL';
+    SET V_QUERY_STR = '
+            SELECT *
+            FROM
+            ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_FACTOR_EP
+            UNION
+            SELECT *
+            FROM
+            ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_FACTOR_FUEL';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'FACTOR_DIRECT', V_QUERY_STR);
 
 
@@ -758,18 +859,27 @@ BEGIN
                        MAT_NO,
                        MAT_TRACK_NO,
                        MAT_SEQ_NO,
+                       MAT_WT,
+                       MAT_STATUS,
                        FAMILY_CODE,
                        UNIT_CODE,
                        UNIT_NAME,
                        PRODUCT_CODE,
                        PRODUCT_NAME,
                        PRODUCT_VALUE,
+                       TYPE_CODE,
+                       TYPE_NAME,
+                       ITEM_CODE,
+                       ITEM_NAME,
+                       VALUE,
+                       UNITM_AC,
+                       UNIT_COST,
                        LCI_ELEMENT_CODE,
-                       SUM(C1) AS C1,
-                       SUM(C2) AS C2,
-                       SUM(C3) AS C3,
-                       SUM(C4) AS C4,
-                       SUM(C5) AS C5,
+                       C1,
+                       C2,
+                       C3,
+                       C4,
+                       C5,
                        FLAG
                 FROM (SELECT A.*,
                              B.LCI_ELEMENT_CODE,
@@ -805,33 +915,38 @@ BEGIN
                              ''RESOURCE''                                     AS FLAG
                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_INPUT_RESOURCE A
                                JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_FACTOR_TRANSPORT B
-                                    ON A.ITEM_CODE = B.ITEM_CODE)
-                GROUP BY UPDATE_DATE, INDEX_CODE, MAT_NO, MAT_TRACK_NO, MAT_SEQ_NO, FAMILY_CODE, UNIT_CODE, UNIT_NAME,
-                         PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE, LCI_ELEMENT_CODE, FLAG';
+                                    ON A.ITEM_CODE = B.ITEM_CODE)';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'DIST_RESOURCE', V_QUERY_STR);
 
 
     SET V_QUERY_STR = 'SELECT UPDATE_DATE,
-                       BATCH_NUMBER,
                        INDEX_CODE,
                        MAT_NO,
                        MAT_TRACK_NO,
                        MAT_SEQ_NO,
+                       MAT_WT,
+                       MAT_STATUS,
                        FAMILY_CODE,
                        UNIT_CODE,
                        UNIT_NAME,
                        PRODUCT_CODE,
                        PRODUCT_NAME,
                        PRODUCT_VALUE,
+                       TYPE_CODE,
+                       TYPE_NAME,
+                       ITEM_CODE,
+                       ITEM_NAME,
+                       VALUE,
+                       UNITM_AC,
+                       UNIT_COST,
                        LCI_ELEMENT_CODE,
-                       SUM(C1) AS C1,
-                       SUM(C2) AS C2,
-                       SUM(C3) AS C3,
-                       SUM(C4) AS C4,
-                       SUM(C5) AS C5,
+                       C1,
+                       C2,
+                       C3,
+                       C4,
+                       C5,
                        FLAG
                 FROM (SELECT A.*,
-                             B.BATCH_NUMBER,
                              C.LCI_ELEMENT_CODE,
                              COALESCE(A.UNIT_COST * C.C1_DIRECT, 0) AS C1,
                              COALESCE(A.UNIT_COST * C.C2_BP, 0)     AS C2,
@@ -843,9 +958,7 @@ BEGIN
                                JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DATE_BATCH B
                                     ON A.UPDATE_DATE = B.UPDATE_DATE
                                JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ENERGY_RESULT C
-                                    ON A.ITEM_CODE = C.PRODUCT_CODE AND B.BATCH_NUMBER = C.BATCH_NUMBER)
-                GROUP BY UPDATE_DATE, BATCH_NUMBER, INDEX_CODE, MAT_NO, MAT_TRACK_NO, MAT_SEQ_NO, FAMILY_CODE, UNIT_CODE, UNIT_NAME,
-                         PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE, LCI_ELEMENT_CODE, FLAG';
+                                    ON A.ITEM_CODE = C.PRODUCT_CODE AND B.BATCH_NUMBER = C.BATCH_NUMBER)';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'DIST_ENERGY', V_QUERY_STR);
 
 
@@ -854,18 +967,27 @@ BEGIN
                        MAT_NO,
                        MAT_TRACK_NO,
                        MAT_SEQ_NO,
+                       MAT_WT,
+                       MAT_STATUS,
                        FAMILY_CODE,
                        UNIT_CODE,
                        UNIT_NAME,
                        PRODUCT_CODE,
                        PRODUCT_NAME,
                        PRODUCT_VALUE,
+                       TYPE_CODE,
+                       TYPE_NAME,
+                       ITEM_CODE,
+                       ITEM_NAME,
+                       VALUE,
+                       UNITM_AC,
+                       UNIT_COST,
                        LCI_ELEMENT_CODE,
-                       SUM(C1) AS C1,
-                       SUM(C2) AS C2,
-                       SUM(C3) AS C3,
-                       SUM(C4) AS C4,
-                       SUM(C5) AS C5,
+                       C1,
+                       C2,
+                       C3,
+                       C4,
+                       C5,
                        FLAG
                 FROM (SELECT A.*,
                              B.LCI_ELEMENT_CODE,
@@ -874,9 +996,8 @@ BEGIN
                              0                                                    AS C3,
                              COALESCE(-ABS(A.UNIT_COST) * B.LCI_ELEMENT_VALUE, 0) AS C4,
                              0                                                    AS C5,
-                             ''DISCOUNT''                                         AS FLAG
-                      FROM (SELECT *
-                            FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_OUTPUT_BY_PRODUCT_NO_BOF) A
+                             ''DISCOUNT''                                           AS FLAG
+                      FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_OUTPUT_BY_PRODUCT_NO_BOF A
                                JOIN (SELECT *
                                             FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_FACTOR_MAT
                                             WHERE MAT_NAME IN (''废铁处理'',
@@ -897,30 +1018,37 @@ BEGIN
                       FROM (SELECT *
                             FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_OUTPUT_WASTE) A
                                JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_FACTOR_MAT B
-                                    ON A.ITEM_CODE = B.ITEM_CODE)
-                GROUP BY UPDATE_DATE, INDEX_CODE, MAT_NO, MAT_TRACK_NO, MAT_SEQ_NO, FAMILY_CODE, UNIT_CODE, UNIT_NAME,
-                         PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE, LCI_ELEMENT_CODE, FLAG';
+                                    ON A.ITEM_CODE = B.ITEM_CODE)';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'DIST_DISCOUNT', V_QUERY_STR);
 
 
     SET V_QUERY_STR = 'SELECT UPDATE_DATE,
-                              INDEX_CODE,
-                              MAT_NO,
-                              MAT_TRACK_NO,
-                              MAT_SEQ_NO,
-                              FAMILY_CODE,
-                              UNIT_CODE,
-                              UNIT_NAME,
-                              PRODUCT_CODE,
-                              PRODUCT_NAME,
-                              PRODUCT_VALUE,
-                              LCI_ELEMENT_CODE,
-                              SUM(C1) AS C1,
-                              SUM(C2) AS C2,
-                              SUM(C3) AS C3,
-                              SUM(C4) AS C4,
-                              SUM(C5) AS C5,
-                              FLAG
+                       INDEX_CODE,
+                       MAT_NO,
+                       MAT_TRACK_NO,
+                       MAT_SEQ_NO,
+                       MAT_WT,
+                       MAT_STATUS,
+                       FAMILY_CODE,
+                       UNIT_CODE,
+                       UNIT_NAME,
+                       PRODUCT_CODE,
+                       PRODUCT_NAME,
+                       PRODUCT_VALUE,
+                       TYPE_CODE,
+                       TYPE_NAME,
+                       ITEM_CODE,
+                       ITEM_NAME,
+                       VALUE,
+                       UNITM_AC,
+                       UNIT_COST,
+                       LCI_ELEMENT_CODE,
+                       C1,
+                       C2,
+                       C3,
+                       C4,
+                       C5,
+                       FLAG
                        FROM (SELECT A.*,
                                     B.LCI_ELEMENT_CODE,
                                     COALESCE(A.UNIT_COST * B.LCI_ELEMENT_VALUE, 0) AS C1,
@@ -953,9 +1081,7 @@ BEGIN
                                    FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_OUTPUT_WASTE) A
                                       JOIN (SELECT *
                                             FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_FACTOR_FUEL) B
-                                           ON A.ITEM_CODE = B.ITEM_CODE)
-                       GROUP BY UPDATE_DATE, INDEX_CODE, MAT_NO, MAT_TRACK_NO, MAT_SEQ_NO, FAMILY_CODE, UNIT_CODE, UNIT_NAME,
-                                PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE, LCI_ELEMENT_CODE, FLAG';
+                                           ON A.ITEM_CODE = B.ITEM_CODE)';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'DIST_FUEL', V_QUERY_STR);
 
 
@@ -964,18 +1090,27 @@ BEGIN
                        MAT_NO,
                        MAT_TRACK_NO,
                        MAT_SEQ_NO,
+                       MAT_WT,
+                       MAT_STATUS,
                        FAMILY_CODE,
                        UNIT_CODE,
                        UNIT_NAME,
                        PRODUCT_CODE,
                        PRODUCT_NAME,
                        PRODUCT_VALUE,
+                       TYPE_CODE,
+                       TYPE_NAME,
+                       ITEM_CODE,
+                       ITEM_NAME,
+                       VALUE,
+                       UNITM_AC,
+                       UNIT_COST,
                        LCI_ELEMENT_CODE,
-                       SUM(C1) AS C1,
-                       SUM(C2) AS C2,
-                       SUM(C3) AS C3,
-                       SUM(C4) AS C4,
-                       SUM(C5) AS C5,
+                       C1,
+                       C2,
+                       C3,
+                       C4,
+                       C5,
                        FLAG
                 FROM (SELECT A.*,
                              B.LCI_ELEMENT_CODE,
@@ -988,9 +1123,7 @@ BEGIN
                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DATA A
                                JOIN (SELECT *
                                      FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_FACTOR_EP) B
-                                    ON A.ITEM_CODE = B.ITEM_CODE)
-                GROUP BY UPDATE_DATE, INDEX_CODE, MAT_NO, MAT_TRACK_NO, MAT_SEQ_NO, FAMILY_CODE, UNIT_CODE, UNIT_NAME,
-                         PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE, LCI_ELEMENT_CODE, FLAG';
+                                    ON A.ITEM_CODE = B.ITEM_CODE)';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'DIST_EP', V_QUERY_STR);
 
 
@@ -999,9 +1132,14 @@ BEGIN
 
     --遍历结转工序
 
-    SET V_QUERY_STR = 'DELETE FROM ' || V_TMP_SCHEMA || '.' || V_SUBCLASS_RESULT_TAB_NAME || ' WHERE ' ||
-                      'SUBCLASS_TAB_NAME = ''' || V_SUBCLASS_TAB_NAME || ''' ' ||
-                      'AND COMPANY_CODE = ''' || V_COMPANY_CODE || '''';
+    SET V_QUERY_STR = 'DELETE FROM ' || V_TMP_SCHEMA || '.' || V_SUBCLASS_RESULT_TAB_NAME || ' WHERE
+                       SUBCLASS_TAB_NAME = ''' || V_SUBCLASS_TAB_NAME || '''
+                       AND COMPANY_CODE = ''' || V_COMPANY_CODE || '''';
+    PREPARE stmt FROM V_QUERY_STR;
+    EXECUTE stmt;
+
+    SET V_QUERY_STR = 'DELETE FROM ' || V_TMP_SCHEMA || '.' || V_SUBCLASS_RESULT_DIST_TAB_NAME || '
+                       WHERE 1 = 1';
     PREPARE stmt FROM V_QUERY_STR;
     EXECUTE stmt;
 
@@ -1009,10 +1147,10 @@ BEGIN
                       'FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_PROC_SEQ';
     CALL BG00MAC102.P_EXEC_INTO_C(V_QUERY_STR, V_MAX_RANK);
 
-    SET V_RANK = 1;
-
     INSERT INTO BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_EPD_CONS_MONTH_DEBUG(proc_name, step_desc, var_value, log_time)
     VALUES ('seq', cast(V_MAX_RANK as VARCHAR(10)), '0', CURRENT_TIMESTAMP);
+
+    SET V_RANK = 1;
 
     WHILE V_RANK <= V_MAX_RANK
         DO
@@ -1033,41 +1171,33 @@ BEGIN
                    MAT_NO,
                    MAT_TRACK_NO,
                    MAT_SEQ_NO,
+                   MAT_WT,
+                   MAT_STATUS,
                    FAMILY_CODE,
                    UNIT_CODE,
                    UNIT_NAME,
                    PRODUCT_CODE,
                    PRODUCT_NAME,
                    PRODUCT_VALUE,
+                   TYPE_CODE,
+                   TYPE_NAME,
+                   ITEM_CODE,
+                   ITEM_NAME,
+                   VALUE,
+                   UNITM_AC,
+                   UNIT_COST,
                    LCI_ELEMENT_CODE,
                    SUM(C1)   AS C1,
                    SUM(C2)   AS C2,
                    SUM(C3)   AS C3,
                    SUM(C4)   AS C4,
                    SUM(C5)   AS C5,
-                   ''CURRENT'' AS FLAG
+                   NULL      AS FLAG
             FROM ((SELECT A.*
                    FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DIST_RESOURCE A
                             JOIN SESSION.RANK_PROC B ON A.INDEX_CODE = B.INDEX_CODE)
                   UNION
-                  (SELECT A.UPDATE_DATE,
-                          A.INDEX_CODE,
-                          A.MAT_NO,
-                          A.MAT_TRACK_NO,
-                          A.MAT_SEQ_NO,
-                          A.FAMILY_CODE,
-                          A.UNIT_CODE,
-                          A.UNIT_NAME,
-                          A.PRODUCT_CODE,
-                          A.PRODUCT_NAME,
-                          A.PRODUCT_VALUE,
-                          A.LCI_ELEMENT_CODE,
-                          A.C1,
-                          A.C2,
-                          A.C3,
-                          A.C4,
-                          A.C5,
-                          A.FLAG
+                  (SELECT A.*
                    FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DIST_ENERGY A
                             JOIN SESSION.RANK_PROC B ON A.INDEX_CODE = B.INDEX_CODE)
                   UNION
@@ -1082,8 +1212,10 @@ BEGIN
                   (SELECT A.*
                    FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DIST_EP A
                             JOIN SESSION.RANK_PROC B ON A.INDEX_CODE = B.INDEX_CODE))
+            WHERE LCI_ELEMENT_CODE = ''GWP-total''
             GROUP BY UPDATE_DATE, INDEX_CODE, MAT_NO, MAT_TRACK_NO, MAT_SEQ_NO, FAMILY_CODE, UNIT_CODE, UNIT_NAME,
-                     PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE, LCI_ELEMENT_CODE';
+                     PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE, MAT_WT, MAT_STATUS, TYPE_CODE, TYPE_NAME, ITEM_CODE, ITEM_NAME,
+                     VALUE, UNITM_AC, UNIT_COST, LCI_ELEMENT_CODE';
             PREPARE STMT FROM V_QUERY_STR;
             EXECUTE STMT;
 
@@ -1093,68 +1225,87 @@ BEGIN
                                           im.MAT_NO,
                                           im.MAT_TRACK_NO,
                                           im.MAT_SEQ_NO,
+                                          im.MAT_WT,
+                                          im.MAT_STATUS,
                                           im.FAMILY_CODE,
                                           im.UNIT_CODE,
                                           im.UNIT_NAME,
                                           im.PRODUCT_CODE,
                                           im.PRODUCT_NAME,
                                           im.PRODUCT_VALUE,
+                                          dist.TYPE_CODE,
+                                          dist.TYPE_NAME,
+                                          dist.ITEM_CODE,
+                                          dist.ITEM_NAME,
+                                          im.VALUE * dist.UNIT_COST AS VALUE,
+                                          dist.UNITM_AC,
+                                          im.UNIT_COST * dist.UNIT_COST AS UNIT_COST,
                                           dist.LCI_ELEMENT_CODE,
-                                          SUM(im.UNIT_COST * dist.C1) AS C1,
-                                          SUM(im.UNIT_COST * dist.C2) AS C2,
-                                          SUM(im.UNIT_COST * dist.C3) AS C3,
-                                          SUM(im.UNIT_COST * dist.C4) AS C4,
-                                          SUM(im.UNIT_COST * dist.C5) AS C5,
-                                          ''PREV''                    AS FLAG
+                                          im.UNIT_COST * dist.C1 AS C1,
+                                          im.UNIT_COST * dist.C2 AS C2,
+                                          im.UNIT_COST * dist.C3 AS C3,
+                                          im.UNIT_COST * dist.C4 AS C4,
+                                          im.UNIT_COST * dist.C5 AS C5,
+                                          dist.FLAG
                                    FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_INPUT_MAIN im
-                                            JOIN SESSION.RANK_PROC rp
+                                            JOIN (SELECT * FROM SESSION.RANK_PROC) rp
                                                  ON im.INDEX_CODE = rp.INDEX_CODE
                                             JOIN SESSION.RESULT_BUFFER dist
-                                                 ON rp.PREV_INDEX_CODE = dist.INDEX_CODE
-                                   GROUP BY im.UPDATE_DATE, im.INDEX_CODE, im.MAT_NO, im.MAT_TRACK_NO, im.MAT_SEQ_NO,
-                                            im.FAMILY_CODE, im.UNIT_CODE, im.UNIT_NAME, im.PRODUCT_CODE, im.PRODUCT_NAME,
-                                            im.PRODUCT_VALUE, dist.LCI_ELEMENT_CODE';
+                                                 ON rp.PREV_INDEX_CODE = dist.INDEX_CODE';
             PREPARE stmt FROM V_QUERY_STR;
             EXECUTE stmt;
 
-            DELETE FROM SESSION.RESULT_BUFFER;
 
-            INSERT INTO SESSION.RESULT_BUFFER (UPDATE_DATE, INDEX_CODE, MAT_NO, MAT_TRACK_NO, MAT_SEQ_NO,
-                                               FAMILY_CODE,
-                                               UNIT_CODE,
-                                               UNIT_NAME, PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE,
-                                               LCI_ELEMENT_CODE,
-                                               C1, C2, C3, C4, C5)
+            DELETE FROM SESSION.RESULT_BUFFER;
+            INSERT INTO SESSION.RESULT_BUFFER (UPDATE_DATE, INDEX_CODE, MAT_NO, MAT_TRACK_NO, MAT_SEQ_NO, MAT_WT,
+                                               MAT_STATUS, FAMILY_CODE,
+                                               UNIT_CODE, UNIT_NAME, PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE,
+                                               TYPE_CODE, TYPE_NAME, ITEM_CODE, ITEM_NAME, VALUE, UNITM_AC,
+                                               UNIT_COST, LCI_ELEMENT_CODE, C1, C2, C3, C4, C5, FLAG)
             SELECT UPDATE_DATE,
                    INDEX_CODE,
                    MAT_NO,
                    MAT_TRACK_NO,
                    MAT_SEQ_NO,
+                   MAT_WT,
+                   MAT_STATUS,
                    FAMILY_CODE,
                    UNIT_CODE,
                    UNIT_NAME,
                    PRODUCT_CODE,
                    PRODUCT_NAME,
                    PRODUCT_VALUE,
+                   TYPE_CODE,
+                   TYPE_NAME,
+                   ITEM_CODE,
+                   ITEM_NAME,
+                   SUM(VALUE),
+                   UNITM_AC,
+                   SUM(UNIT_COST),
                    LCI_ELEMENT_CODE,
                    SUM(C1),
                    SUM(C2),
                    SUM(C3),
                    SUM(C4),
-                   SUM(C5)
+                   SUM(C5),
+                   FLAG
             FROM SESSION.DIST_BUFFER
             GROUP BY UPDATE_DATE, INDEX_CODE, MAT_NO, MAT_TRACK_NO, MAT_SEQ_NO, FAMILY_CODE, UNIT_CODE, UNIT_NAME,
-                     PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE, LCI_ELEMENT_CODE;
+                     PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE, MAT_WT, MAT_STATUS, TYPE_CODE, TYPE_NAME, ITEM_CODE,
+                     ITEM_NAME, UNITM_AC,
+                     LCI_ELEMENT_CODE, FLAG;
+
 
             SET V_QUERY_STR = 'INSERT INTO ' || V_TMP_SCHEMA || '.' || V_SUBCLASS_RESULT_TAB_NAME || ' (REC_ID, SUBCLASS_TAB_NAME, COMPANY_CODE, MAIN_CAT_BATCH_NUMBER,
-                                                                             UPDATE_DATE, INDEX_CODE, MAT_NO, MAT_TRACK_NO, MAT_SEQ_NO, FAMILY_CODE,
-                                                                             UNIT_CODE, UNIT_NAME, PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE,
-                                                                             LCI_ELEMENT_CODE, LCI_ELEMENT_CNAME, C1, C2, C3, C4, C5, C_INSITE, C_OUTSITE,
-                                                                             C_CYCLE, REC_CREATE_TIME)
+                                                                             FACTOR_VERSION, UPDATE_DATE, INDEX_CODE, MAT_NO, MAT_TRACK_NO, MAT_SEQ_NO, FAMILY_CODE,
+                                                                             UNIT_CODE, UNIT_NAME, PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE, MAT_WT, MAT_STATUS,
+                                                                             DEPT_NAME, DEPT_CODE, DEPT_MID_NAME, LCI_ELEMENT_CODE, LCI_ELEMENT_CNAME,
+                                                                             C1, C2, C3, C4, C5, C_INSITE, C_OUTSITE, C_CYCLE, REC_CREATE_TIME)
                        SELECT HEX(RAND()),
                               ''' || V_SUBCLASS_TAB_NAME || ''',
                               ''' || V_COMPANY_CODE || ''',
-                              BATCH_NUMBER,
+                              ''' || V_DEFAULT_BATCH || ''',
+                              ''' || V_FACTOR_VERSION || ''',
                               UPDATE_DATE,
                               INDEX_CODE,
                               MAT_NO,
@@ -1166,6 +1317,11 @@ BEGIN
                               PRODUCT_CODE,
                               PRODUCT_NAME,
                               PRODUCT_VALUE,
+                              MAT_WT,
+                              MAT_STATUS,
+                              DEPT_NAME,
+                              DEPT_CODE,
+                              DEPT_MID_NAME,
                               LCI_ELEMENT_CODE,
                               LCI_ELEMENT_CNAME,
                               SUM(C1),
@@ -1177,18 +1333,96 @@ BEGIN
                               SUM(C3) + SUM(C4) + SUM(C5),
                               SUM(C1) + SUM(C2) + SUM(C3) + SUM(C4) + SUM(C5),
                               TO_CHAR(CURRENT_TIMESTAMP, ''yyyyMMddHH24MI'')
-                       FROM (SELECT A.*, B.LCI_ELEMENT_CNAME, C.BATCH_NUMBER
+                       FROM (SELECT A.*, B.LCI_ELEMENT_CNAME, C.DEPT_NAME, C.DEPT_CODE, C.DEPT_MID_NAME
                               FROM SESSION.RESULT_BUFFER A
                                        LEFT JOIN (SELECT LCI_ELEMENT_CODE, LCI_ELEMENT_CNAME
-                                                  FROM BG00MAC102.T_ADS_WH_LCA_EPD_CONS_FACTOR_VERSION WHERE VERSION = ''' ||
+                                                  FROM BG00MAC102.T_ADS_WH_LCA_EPD_NORM_FACTOR_VERSION WHERE VERSION = ''' ||
                               V_FACTOR_VERSION || ''') B
                                                  ON A.LCI_ELEMENT_CODE = B.LCI_ELEMENT_CODE
                                        LEFT JOIN (SELECT *
-                                                  FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DATE_BATCH) C
-                                                 ON A.UPDATE_DATE = C.UPDATE_DATE)
-                       GROUP BY BATCH_NUMBER, UPDATE_DATE, INDEX_CODE, MAT_NO, MAT_TRACK_NO, MAT_SEQ_NO, FAMILY_CODE, UNIT_CODE, UNIT_NAME,
-                                PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE, LCI_ELEMENT_CODE, LCI_ELEMENT_CNAME
+                                                  FROM BG00MAC102.T_WH_LCA_UNIT_CODE_2022
+                                                  WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || ''') C
+                                          ON A.UNIT_CODE = C.UNIT_CODE)
+                       GROUP BY UPDATE_DATE,
+                                INDEX_CODE,
+                                MAT_NO,
+                                MAT_TRACK_NO,
+                                MAT_SEQ_NO,
+                                FAMILY_CODE,
+                                UNIT_CODE,
+                                UNIT_NAME,
+                                PRODUCT_CODE,
+                                PRODUCT_NAME,
+                                PRODUCT_VALUE,
+                                MAT_WT,
+                                MAT_STATUS,
+                                DEPT_NAME,
+                                DEPT_CODE,
+                                DEPT_MID_NAME,
+                                LCI_ELEMENT_CODE,
+                                LCI_ELEMENT_CNAME
                        HAVING 1 = 1';
+            PREPARE stmt FROM V_QUERY_STR;
+            EXECUTE stmt;
+
+            SET V_QUERY_STR = 'INSERT INTO ' || V_TMP_SCHEMA || '.' || V_SUBCLASS_RESULT_DIST_TAB_NAME || ' (REC_ID, SUBCLASS_TAB_NAME, COMPANY_CODE, MAIN_CAT_BATCH_NUMBER,
+                                                                             FACTOR_VERSION, UPDATE_DATE, INDEX_CODE, MAT_NO, MAT_TRACK_NO, MAT_SEQ_NO, FAMILY_CODE,
+                                                                             UNIT_CODE, UNIT_NAME, PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE, MAT_WT, MAT_STATUS,
+                                                                             TYPE_CODE, TYPE_NAME,
+                                                                             ITEM_CODE, ITEM_NAME, VALUE, UNITM_AC, UNIT_COST, DEPT_NAME, DEPT_CODE, DEPT_MID_NAME,
+                                                                             LCI_ELEMENT_CODE, LCI_ELEMENT_CNAME, C1, C2, C3, C4, C5, C_INSITE, C_OUTSITE, C_CYCLE, FLAG,
+                                                                             REC_CREATE_TIME)
+                       SELECT HEX(RAND()),
+                              ''' || V_SUBCLASS_TAB_NAME || ''',
+                              ''' || V_COMPANY_CODE || ''',
+                              ''' || V_DEFAULT_BATCH || ''',
+                              ''' || V_FACTOR_VERSION || ''',
+                              UPDATE_DATE,
+                              INDEX_CODE,
+                              MAT_NO,
+                              MAT_TRACK_NO,
+                              MAT_SEQ_NO,
+                              FAMILY_CODE,
+                              UNIT_CODE,
+                              UNIT_NAME,
+                              PRODUCT_CODE,
+                              PRODUCT_NAME,
+                              PRODUCT_VALUE,
+                              MAT_WT,
+                              MAT_STATUS,
+                              TYPE_CODE,
+                              TYPE_NAME,
+                              ITEM_CODE,
+                              ITEM_NAME,
+                              VALUE,
+                              UNITM_AC,
+                              UNIT_COST,
+                              DEPT_NAME,
+                              DEPT_CODE,
+                              DEPT_MID_NAME,
+                              LCI_ELEMENT_CODE,
+                              LCI_ELEMENT_CNAME,
+                              C1,
+                              C2,
+                              C3,
+                              C4,
+                              C5,
+                              C1 + C2,
+                              C3 + C4 + C5,
+                              C1 + C2 + C3 + C4 + C5,
+                              FLAG,
+                              TO_CHAR(CURRENT_TIMESTAMP, ''yyyyMMddHH24MI'')
+                       FROM (SELECT A.*, B.LCI_ELEMENT_CNAME, C.DEPT_NAME, C.DEPT_CODE, C.DEPT_MID_NAME
+                              FROM SESSION.RESULT_BUFFER A
+                                       LEFT JOIN (SELECT LCI_ELEMENT_CODE, LCI_ELEMENT_CNAME
+                                                  FROM BG00MAC102.T_ADS_WH_LCA_EPD_NORM_FACTOR_VERSION WHERE VERSION = ''' ||
+                              V_FACTOR_VERSION || ''') B
+                                                 ON A.LCI_ELEMENT_CODE = B.LCI_ELEMENT_CODE
+                                       LEFT JOIN (SELECT *
+                                                  FROM BG00MAC102.T_WH_LCA_UNIT_CODE_2022
+                                                  WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || ''') C
+                                          ON A.UNIT_CODE = C.UNIT_CODE)
+                       WHERE 1 = 1';
             PREPARE stmt FROM V_QUERY_STR;
             EXECUTE stmt;
 
@@ -1199,9 +1433,12 @@ BEGIN
 
         END WHILE;
 
-    EXECUTE IMMEDIATE 'DROP TABLE SESSION.RANK_PROC';
-    EXECUTE IMMEDIATE 'DROP TABLE SESSION.DIST_BUFFER';
-    EXECUTE IMMEDIATE 'DROP TABLE SESSION.RESULT_BUFFER';
+    EXECUTE IMMEDIATE '
+    DROP TABLE SESSION.RANK_PROC ';
+    EXECUTE IMMEDIATE '
+    DROP TABLE SESSION.DIST_BUFFER ';
+    EXECUTE IMMEDIATE '
+    DROP TABLE SESSION.RESULT_BUFFER';
 
     ------------------------------------处理逻辑(结束)------------------------------------
 

@@ -455,7 +455,8 @@ BEGIN
                                                    FROM BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI_CONS
                                                    WHERE VERSION = ''' || V_FACTOR_VERSION || '''
                                                      AND LCI_ELEMENT_CODE IN (SELECT LCI_ELEMENT_CODE
-                                                                              FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST)
+                                                                              FROM ' || V_TMP_SCHEMA || '.' ||
+                      V_TMP_TAB || '_LCI_LIST)
                                                      AND NAME IN (''海运'', ''河运'', ''铁运'', ''汽运'', ''柴油''))
                         SELECT ITEM_CODE,
                                ITEM_NAME,
@@ -1330,20 +1331,22 @@ BEGIN
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'RESULT', V_QUERY_STR);
 
 
-    SET V_QUERY_STR = 'DELETE FROM ' || V_TMP_SCHEMA || '.' || V_MAIN_CAT_TAB_NAME || ' ' ||
-                      'WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || ''' ' ||
-                      'AND BATCH_NUMBER = ''' || V_MAIN_BATCH_NUMBER_CONS || '''';
+    SET V_QUERY_STR = 'DELETE FROM ' || V_TMP_SCHEMA || '.' || V_MAIN_CAT_TAB_NAME || '
+                       WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || '''
+                       AND FACTOR_VERSION = ''' || V_FACTOR_VERSION || '''
+                       AND BATCH_NUMBER = ''' || V_MAIN_BATCH_NUMBER_CONS || '''';
     PREPARE stmt FROM V_QUERY_STR;
     EXECUTE stmt;
 
 
-    SET V_QUERY_STR = 'INSERT INTO ' || V_TMP_SCHEMA || '.' || V_MAIN_CAT_TAB_NAME || ' (REC_ID, BATCH_NUMBER, START_YM, END_YM, COMPANY_CODE,
+    SET V_QUERY_STR = 'INSERT INTO ' || V_TMP_SCHEMA || '.' || V_MAIN_CAT_TAB_NAME || ' (REC_ID, BATCH_NUMBER, FACTOR_VERSION, START_YM, END_YM, COMPANY_CODE,
                                                               PROC_KEY, PROC_CODE, PROC_NAME, PRODUCT_CODE,
                                                               PRODUCT_NAME, LCI_ELEMENT_CODE,
                                                               C1_DIRECT, C2_BP, C3_OUT, C4_BP_NEG, C5_TRANS, C_INSITE,
                                                               C_OUTSITE, C_CYCLE, REC_CREATE_TIME)
                        SELECT REC_ID,
                               BATCH_NUMBER,
+                              ''' || V_FACTOR_VERSION || ''',
                               ''' || V_START_YM || ''',
                               ''' || V_END_YM || ''',
                               COMPANY_CODE,

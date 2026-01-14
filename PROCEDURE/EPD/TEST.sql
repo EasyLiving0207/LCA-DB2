@@ -805,3 +805,106 @@ from (select REC_ID,
 group by LCA_PROC_CODE, LCA_PROC_NAME, PRODUCT_CODE, PRODUCT_NAME, LCA_DATA_ITEM_CAT_CODE, LCA_DATA_ITEM_CAT_NAME,
          LCA_DATA_ITEM_CODE, LCA_DATA_ITEM_NAME, UNIT, COMPANY_CODE;
 
+
+with ITEM as (select A.*
+              from (select distinct COMPANY_CODE,
+                                    substr(START_YM, 1, 4) as YEAR,
+                                    LCA_DATA_ITEM_CAT_NAME,
+                                    LCA_DATA_ITEM_CODE,
+                                    LCA_DATA_ITEM_NAME
+                    from T_ADS_FACT_LCA_PROC_DATA
+                    where substr(START_YM, 1, 4) > '2023'
+                    order by COMPANY_CODE, YEAR, LCA_DATA_ITEM_CAT_NAME, LCA_DATA_ITEM_CODE) A
+                       left join (select distinct data_code,
+                                                  uuid,
+                                                  base_code
+                                  from T_ADS_WH_PROC_BACKGROUND_DATA_CONTRAST
+                                  where START_TIME = '2025'
+                                    and FLAG = 'LCI') B on A.COMPANY_CODE = B.BASE_CODE
+                  and A.LCA_DATA_ITEM_CODE = B.DATA_CODE
+              where B.DATA_CODE is null),
+     FACTOR as (select BASE_CODE,
+                       DATA_CODE,
+                       A.UUID,
+                       A.FLAG,
+                       B.NAME              as NAME_YT,
+                       B.LCI_ELEMENT_VALUE as GWP_YT,
+                       B.BACKGROUND_DATA   as BACKGROUND_YT,
+                       C.NAME              as NAME_CML,
+                       C.LCI_ELEMENT_VALUE as GWP_CML,
+                       C.BACKGROUND_DATA   as BACKGROUND_CML,
+                       D.NAME              as NAME_EN15804,
+                       D.LCI_ELEMENT_VALUE as GWP_EN15804,
+                       D.BACKGROUND_DATA   as BACKGROUND_EN15804
+                from (select distinct start_time,
+                                      data_code,
+                                      uuid,
+                                      base_code,
+                                      remark,
+                                      flag,
+                                      item_name,
+                                      disch_coeff_name
+                      from T_ADS_WH_PROC_BACKGROUND_DATA_CONTRAST
+                      where START_TIME = '2025') A
+                         left join (select uuid, name, lci_element_value, background_data
+                                    from T_ADS_WH_LCA_FACTOR_LIBRARY_LCI_NORM
+                                    where VERSION like '易碳%'
+                                      and LCI_ELEMENT_CODE = 'GWP-total') B
+                                   on A.UUID = B.UUID
+                         left join (select uuid, name, lci_element_value, background_data
+                                    from T_ADS_WH_LCA_FACTOR_LIBRARY_LCI_NORM
+                                    where VERSION like 'CML%'
+                                      and LCI_ELEMENT_CODE = 'GWP-total') C
+                                   on A.UUID = C.UUID
+                         left join (select uuid,
+                                           name,
+                                           lci_element_value,
+                                           background_data
+                                    from T_ADS_WH_LCA_FACTOR_LIBRARY_LCI_CONS
+                                    where VERSION like 'EN15804%'
+                                      and LCI_ELEMENT_CODE = 'GWP-total') D
+                                   on A.UUID = D.UUID),
+     FULL as (select *
+              from ITEM A
+                       left join FACTOR B
+                                 on A.COMPANY_CODE = B.BASE_CODE AND A.LCA_DATA_ITEM_CODE = B.DATA_CODE),
+     AGG as (select distinct LISTAGG(distinct COMPANY_CODE, ', ')           as COMPANY_CODE,
+                             LISTAGG(distinct YEAR, ', ')                   as YEAR,
+                             LISTAGG(distinct LCA_DATA_ITEM_CAT_NAME, ', ') as ITEM_CAT_NAME,
+                             LCA_DATA_ITEM_CODE                             as ITEM_CODE,
+                             LISTAGG(distinct LCA_DATA_ITEM_NAME, ', ')     as ITEM_NAME,
+                             UUID,
+                             LISTAGG(distinct FLAG, ', ')                   as FLAG,
+                             NAME_YT,
+                             GWP_YT,
+                             BACKGROUND_YT,
+                             NAME_CML,
+                             GWP_CML,
+                             BACKGROUND_CML,
+                             NAME_EN15804,
+                             GWP_EN15804,
+                             BACKGROUND_EN15804
+             from FULL
+             group by LCA_DATA_ITEM_CODE,
+                      UUID,
+                      NAME_YT,
+                      GWP_YT,
+                      BACKGROUND_YT,
+                      NAME_CML,
+                      GWP_CML,
+                      BACKGROUND_CML,
+                      NAME_EN15804,
+                      GWP_EN15804,
+                      BACKGROUND_EN15804
+             order by ITEM_CODE, COMPANY_CODE, YEAR)
+select *
+from AGG;
+
+
+select * from T_ADS_WH_LCA_FACTOR_LIBRARY_LCI_NORM
+where VERSION like 'CML%'
+and FLAG = 'STREAM';
+
+
+
+

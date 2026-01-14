@@ -31,3 +31,49 @@ create table BG00MAC102.T_ADS_WH_LCA_SUBCLASS_CALC_JOB_INDEX
 
 comment on table BG00MAC102.T_ADS_WH_LCA_SUBCLASS_CALC_JOB_INDEX is '明细产品计算任务维护表';
 
+SET CURRENT SCHEMA = BG00MAC102;
+
+
+WITH EDGE AS (SELECT 'A' AS PARENT, 'B' AS CHILD, 0.5 AS UNIT_COST
+              FROM SYSIBM.SYSDUMMY1
+              UNION ALL
+              SELECT 'B', 'C', 2.0
+              FROM SYSIBM.SYSDUMMY1),
+     RAW_IMPACT AS (SELECT 'A' AS NODE, 'GWP' AS LCI, 6.0 AS C1
+                    FROM SYSIBM.SYSDUMMY1
+                    UNION ALL
+                    SELECT 'A', 'GWP', 4.0
+                    FROM SYSIBM.SYSDUMMY1
+                    UNION ALL
+                    SELECT 'B', 'GWP', 3.0
+                    FROM SYSIBM.SYSDUMMY1
+                    UNION ALL
+                    SELECT 'C', 'GWP', 1.0
+                    FROM SYSIBM.SYSDUMMY1),
+     DIRECT_IMPACT_AGG AS (SELECT NODE, LCI, SUM(C1) AS C1
+                           FROM RAW_IMPACT
+                           GROUP BY NODE, LCI),
+
+     FLOW (NODE, LCI, C1, PATH) AS (
+
+         -- Base: pre-aggregated seeds
+         SELECT NODE,
+                LCI,
+                C1,
+                CAST(NODE AS VARCHAR(100)) AS PATH
+         FROM DIRECT_IMPACT_AGG
+
+         UNION ALL
+
+         -- Recursive propagation
+         SELECT e.CHILD                  AS NODE,
+                f.LCI,
+                f.C1 * e.UNIT_COST       AS C1,
+                f.PATH || '>' || e.CHILD AS PATH
+         FROM FLOW f,
+              EDGE e
+         WHERE e.PARENT = f.NODE
+           AND LOCATE('>' || e.CHILD || '>', '>' || f.PATH || '>') = 0)
+
+SELECT *
+FROM FLOW;

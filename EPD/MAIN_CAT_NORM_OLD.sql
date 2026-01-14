@@ -79,10 +79,10 @@ BEGIN
                       LCA_DATA_ITEM_CODE                               AS ITEM_CODE,
                       LCA_DATA_ITEM_NAME                               AS ITEM_NAME,
                       CASE
-                          WHEN UNIT = ''万度'' THEN ABS(VALUE) * 10000
-                          WHEN UNIT = ''吨'' THEN ABS(VALUE) * 1000
-                          WHEN UNIT = ''千立方米'' THEN ABS(VALUE) * 1000
-                          ELSE ABS(VALUE)
+                          WHEN UNIT = ''万度'' THEN VALUE * 10000
+                          WHEN UNIT = ''吨'' THEN VALUE * 1000
+                          WHEN UNIT = ''千立方米'' THEN VALUE * 1000
+                          ELSE VALUE
                           END
                                                                        AS VALUE,
                       CASE
@@ -134,60 +134,55 @@ BEGIN
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'MATRIX_INV', V_QUERY_STR);
 
 
-    SET V_QUERY_STR =
-            'SELECT A.ITEM_CODE, ' ||
-            '       A.ITEM_NAME, ' ||
-            '       B.SOURCE_ITEM_CODE, ' ||
-            '       CASE WHEN B.NCV_UNIT = ''GJ/104Nm3'' THEN B.NCV / 10 ELSE B.NCV END AS NCV, ' ||
-            '       CASE WHEN B.NCV_UNIT = ''GJ/104Nm3'' THEN B.EF  / 10 ELSE B.EF  END AS EF ' ||
-            'FROM (SELECT * FROM BG00MAC102.T_ADS_WH_LCA_ITEM_CONTRAST' ||
-            '       WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || ''' ' ||
-            '         AND FLAG = ''DIRECT'') A ' ||
-            'JOIN BG00MAC102.T_ADS_WH_ZP_FACTOR_LIBRARY B ' ||
-            '  ON A.UUID = B.ITEM_CODE ';
+    SET V_QUERY_STR = 'SELECT DISTINCT *
+                       FROM BG00MAC102.T_ADS_WH_PROC_BACKGROUND_DATA_CONTRAST
+                       WHERE FLAG = ''FCP''
+                         AND BASE_CODE = ''' || V_COMPANY_CODE || '''
+                         AND START_TIME = ''' || V_FACTOR_YEAR || '''';
+    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'FCP', V_QUERY_STR);
 
-    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'EF', V_QUERY_STR);
+
+    SET V_QUERY_STR = 'SELECT DISTINCT *
+                       FROM BG00MAC102.T_ADS_WH_PROC_BACKGROUND_DATA_CONTRAST
+                       WHERE FLAG = ''SY''
+                         AND BASE_CODE = ''' || V_COMPANY_CODE || '''
+                         AND START_TIME = ''' || V_FACTOR_YEAR || '''
+                         AND DATA_CODE NOT IN (SELECT DATA_CODE FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_FCP)';
+    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'SY', V_QUERY_STR);
+
+
+    SET V_QUERY_STR = 'SELECT DISTINCT *
+                       FROM BG00MAC102.T_ADS_WH_PROC_BACKGROUND_DATA_CONTRAST
+                       WHERE FLAG = ''LCI''
+                         AND BASE_CODE = ''' || V_COMPANY_CODE || '''
+                         AND START_TIME = ''' || V_FACTOR_YEAR || '''';
+    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'LCI', V_QUERY_STR);
 
 
     SET V_QUERY_STR = 'SELECT *
-                        FROM BG00MAC102.T_ADS_WH_LCA_ITEM_CONTRAST
-                        WHERE PCR = ''NORM''
-                          AND VERSION = ''' || V_FACTOR_VERSION || '''
-                          AND COMPANY_CODE = ''' || V_COMPANY_CODE || '''
-                          AND FLAG = ''MAT''
-                          AND UUID IS NOT NULL';
-    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'UUID_MAT', V_QUERY_STR);
-
-
-    SET V_QUERY_STR = 'SELECT *
-                        FROM BG00MAC102.T_ADS_WH_LCA_ITEM_CONTRAST
-                        WHERE PCR = ''NORM''
-                          AND VERSION = ''' || V_FACTOR_VERSION || '''
-                          AND COMPANY_CODE = ''' || V_COMPANY_CODE || '''
-                          AND FLAG = ''STREAM''
-                          AND UUID IS NOT NULL';
-    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'UUID_STREAM', V_QUERY_STR);
+                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_FCP
+                       UNION
+                       SELECT * FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_SY';
+    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'UUID', V_QUERY_STR);
 
 
     SET V_QUERY_STR = '
-        WITH STREAM AS (SELECT VERSION,
-                               UUID AS STREAM_ID,
-                               NAME AS STREAM_NAME,
-                               LCI_ELEMENT_CODE,
-                               LCI_ELEMENT_NAME,
-                               LCI_ELEMENT_VALUE
-                        FROM BG00MAC102.T_ADS_WH_LCA_BACKGROUND_FACTOR_LIBRARY
-                        WHERE PCR = ''NORM''
-                          AND VERSION = ''' || V_FACTOR_VERSION || '''
-                          AND FLAG = ''STREAM'')
-        SELECT DISTINCT A.ITEM_CODE,
+        WITH STREAM AS (SELECT VERSION, UUID AS STREAM_ID,
+                       NAME AS STREAM_NAME,
+                       LCI_ELEMENT_CODE,
+                       LCI_ELEMENT_NAME,
+                       LCI_ELEMENT_VALUE
+                FROM BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI_NORM
+                WHERE VERSION = ''' || V_FACTOR_VERSION || '''
+                  AND FLAG = ''STREAM'')
+        SELECT DISTINCT A.DATA_CODE,
                         A.UUID AS STREAM_ID,
                         B.VERSION,
                         B.STREAM_NAME,
                         B.LCI_ELEMENT_CODE,
                         B.LCI_ELEMENT_NAME,
                         B.LCI_ELEMENT_VALUE
-        FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_UUID_STREAM A
+        FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI A
                  JOIN STREAM B ON A.UUID = B.STREAM_ID';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'LCI_STREAM', V_QUERY_STR);
 
@@ -200,24 +195,28 @@ BEGIN
 
 
     SET V_QUERY_STR = '
-            SELECT ITEM_CODE,
+            SELECT DATA_CODE AS ITEM_CODE,
                    LCI_ELEMENT_CODE,
                    LCI_ELEMENT_NAME,
-                   LCI_ELEMENT_VALUE
+                   LCI_ELEMENT_VALUE AS LCI_ELEMENT_VALUE
             FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_STREAM
+            WHERE VERSION = ''' || V_FACTOR_VERSION || '''
             UNION
             SELECT A.ITEM_CODE,
                    A.LCI_ELEMENT_CODE,
                    A.LCI_ELEMENT_NAME,
-                   CAST(A.LCI_ELEMENT_VALUE AS DOUBLE) * B.NCV AS LCI_ELEMENT_VALUE
+                   A.LCI_ELEMENT_VALUE * B.HOTVALUE AS LCI_ELEMENT_VALUE
             FROM
-                (SELECT ITEM_CODE,
+                (SELECT DATA_CODE AS ITEM_CODE,
                         LCI_ELEMENT_CODE,
                         LCI_ELEMENT_NAME,
                         LCI_ELEMENT_VALUE
                  FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_STREAM
                  WHERE LCI_ELEMENT_CODE IN (''RSF'', ''NRSF'')) A
-                    JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_EF B ON A.ITEM_CODE = B.ITEM_CODE';
+                    LEFT JOIN (SELECT *
+                               FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
+                               WHERE START_TIME = ''' || V_FACTOR_YEAR || '''
+                                 AND ORG_CODE = ''' || V_COMPANY_CODE || ''') B ON A.ITEM_CODE = B.ITEM_CODE';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'FACTOR_EP', V_QUERY_STR);
 
 
@@ -226,45 +225,57 @@ BEGIN
                    ''GWP-total'' AS LCI_ELEMENT_CODE,
                    (SELECT LCI_ELEMENT_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST
                       WHERE LCI_ELEMENT_CODE = ''GWP-total'') AS LCI_ELEMENT_NAME,
-                   B.EF AS LCI_ELEMENT_VALUE
+                   B.DISCH_COEFF AS LCI_ELEMENT_VALUE
             FROM (SELECT ITEM_CODE, ITEM_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE) A
                   JOIN
-                 ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_EF B
+                 (SELECT DISTINCT *
+                  FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
+                  WHERE ORG_CODE = ''' || V_COMPANY_CODE || '''
+                    AND START_TIME = ''' || V_FACTOR_YEAR || ''') B
                  ON A.ITEM_CODE = B.ITEM_CODE
-            WHERE B.EF IS NOT NULL
+            WHERE B.DISCH_COEFF IS NOT NULL
             UNION
             SELECT A.ITEM_CODE AS ITEM_CODE,
                    ''GWP-fossil'' AS LCI_ELEMENT_CODE,
                 (SELECT LCI_ELEMENT_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST
                  WHERE LCI_ELEMENT_CODE = ''GWP-fossil'') AS LCI_ELEMENT_NAME,
-                   B.EF AS LCI_ELEMENT_VALUE
+                   B.DISCH_COEFF AS LCI_ELEMENT_VALUE
             FROM (SELECT ITEM_CODE, ITEM_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE) A
                      JOIN
-                 ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_EF B
+                 (SELECT DISTINCT *
+                  FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
+                  WHERE ORG_CODE = ''' || V_COMPANY_CODE || '''
+                    AND START_TIME = ''' || V_FACTOR_YEAR || ''') B
                  ON A.ITEM_CODE = B.ITEM_CODE
-            WHERE B.EF IS NOT NULL
+            WHERE B.DISCH_COEFF IS NOT NULL
             UNION
             SELECT A.ITEM_CODE AS ITEM_CODE,
                    ''PENRT'' AS LCI_ELEMENT_CODE,
                    (SELECT LCI_ELEMENT_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST
                       WHERE LCI_ELEMENT_CODE = ''PENRT'') AS LCI_ELEMENT_NAME,
-                   B.NCV AS LCI_ELEMENT_VALUE
+                   B.HOTVALUE AS LCI_ELEMENT_VALUE
             FROM (SELECT ITEM_CODE, ITEM_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE) A
                 JOIN
-                 ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_EF B
+                 (SELECT DISTINCT *
+                  FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
+                  WHERE ORG_CODE = ''' || V_COMPANY_CODE || '''
+                    AND START_TIME = ''' || V_FACTOR_YEAR || ''') B
                   ON A.ITEM_CODE = B.ITEM_CODE
-            WHERE B.NCV IS NOT NULL
+            WHERE B.HOTVALUE IS NOT NULL
             UNION
             SELECT A.ITEM_CODE AS ITEM_CODE,
                    ''PENRE'' AS LCI_ELEMENT_CODE,
                    (SELECT LCI_ELEMENT_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST
                       WHERE LCI_ELEMENT_CODE = ''PENRE'') AS LCI_ELEMENT_NAME,
-                   B.NCV AS LCI_ELEMENT_VALUE
+                   B.HOTVALUE AS LCI_ELEMENT_VALUE
             FROM (SELECT ITEM_CODE, ITEM_NAME FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE) A
                  JOIN
-                 ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_EF B
+                 (SELECT DISTINCT *
+                  FROM BG00MAC102.T_ADS_WH_LCA_MAT_DATA
+                  WHERE ORG_CODE = ''' || V_COMPANY_CODE || '''
+                    AND START_TIME = ''' || V_FACTOR_YEAR || ''') B
                  ON A.ITEM_CODE = B.ITEM_CODE
-            WHERE B.NCV IS NOT NULL';
+            WHERE B.HOTVALUE IS NOT NULL';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'FACTOR_FUEL', V_QUERY_STR);
 
 
@@ -279,158 +290,65 @@ BEGIN
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'FACTOR_DIRECT', V_QUERY_STR);
 
 
-    --     SET V_QUERY_STR = '
---      WITH TRANS_DATA AS (SELECT LCA_DATA_ITEM_CODE           AS ITEM_CODE,
---                            RIVER_CAR_TRANS_VALUE / 1000 AS RIVER_CAR,
---                            TRUCK_CAR_TRANS_VALUE / 1000 AS TRUCK_CAR,
---                            TRAIN_TRANS_VALUE / 1000     AS TRAIN,
---                            CUSTOMS_TRANS_VALUE / 1000   AS CUSTOMS
---                     FROM BG00MAC102.T_ADS_WH_LCA_TRANS_DATA
---                     WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || '''
---                       AND START_TIME = ''' || V_FACTOR_YEAR || '''),
---      FACTOR_DISTANCE AS (SELECT A.ITEM_CODE,
---                                 A.ITEM_NAME,
---                                 COALESCE(B.RIVER_CAR, 0) AS RIVER_CAR,
---                                 COALESCE(B.TRUCK_CAR, 0) AS TRUCK_CAR,
---                                 COALESCE(B.TRAIN, 0)     AS TRAIN,
---                                 COALESCE(B.CUSTOMS, 0)   AS CUSTOMS
---                          FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE A
---                                   LEFT JOIN TRANS_DATA B ON A.ITEM_CODE = B.ITEM_CODE),
---      FACTOR_TRANSPORT1 AS (SELECT *
---                            FROM BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI_NORM
---                            WHERE VERSION = ''' || V_FACTOR_VERSION || '''
---                              AND LCI_ELEMENT_CODE IN (SELECT LCI_ELEMENT_CODE
---                                  FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST)
---                              AND NAME IN (''海运'', ''河运'', ''铁运'', ''汽运'')),
---      ALL_COMBINED AS (SELECT F.ITEM_CODE,
---                              F.ITEM_NAME,
---                              T.LCI_ELEMENT_CODE,
---                              T.LCI_ELEMENT_NAME,
---                              CASE
---                                  WHEN T.NAME = ''河运'' THEN F.RIVER_CAR * T.LCI_ELEMENT_VALUE
---                                  WHEN T.NAME = ''汽运'' THEN F.TRUCK_CAR * T.LCI_ELEMENT_VALUE
---                                  WHEN T.NAME = ''铁运'' THEN F.TRAIN * T.LCI_ELEMENT_VALUE
---                                  WHEN T.NAME = ''海运'' THEN F.CUSTOMS * T.LCI_ELEMENT_VALUE
---                                  ELSE 0
---                                  END AS LCI_ELEMENT_VALUE
---                       FROM FACTOR_DISTANCE F
---                                JOIN FACTOR_TRANSPORT1 T ON 1 = 1)
---       SELECT *
---       FROM (SELECT ITEM_CODE,
---                    ITEM_NAME,
---                    LCI_ELEMENT_CODE,
---                    LCI_ELEMENT_NAME,
---                    SUM(LCI_ELEMENT_VALUE) AS LCI_ELEMENT_VALUE
---             FROM ALL_COMBINED
---             GROUP BY ITEM_CODE, ITEM_NAME, LCI_ELEMENT_CODE, LCI_ELEMENT_NAME)
---       WHERE LCI_ELEMENT_VALUE != 0';
---     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'FACTOR_TRANSPORT', V_QUERY_STR);
-
-    SET V_QUERY_STR = 'WITH RAW AS (SELECT DISTINCT LCA_DATA_ITEM_CODE          AS ITEM_CODE,
-                                                     LCA_DATA_ITEM_NAME          AS ITEM_NAME,
-                                                     BIGCLASS_NAME,
-                                                     TRANS_MTHD_CODE,
-                                                     CASE
-                                                         WHEN UNIT = ''nm'' THEN TRANS_DISTANCE * 1.852
-                                                         ELSE TRANS_DISTANCE END AS TRANS_DISTANCE,
-                                                     CASE
-                                                         WHEN UNIT = ''nm'' THEN ''km''
-                                                         ELSE UNIT END           AS UNIT
-                                     FROM BG00MAC102.T_ADS_FACT_RAW_MATERIAL_TRANSPORTATION_DATA_MERGE
-                                     WHERE ORG_CODE = ''' || V_COMPANY_CODE || '''
-                                       AND YEAR = ''2024''
-                                       AND LCA_DATA_ITEM_CODE IS NOT NULL),
-                             TRANS_DATA AS (SELECT A.*
-                                            FROM (SELECT LCA_DATA_ITEM_CODE    AS ITEM_CODE,
-                                                         LCA_DATA_ITEM_NAME    AS ITEM_NAME,
-                                                         CASE
-                                                             WHEN CLASS_CODE IS NOT NULL THEN CLASS_CODE
-                                                             WHEN CLASS_CODE IS NULL AND LCA_DATA_ITEM_CODE LIKE ''125%'' THEN ''THJ001''
-                                                             ELSE ''FYL001'' END AS CLASS_CODE
-                                                  FROM BG00MAC102.T_ADS_WH_LCA_TRANS_DATA
-                                                  WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || '''
-                                                    AND START_TIME = ''' || V_FACTOR_YEAR || ''') A
-                                                     JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE B
-                                                          ON A.ITEM_CODE = B.ITEM_CODE),
-                             OTHER AS (SELECT *
-                                       FROM TRANS_DATA
-                                       WHERE ITEM_CODE NOT IN (SELECT ITEM_CODE FROM RAW)),
-                             TRANS_AVG AS (SELECT CASE
-                                                      WHEN BIGCLASS_NAME = ''铁矿石'' THEN ''TKS001''
-                                                      WHEN BIGCLASS_NAME = ''废钢'' THEN ''FG001''
-                                                      WHEN BIGCLASS_NAME = ''铁合金'' THEN ''THJ001''
-                                                      ELSE ''FYL001'' END       AS CLASS_CODE,
-                                                  TRANS_MTHD_CODE,
-                                                  CASE
-                                                      WHEN UNIT = ''nm'' THEN TRANS_DISTANCE * 1.852
-                                                      ELSE TRANS_DISTANCE END AS TRANS_DISTANCE,
-                                                  CASE
-                                                      WHEN UNIT = ''nm'' THEN ''km''
-                                                      ELSE UNIT END           AS UNIT
-                                           FROM BG00MAC102.T_ADS_FACT_RAW_MATERIAL_TRANSPORTATION
-                                           WHERE ORG_CODE = ''' || V_COMPANY_CODE || '''
-                                             AND YEAR = ''2024''
-                                             AND BIGCLASS_NAME IN (''副原料'', ''铁矿石'', ''铁合金'', ''废钢'')),
-                             TRANS_OTHER AS (SELECT ITEM_CODE,
-                                                    ITEM_NAME,
-                                                    A.CLASS_CODE,
-                                                    TRANS_MTHD_CODE,
-                                                    TRANS_DISTANCE,
-                                                    UNIT
-                                             FROM OTHER A
-                                                      JOIN TRANS_AVG B ON A.CLASS_CODE = B.CLASS_CODE),
-                             TRANS AS (SELECT ITEM_CODE,
-                                              ITEM_NAME,
-                                              CASE
-                                                  WHEN TRANS_MTHD_CODE = ''carTrans'' THEN ''汽运''
-                                                  WHEN TRANS_MTHD_CODE = ''riversTrans'' THEN ''河运''
-                                                  WHEN TRANS_MTHD_CODE = ''seaTrans'' THEN ''海运''
-                                                  WHEN TRANS_MTHD_CODE = ''railwayTrans'' THEN ''铁运''
-                                                  ELSE TRANS_MTHD_CODE END AS NAME,
-                                              TRANS_DISTANCE,
-                                              UNIT
-                                       FROM (SELECT *
-                                             FROM RAW
-                                             UNION
-                                             SELECT *
-                                             FROM TRANS_OTHER)),
-                             FACTOR_TRANSPORT1 AS (SELECT * FROM BG00MAC102.T_ADS_WH_LCA_BACKGROUND_FACTOR_LIBRARY
-                                                    WHERE PCR = ''NORM''
-                                                        AND VERSION = ''' || V_FACTOR_VERSION || '''
-                                                        AND LCI_ELEMENT_CODE IN (SELECT LCI_ELEMENT_CODE
-                                                                              FROM ' || V_TMP_SCHEMA || '.' ||
-                      V_TMP_TAB || '_LCI_LIST)
-                                                     AND NAME IN (''海运'', ''河运'', ''铁运'', ''汽运'', ''柴油''))
-                        SELECT ITEM_CODE,
-                               ITEM_NAME,
-                               LCI_ELEMENT_CODE,
-                               LCI_ELEMENT_NAME,
-                               SUM(A.TRANS_DISTANCE * B.LCI_ELEMENT_VALUE / 1000) AS LCI_ELEMENT_VALUE
-                        FROM TRANS A
-                                 JOIN (SELECT NAME,
-                                              LCI_ELEMENT_CODE,
-                                              LCI_ELEMENT_NAME,
-                                              LCI_ELEMENT_VALUE
-                                       FROM FACTOR_TRANSPORT1) B ON A.NAME = B.NAME
-                        GROUP BY ITEM_CODE,
-                                 ITEM_NAME,
-                                 LCI_ELEMENT_CODE,
-                                 LCI_ELEMENT_NAME';
+    SET V_QUERY_STR = '
+     WITH TRANS_DATA AS (SELECT LCA_DATA_ITEM_CODE           AS ITEM_CODE,
+                           RIVER_CAR_TRANS_VALUE / 1000 AS RIVER_CAR,
+                           TRUCK_CAR_TRANS_VALUE / 1000 AS TRUCK_CAR,
+                           TRAIN_TRANS_VALUE / 1000     AS TRAIN,
+                           CUSTOMS_TRANS_VALUE / 1000   AS CUSTOMS
+                    FROM BG00MAC102.T_ADS_WH_LCA_TRANS_DATA
+                    WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || '''
+                      AND START_TIME = ''' || V_FACTOR_YEAR || '''),
+     FACTOR_DISTANCE AS (SELECT A.ITEM_CODE,
+                                A.ITEM_NAME,
+                                COALESCE(B.RIVER_CAR, 0) AS RIVER_CAR,
+                                COALESCE(B.TRUCK_CAR, 0) AS TRUCK_CAR,
+                                COALESCE(B.TRAIN, 0)     AS TRAIN,
+                                COALESCE(B.CUSTOMS, 0)   AS CUSTOMS
+                         FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE A
+                                  LEFT JOIN TRANS_DATA B ON A.ITEM_CODE = B.ITEM_CODE),
+     FACTOR_TRANSPORT1 AS (SELECT *
+                           FROM BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI_NORM
+                           WHERE VERSION = ''' || V_FACTOR_VERSION || '''
+                             AND LCI_ELEMENT_CODE IN (SELECT LCI_ELEMENT_CODE
+                                 FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_LCI_LIST)
+                             AND NAME IN (''海运'', ''河运'', ''铁运'', ''汽运'')),
+     ALL_COMBINED AS (SELECT F.ITEM_CODE,
+                             F.ITEM_NAME,
+                             T.LCI_ELEMENT_CODE,
+                             T.LCI_ELEMENT_NAME,
+                             CASE
+                                 WHEN T.NAME = ''河运'' THEN F.RIVER_CAR * T.LCI_ELEMENT_VALUE
+                                 WHEN T.NAME = ''汽运'' THEN F.TRUCK_CAR * T.LCI_ELEMENT_VALUE
+                                 WHEN T.NAME = ''铁运'' THEN F.TRAIN * T.LCI_ELEMENT_VALUE
+                                 WHEN T.NAME = ''海运'' THEN F.CUSTOMS * T.LCI_ELEMENT_VALUE
+                                 ELSE 0
+                                 END AS LCI_ELEMENT_VALUE
+                      FROM FACTOR_DISTANCE F
+                               JOIN FACTOR_TRANSPORT1 T ON 1 = 1)
+      SELECT *
+      FROM (SELECT ITEM_CODE,
+                   ITEM_NAME,
+                   LCI_ELEMENT_CODE,
+                   LCI_ELEMENT_NAME,
+                   SUM(LCI_ELEMENT_VALUE) AS LCI_ELEMENT_VALUE
+            FROM ALL_COMBINED
+            GROUP BY ITEM_CODE, ITEM_NAME, LCI_ELEMENT_CODE, LCI_ELEMENT_NAME)
+      WHERE LCI_ELEMENT_VALUE != 0';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'FACTOR_TRANSPORT', V_QUERY_STR);
 
 
     SET V_QUERY_STR = '
-    WITH MAT AS (SELECT A.ITEM_CODE,
+    WITH MAT AS (SELECT A.DATA_CODE,
                         A.FLAG,
                         B.NAME,
                         B.LCI_ELEMENT_CODE,
                         B.LCI_ELEMENT_NAME,
                         B.LCI_ELEMENT_VALUE
-                 FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_UUID_MAT A
+                 FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_UUID A
                           JOIN (SELECT *
-                                FROM BG00MAC102.T_ADS_WH_LCA_BACKGROUND_FACTOR_LIBRARY
-                                WHERE PCR = ''NORM''
-                                  AND VERSION = ''' || V_FACTOR_VERSION || '''
+                                FROM BG00MAC102.T_ADS_WH_LCA_FACTOR_LIBRARY_LCI_NORM
+                                WHERE VERSION = ''' || V_FACTOR_VERSION || '''
                                   AND FLAG = ''MAT''
                                   AND LCI_ELEMENT_CODE IN
                                       (SELECT LCI_ELEMENT_CODE
@@ -447,8 +365,24 @@ BEGIN
               FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_ITEM_BASE) A
              JOIN
              (SELECT * FROM MAT) B
-             ON A.ITEM_CODE = B.ITEM_CODE';
+             ON A.ITEM_CODE = B.DATA_CODE';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'FACTOR_MAT', V_QUERY_STR);
+
+
+    SET V_QUERY_STR = '
+    SELECT ITEM_CODE, LCI_ELEMENT_CODE, LCI_ELEMENT_NAME, LCI_ELEMENT_VALUE
+    FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_FACTOR_MAT
+    WHERE FLAG = ''FCP''
+      AND LCI_ELEMENT_VALUE != 0';
+    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'FACTOR_FCP', V_QUERY_STR);
+
+
+    SET V_QUERY_STR = '
+    SELECT ITEM_CODE, LCI_ELEMENT_CODE, LCI_ELEMENT_NAME, LCI_ELEMENT_VALUE
+    FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_FACTOR_MAT
+    WHERE FLAG = ''SY''
+      AND LCI_ELEMENT_VALUE != 0';
+    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'FACTOR_SY', V_QUERY_STR);
 
 
     SET V_QUERY_STR = '
@@ -481,25 +415,27 @@ BEGIN
 
 
     SET V_QUERY_STR = '
-    SELECT *
-    FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DATA
-    WHERE ITEM_CAT_CODE = ''08''';
+        SELECT REC_ID,
+               BATCH_NUMBER,
+               START_YM,
+               END_YM,
+               COMPANY_CODE,
+               PROC_KEY,
+               PROC_CODE,
+               PROC_NAME,
+               PRODUCT_CODE,
+               PRODUCT_NAME,
+               ITEM_CAT_CODE,
+               ITEM_CAT_NAME,
+               ITEM_CODE,
+               ITEM_NAME,
+               ABS(VALUE) AS VALUE,
+               UNIT,
+               PRODUCT_VALUE,
+               ABS(UNIT_COST) AS UNIT_COST
+        FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DATA
+        WHERE ITEM_CAT_CODE = ''08''';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'WASTE', V_QUERY_STR);
-
-
-    SET V_QUERY_STR = '
-    SELECT *
-    FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_INPUT
-    WHERE ITEM_CODE IN (SELECT DISTINCT ITEM_CODE FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_BY_PRODUCT)';
-    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'INPUT_BY_PRODUCT', V_QUERY_STR);
-
-
-    SET V_QUERY_STR = '
-    SELECT *
-    FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_INPUT
-    WHERE ITEM_CODE NOT IN (SELECT DISTINCT ITEM_CODE FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_BY_PRODUCT
-                       UNION SELECT DISTINCT PRODUCT_CODE FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_PROC_PRODUCT_LIST)';
-    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'INPUT_UPSTREAM', V_QUERY_STR);
 
 
     SET V_QUERY_STR = 'SELECT PROC_KEY,
@@ -582,9 +518,9 @@ BEGIN
                               B.LCI_ELEMENT_NAME,
                               B.LCI_ELEMENT_VALUE,
                               A.UNIT_COST * B.LCI_ELEMENT_VALUE AS LOAD
-                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_INPUT_BY_PRODUCT A
+                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_INPUT A
                                 INNER JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB ||
-                      '_FACTOR_MAT B ON A.ITEM_CODE = B.ITEM_CODE';
+                      '_FACTOR_FCP B ON A.ITEM_CODE = B.ITEM_CODE';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'C2_DIST', V_QUERY_STR);
 
 
@@ -630,9 +566,9 @@ BEGIN
                               B.LCI_ELEMENT_NAME,
                               B.LCI_ELEMENT_VALUE,
                               A.UNIT_COST * B.LCI_ELEMENT_VALUE AS LOAD
-                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_INPUT_UPSTREAM A
+                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_INPUT A
                                 INNER JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB ||
-                      '_FACTOR_MAT B ON A.ITEM_CODE = B.ITEM_CODE';
+                      '_FACTOR_SY B ON A.ITEM_CODE = B.ITEM_CODE';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'C3_DIST', V_QUERY_STR);
 
 
