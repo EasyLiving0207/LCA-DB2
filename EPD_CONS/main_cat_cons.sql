@@ -580,6 +580,8 @@ BEGIN
                               PROC_CODE,
                               PROC_NAME,
                               PRODUCT_NAME,
+                              A.ITEM_CAT_CODE,
+                              A.ITEM_CAT_NAME,
                               A.ITEM_CODE,
                               A.ITEM_NAME,
                               A.UNIT_COST,
@@ -598,6 +600,8 @@ BEGIN
                               PROC_CODE,
                               PROC_NAME,
                               PRODUCT_NAME,
+                              A.ITEM_CAT_CODE,
+                              A.ITEM_CAT_NAME,
                               A.ITEM_CODE,
                               A.ITEM_NAME,
                               A.UNIT_COST,
@@ -616,6 +620,8 @@ BEGIN
                               PROC_CODE,
                               PROC_NAME,
                               PRODUCT_NAME,
+                              A.ITEM_CAT_CODE,
+                              A.ITEM_CAT_NAME,
                               A.ITEM_CODE,
                               A.ITEM_NAME,
                               A.UNIT_COST,
@@ -634,6 +640,8 @@ BEGIN
                               PROC_CODE,
                               PROC_NAME,
                               PRODUCT_NAME,
+                              A.ITEM_CAT_CODE,
+                              A.ITEM_CAT_NAME,
                               A.ITEM_CODE,
                               A.ITEM_NAME,
                               A.UNIT_COST,
@@ -654,6 +662,8 @@ BEGIN
                                                         PROC_CODE,
                                                         PROC_NAME,
                                                         PRODUCT_NAME,
+                                                        A.ITEM_CAT_CODE,
+                                                        A.ITEM_CAT_NAME,
                                                         A.ITEM_CODE,
                                                         A.ITEM_NAME,
                                                         A.VALUE,
@@ -673,6 +683,8 @@ BEGIN
                                                         PROC_CODE,
                                                         PROC_NAME,
                                                         PRODUCT_NAME,
+                                                        A.ITEM_CAT_CODE,
+                                                        A.ITEM_CAT_NAME,
                                                         A.ITEM_CODE,
                                                         A.ITEM_NAME,
                                                         A.VALUE,
@@ -696,6 +708,8 @@ BEGIN
                                                   PROC_CODE,
                                                   PROC_NAME,
                                                   PRODUCT_NAME,
+                                                  ITEM_CAT_CODE,
+                                                  ITEM_CAT_NAME,
                                                   ITEM_CODE,
                                                   ITEM_NAME,
                                                   UNIT_COST * 0.7638 AS UNIT_COST,
@@ -708,6 +722,8 @@ BEGIN
                                                  A.PROC_CODE,
                                                  A.PROC_NAME,
                                                  A.PRODUCT_NAME,
+                                                 ITEM_CAT_CODE,
+                                                 ITEM_CAT_NAME,
                                                  ITEM_CODE,
                                                  ITEM_NAME,
                                                  CAST(B.VALUE AS DOUBLE) / CAST(A.PRODUCT_VALUE AS DOUBLE) * 0.1063 AS UNIT_COST,
@@ -723,6 +739,8 @@ BEGIN
                                                  A.PROC_CODE,
                                                  A.PROC_NAME,
                                                  A.PRODUCT_NAME,
+                                                 ITEM_CAT_CODE,
+                                                 ITEM_CAT_NAME,
                                                  ITEM_CODE,
                                                  ITEM_NAME,
                                                  CAST(B.VALUE AS DOUBLE) / CAST(A.PRODUCT_VALUE AS DOUBLE) * 0.0401 *
@@ -756,6 +774,8 @@ BEGIN
                                                  A.PROC_CODE,
                                                  A.PROC_NAME,
                                                  A.PRODUCT_NAME,
+                                                 ITEM_CAT_CODE,
+                                                 ITEM_CAT_NAME,
                                                  ITEM_CODE,
                                                  ITEM_NAME,
                                                  CAST(B.VALUE AS DOUBLE) / CAST(A.PRODUCT_VALUE AS DOUBLE) * 0.0401 *
@@ -790,6 +810,8 @@ BEGIN
                                                   PROC_CODE,
                                                   PROC_NAME,
                                                   PRODUCT_NAME,
+                                                  ITEM_CAT_CODE,
+                                                  ITEM_CAT_NAME,
                                                   ITEM_CODE,
                                                   ITEM_NAME,
                                                   UNIT_COST * 0.9322 AS UNIT_COST,
@@ -802,6 +824,8 @@ BEGIN
                                                  A.PROC_CODE,
                                                  A.PROC_NAME,
                                                  A.PRODUCT_NAME,
+                                                 ITEM_CAT_CODE,
+                                                 ITEM_CAT_NAME,
                                                  ITEM_CODE,
                                                  ITEM_NAME,
                                                  CAST(B.VALUE AS DOUBLE) / CAST(A.PRODUCT_VALUE AS DOUBLE) * 0.0545 AS UNIT_COST,
@@ -818,6 +842,8 @@ BEGIN
                                                  A.PROC_CODE,
                                                  A.PROC_NAME,
                                                  A.PRODUCT_NAME,
+                                                 ITEM_CAT_CODE,
+                                                 ITEM_CAT_NAME,
                                                  ITEM_CODE,
                                                  ITEM_NAME,
                                                  CAST(B.VALUE AS DOUBLE) / CAST(A.PRODUCT_VALUE AS DOUBLE) * 0.0094 AS UNIT_COST,
@@ -835,6 +861,8 @@ BEGIN
                                                    PROC_CODE,
                                                    PROC_NAME,
                                                    PRODUCT_NAME,
+                                                   ITEM_CAT_CODE,
+                                                   ITEM_CAT_NAME,
                                                    ITEM_CODE,
                                                    ITEM_NAME,
                                                    UNIT_COST * 0.9877 AS UNIT_COST,
@@ -847,6 +875,8 @@ BEGIN
                                                  A.PROC_CODE,
                                                  A.PROC_NAME,
                                                  A.PRODUCT_NAME,
+                                                 ITEM_CAT_CODE,
+                                                 ITEM_CAT_NAME,
                                                  ITEM_CODE,
                                                  ITEM_NAME,
                                                  CAST(B.VALUE AS DOUBLE) / CAST(A.PRODUCT_VALUE AS DOUBLE) * 0.0084 AS UNIT_COST,
@@ -862,6 +892,8 @@ BEGIN
                                                  A.PROC_CODE,
                                                  A.PROC_NAME,
                                                  A.PRODUCT_NAME,
+                                                 ITEM_CAT_CODE,
+                                                 ITEM_CAT_NAME,
                                                  ITEM_CODE,
                                                  ITEM_NAME,
                                                  CAST(B.VALUE AS DOUBLE) / CAST(A.PRODUCT_VALUE AS DOUBLE) * 0.0036 AS UNIT_COST,
@@ -921,6 +953,8 @@ BEGIN
                                                             PROC_CODE,
                                                             PROC_NAME,
                                                             PRODUCT_NAME,
+                                                            A.ITEM_CAT_CODE,
+                                                            A.ITEM_CAT_NAME,
                                                             A.ITEM_CODE,
                                                             A.ITEM_NAME,
                                                             A.VALUE,
@@ -940,6 +974,8 @@ BEGIN
                                                             PROC_CODE,
                                                             PROC_NAME,
                                                             PRODUCT_NAME,
+                                                            A.ITEM_CAT_CODE,
+                                                            A.ITEM_CAT_NAME,
                                                             A.ITEM_CODE,
                                                             A.ITEM_NAME,
                                                             A.VALUE,
@@ -961,6 +997,8 @@ BEGIN
                                                       PROC_CODE,
                                                       PROC_NAME,
                                                       PRODUCT_NAME,
+                                                      ITEM_CAT_CODE,
+                                                      ITEM_CAT_NAME,
                                                       ITEM_CODE,
                                                       ITEM_NAME,
                                                       UNIT_COST * 0.7638 AS UNIT_COST,
@@ -973,6 +1011,8 @@ BEGIN
                                                  A.PROC_CODE,
                                                  A.PROC_NAME,
                                                  A.PRODUCT_NAME,
+                                                 ITEM_CAT_CODE,
+                                                 ITEM_CAT_NAME,
                                                  ITEM_CODE,
                                                  ITEM_NAME,
                                                  CAST(B.VALUE AS DOUBLE) / CAST(A.PRODUCT_VALUE AS DOUBLE) * 0.1063 AS UNIT_COST,
@@ -988,6 +1028,8 @@ BEGIN
                                                         A.PROC_CODE,
                                                         A.PROC_NAME,
                                                         A.PRODUCT_NAME,
+                                                        ITEM_CAT_CODE,
+                                                        ITEM_CAT_NAME,
                                                         ITEM_CODE,
                                                         ITEM_NAME,
                                                         CAST(B.VALUE AS DOUBLE) / CAST(A.PRODUCT_VALUE AS DOUBLE) * 0.0401 AS UNIT_COST,
@@ -1004,6 +1046,8 @@ BEGIN
                                                       PROC_CODE,
                                                       PROC_NAME,
                                                       PRODUCT_NAME,
+                                                      ITEM_CAT_CODE,
+                                                      ITEM_CAT_NAME,
                                                       ITEM_CODE,
                                                       ITEM_NAME,
                                                       UNIT_COST * 0.9322 AS UNIT_COST,
@@ -1016,6 +1060,8 @@ BEGIN
                                                      A.PROC_CODE,
                                                      A.PROC_NAME,
                                                      A.PRODUCT_NAME,
+                                                     ITEM_CAT_CODE,
+                                                     ITEM_CAT_NAME,
                                                      ITEM_CODE,
                                                      ITEM_NAME,
                                                      CAST(B.VALUE AS DOUBLE) / CAST(A.PRODUCT_VALUE AS DOUBLE) * 0.0545 AS UNIT_COST,
@@ -1032,6 +1078,8 @@ BEGIN
                                                      A.PROC_CODE,
                                                      A.PROC_NAME,
                                                      A.PRODUCT_NAME,
+                                                     ITEM_CAT_CODE,
+                                                     ITEM_CAT_NAME,
                                                      ITEM_CODE,
                                                      ITEM_NAME,
                                                      CAST(B.VALUE AS DOUBLE) / CAST(A.PRODUCT_VALUE AS DOUBLE) * 0.0094 AS UNIT_COST,
@@ -1049,6 +1097,8 @@ BEGIN
                                                        PROC_CODE,
                                                        PROC_NAME,
                                                        PRODUCT_NAME,
+                                                       ITEM_CAT_CODE,
+                                                       ITEM_CAT_NAME,
                                                        ITEM_CODE,
                                                        ITEM_NAME,
                                                        UNIT_COST * 0.9877 AS UNIT_COST,
@@ -1061,6 +1111,8 @@ BEGIN
                                                      A.PROC_CODE,
                                                      A.PROC_NAME,
                                                      A.PRODUCT_NAME,
+                                                     ITEM_CAT_CODE,
+                                                     ITEM_CAT_NAME,
                                                      ITEM_CODE,
                                                      ITEM_NAME,
                                                      CAST(B.VALUE AS DOUBLE) / CAST(A.PRODUCT_VALUE AS DOUBLE) * 0.0084 AS UNIT_COST,
@@ -1076,6 +1128,8 @@ BEGIN
                                                      A.PROC_CODE,
                                                      A.PROC_NAME,
                                                      A.PRODUCT_NAME,
+                                                     ITEM_CAT_CODE,
+                                                     ITEM_CAT_NAME,
                                                      ITEM_CODE,
                                                      ITEM_NAME,
                                                      CAST(B.VALUE AS DOUBLE) / CAST(A.PRODUCT_VALUE AS DOUBLE) * 0.0036 AS UNIT_COST,
@@ -1130,19 +1184,6 @@ BEGIN
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'C1_DIST', V_QUERY_STR);
 
 
-    SET V_QUERY_STR = 'SELECT A.PROC_KEY           AS SOURCE_PROC_KEY,
-                              B.PROC_KEY           AS TARGET_PROC_KEY,
-                              A.ITEM_CODE,
-                              A.ITEM_NAME,
-                              A.LCI_ELEMENT_NAME,
-                              A.LOAD * B.UNIT_COST AS LOAD
-                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C1_DIST A
-                                CROSS JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_MATRIX_INV B
-                       WHERE A.PROC_KEY = B.SOURCE_PROC_KEY
-                       AND A.LCI_ELEMENT_CODE = ''GWP-total''';
-    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'C1_CYCLE', V_QUERY_STR);
-
-
     SET V_QUERY_STR = 'WITH C1_CYCLE AS (SELECT A.PROC_KEY           AS SOURCE_PROC_KEY,
                                                 B.PROC_KEY           AS TARGET_PROC_KEY,
                                                 A.LCI_ELEMENT_CODE,
@@ -1160,6 +1201,8 @@ BEGIN
     SET V_QUERY_STR = 'SELECT PROC_KEY,
                               PROC_NAME,
                               PRODUCT_NAME,
+                              A.ITEM_CAT_CODE,
+                              A.ITEM_CAT_NAME,
                               A.ITEM_CODE,
                               A.ITEM_NAME,
                               A.UNIT_COST,
@@ -1190,6 +1233,8 @@ BEGIN
     SET V_QUERY_STR = 'SELECT PROC_KEY,
                               PROC_NAME,
                               PRODUCT_NAME,
+                              A.ITEM_CAT_CODE,
+                              A.ITEM_CAT_NAME,
                               A.ITEM_CODE,
                               A.ITEM_NAME,
                               A.UNIT_COST,
@@ -1220,6 +1265,8 @@ BEGIN
     SET V_QUERY_STR = 'SELECT PROC_KEY,
                               PROC_NAME,
                               PRODUCT_NAME,
+                              A.ITEM_CAT_CODE,
+                              A.ITEM_CAT_NAME,
                               A.ITEM_CODE,
                               A.ITEM_NAME,
                               A.UNIT_COST,
@@ -1240,6 +1287,8 @@ BEGIN
                        SELECT PROC_KEY,
                               PROC_NAME,
                               PRODUCT_NAME,
+                              A.ITEM_CAT_CODE,
+                              A.ITEM_CAT_NAME,
                               A.ITEM_CODE,
                               A.ITEM_NAME,
                               A.UNIT_COST,
@@ -1270,6 +1319,8 @@ BEGIN
     SET V_QUERY_STR = 'SELECT PROC_KEY,
                               PROC_NAME,
                               PRODUCT_NAME,
+                              A.ITEM_CAT_CODE,
+                              A.ITEM_CAT_NAME,
                               A.ITEM_CODE,
                               A.ITEM_NAME,
                               A.UNIT_COST,
@@ -1366,6 +1417,137 @@ BEGIN
                               C_CYCLE,
                               REC_CREATE_TIME
                        FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_RESULT';
+    PREPARE stmt FROM V_QUERY_STR;
+    EXECUTE stmt;
+
+
+    SET V_QUERY_STR = 'SELECT A.PROC_KEY           AS SOURCE_PROC_KEY,
+                              B.PROC_KEY           AS TARGET_PROC_KEY,
+                              A.ITEM_CAT_CODE,
+                              A.ITEM_CAT_NAME,
+                              A.ITEM_CODE,
+                              A.ITEM_NAME,
+                              A.LCI_ELEMENT_CODE,
+                              ''C1''               AS TYPE,
+                              A.LOAD * B.UNIT_COST AS LOAD
+                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C1_DIST A
+                                CROSS JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_MATRIX_INV B
+                       WHERE A.PROC_KEY = B.SOURCE_PROC_KEY
+                       AND A.LCI_ELEMENT_CODE = ''GWP-total''';
+    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'C1_CYCLE', V_QUERY_STR);
+
+
+    SET V_QUERY_STR = 'SELECT A.PROC_KEY           AS SOURCE_PROC_KEY,
+                              B.PROC_KEY           AS TARGET_PROC_KEY,
+                              A.ITEM_CAT_CODE,
+                              A.ITEM_CAT_NAME,
+                              A.ITEM_CODE,
+                              A.ITEM_NAME,
+                              A.LCI_ELEMENT_CODE,
+                              ''C2''               AS TYPE,
+                              A.LOAD * B.UNIT_COST AS LOAD
+                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C2_DIST A
+                                CROSS JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_MATRIX_INV B
+                       WHERE A.PROC_KEY = B.SOURCE_PROC_KEY
+                       AND A.LCI_ELEMENT_CODE = ''GWP-total''';
+    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'C2_CYCLE', V_QUERY_STR);
+
+
+    SET V_QUERY_STR = 'SELECT A.PROC_KEY           AS SOURCE_PROC_KEY,
+                              B.PROC_KEY           AS TARGET_PROC_KEY,
+                              A.ITEM_CAT_CODE,
+                              A.ITEM_CAT_NAME,
+                              A.ITEM_CODE,
+                              A.ITEM_NAME,
+                              A.LCI_ELEMENT_CODE,
+                              ''C3''               AS TYPE,
+                              A.LOAD * B.UNIT_COST AS LOAD
+                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C3_DIST A
+                                CROSS JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_MATRIX_INV B
+                       WHERE A.PROC_KEY = B.SOURCE_PROC_KEY
+                       AND A.LCI_ELEMENT_CODE = ''GWP-total''';
+    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'C3_CYCLE', V_QUERY_STR);
+
+    SET V_QUERY_STR = 'SELECT A.PROC_KEY           AS SOURCE_PROC_KEY,
+                              B.PROC_KEY           AS TARGET_PROC_KEY,
+                              A.ITEM_CAT_CODE,
+                              A.ITEM_CAT_NAME,
+                              A.ITEM_CODE,
+                              A.ITEM_NAME,
+                              A.LCI_ELEMENT_CODE,
+                              ''C4''               AS TYPE,
+                              A.LOAD * B.UNIT_COST AS LOAD
+                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C4_DIST A
+                                CROSS JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_MATRIX_INV B
+                       WHERE A.PROC_KEY = B.SOURCE_PROC_KEY
+                       AND A.LCI_ELEMENT_CODE = ''GWP-total''';
+    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'C4_CYCLE', V_QUERY_STR);
+
+
+    SET V_QUERY_STR = 'SELECT A.PROC_KEY           AS SOURCE_PROC_KEY,
+                              B.PROC_KEY           AS TARGET_PROC_KEY,
+                              A.ITEM_CAT_CODE,
+                              A.ITEM_CAT_NAME,
+                              A.ITEM_CODE,
+                              A.ITEM_NAME,
+                              A.LCI_ELEMENT_CODE,
+                              ''C5''               AS TYPE,
+                              A.LOAD * B.UNIT_COST AS LOAD
+                       FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C5_DIST A
+                                CROSS JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_MATRIX_INV B
+                       WHERE A.PROC_KEY = B.SOURCE_PROC_KEY
+                       AND A.LCI_ELEMENT_CODE = ''GWP-total''';
+    CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'C5_CYCLE', V_QUERY_STR);
+
+
+    SET V_QUERY_STR = 'DELETE FROM BG00MAC102.T_ADS_FACT_LCA_MAIN_CAT_EPD_CONS_DIST
+                       WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || '''
+                       AND BATCH_NUMBER = ''' || V_MAIN_BATCH_NUMBER_CONS || '''';
+    PREPARE stmt FROM V_QUERY_STR;
+    EXECUTE stmt;
+
+    SET V_QUERY_STR = 'INSERT INTO BG00MAC102.T_ADS_FACT_LCA_MAIN_CAT_EPD_CONS_DIST
+                        (REC_ID, BATCH_NUMBER, START_YM, END_YM, COMPANY_CODE, SOURCE_PROC_KEY, SOURCE_PROC_CODE, SOURCE_PROC_NAME,
+                         TARGET_PROC_KEY, TARGET_PROC_CODE, TARGET_PROC_NAME, PRODUCT_CODE, PRODUCT_NAME, ITEM_CAT_CODE, ITEM_CAT_NAME,
+                         ITEM_CODE, ITEM_NAME, LCI_ELEMENT_CODE, TYPE, LOAD, REC_CREATE_TIME)
+                        SELECT HEX(RAND())                              AS REC_ID,
+                               ''' || V_MAIN_BATCH_NUMBER_CONS || '''    AS BATCH_NUMBER,
+                               ''' || V_START_YM || '''                 AS START_YM,
+                               ''' || V_END_YM || '''                   AS END_YM,
+                               ''' || V_COMPANY_CODE || '''             AS COMPANY_CODE,
+                               A.SOURCE_PROC_KEY,
+                               B.PROC_CODE              AS SOURCE_PROC_CODE,
+                               B.PROC_NAME              AS SOURCE_PROC_NAME,
+                               A.TARGET_PROC_KEY,
+                               C.PROC_CODE              AS TARGET_PROC_CODE,
+                               C.PROC_NAME              AS TARGET_PROC_NAME,
+                               C.PRODUCT_CODE           AS PRODUCT_CODE,
+                               C.PRODUCT_NAME           AS PRODUCT_NAME,
+                               ITEM_CAT_CODE,
+                               ITEM_CAT_NAME,
+                               ITEM_CODE,
+                               ITEM_NAME,
+                               LCI_ELEMENT_CODE,
+                               TYPE,
+                               LOAD,
+                               TO_CHAR(CURRENT_TIMESTAMP, ''yyyyMMddHH24MI'')
+                        FROM (SELECT *
+                              FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C1_CYCLE
+                              UNION
+                              SELECT *
+                              FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C2_CYCLE
+                              UNION
+                              SELECT *
+                              FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C3_CYCLE
+                              UNION
+                              SELECT *
+                              FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C4_CYCLE
+                              UNION
+                              SELECT *
+                              FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C5_CYCLE) A
+                                 JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_PROC_PRODUCT_LIST B ON A.SOURCE_PROC_KEY = B.PROC_KEY
+                                 JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB ||
+                      '_PROC_PRODUCT_LIST C ON A.TARGET_PROC_KEY = C.PROC_KEY';
     PREPARE stmt FROM V_QUERY_STR;
     EXECUTE stmt;
 

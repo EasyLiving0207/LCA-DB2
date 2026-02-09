@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/DATABASE/AO.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/EF_CAT.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/EF_DOC.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/EF_LIB.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/EF_VIEW.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/DATABASE/GEO.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/DATABASE/IMPACT.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/T_ADS_BR_LCA_PCR_IMPACT_INDICATOR.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/DATABASE/T_ADS_DIM_LCA_DATABASE_VERSION.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/T_ADS_DIM_LCA_PCR.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/DATABASE/T_ADS_DIM_LCA_SYSTEM_MODEL.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/UNIT_PROCESS.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/VIEW.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/EPD/DT.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/EPD/FACTOR_LIB_NEW.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/EPD/GREEN_ELEC.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/EPD/TABLE_LCI.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/EPD/TEST.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/EPD/UNPAIRED.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/EPD/main_cat_norm.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/EPD/main_cat_norm_dt.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/EPD/test2.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/EPD_CONS/AUTH/AUTH_TA.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/EPD_CONS/AUTH/AUTH_ZG.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
@@ -33,6 +45,7 @@
     <file url="file://$PROJECT_DIR$/EPD_CONS/transport.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/CALL.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/CONTRAST.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/DIFF.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/SUBCLASS_CALC.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/SUBCLASS_JOIN_DIST.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/SUBCLASS_READ_ACTI_DATA.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
@@ -51,7 +64,6 @@
     <file url="file://$PROJECT_DIR$/PROCEDURE/EPD_CONS/SUBCLASS_EPD_CONS_MONTH_AUTO_BATCH_AUTH.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/EPD_CONS/SUBCLASS_EPD_CONS_MONTH_RESOURCE_TEST.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/EPD_CONS/SUBCLASS_EPD_CONS_MONTH_TEST.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
-    <file url="file://$PROJECT_DIR$/PROCEDURE/EPD_CONS/TABLE_RESULT.sql" value="98fe1be2-2236-40c9-be5d-9189f57236e5" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/EPD_CONS/test.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/GWP/SUBCLASS_GWP_CALC_TEST.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/GWP/TEST.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />

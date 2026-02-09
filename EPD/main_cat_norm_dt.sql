@@ -1,12 +1,10 @@
-CREATE OR REPLACE PROCEDURE BG00MAC102.P_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_CALC(IN V_COMPANY_CODE VARCHAR(4),
-                                                                             IN V_START_YM VARCHAR(100),
-                                                                             IN V_END_YM VARCHAR(100),
-                                                                             IN V_MAIN_CAT_TAB_NAME VARCHAR(100),
-                                                                             IN V_MATRIX_TAB_NAME VARCHAR(100),
-                                                                             IN V_MAIN_CAT_BATCH_NUMBER VARCHAR(100),
-                                                                             IN V_FACTOR_YEAR VARCHAR(4),
-                                                                             IN V_FACTOR_VERSION VARCHAR(100))
-    SPECIFIC P_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_CALC
+CREATE OR REPLACE PROCEDURE BG00MAC102.P_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_CALC_DT(IN V_COMPANY_CODE VARCHAR(4),
+                                                                                IN V_MAIN_CAT_TAB_NAME VARCHAR(100),
+                                                                                IN V_MATRIX_TAB_NAME VARCHAR(100),
+                                                                                IN V_CERTIFICATION_NUMBER VARCHAR(100),
+                                                                                IN V_FACTOR_YEAR VARCHAR(4),
+                                                                                IN V_FACTOR_VERSION VARCHAR(100))
+    SPECIFIC P_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_CALC_DT
     LANGUAGE SQL
     NOT DETERMINISTIC
     EXTERNAL ACTION
@@ -20,7 +18,7 @@ BEGIN
     DECLARE V_LAST_TIMESTAMP TIMESTAMP;
 
     DECLARE V_LOG_SCHEMA VARCHAR(32) DEFAULT 'BG00MAC102 '; --日志表所在SCHEMA
-    DECLARE V_ROUTINE_NAME VARCHAR(128) DEFAULT 'P_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_CALC'; --存储过程名
+    DECLARE V_ROUTINE_NAME VARCHAR(128) DEFAULT 'P_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_CALC_DT'; --存储过程名
     DECLARE V_PARM_INFO VARCHAR(4096) DEFAULT NULL;
     DECLARE SQLCODE INTEGER;
     DECLARE SQLSTATE CHAR (5);
@@ -30,8 +28,8 @@ BEGIN
     DECLARE TAR_SCHEMA1 VARCHAR(32) DEFAULT 'BG00MAC102'; --目标表SCHEMA
     DECLARE SRC_TAB_NAME1 VARCHAR(32) DEFAULT ' '; --源表SCHEMA.表名
     DECLARE V_TMP_SCHEMA VARCHAR(32) DEFAULT 'BG00MAC102'; --临时表SCHEMA
-    DECLARE V_TMP_TAB VARCHAR(50) DEFAULT 'T_ADS_TEMP_LCA_MAIN_CAT_EPD_NORM_CALC'; --临时表名
-    DECLARE V_PNAME VARCHAR(50) DEFAULT 'P_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_CALC'; --存储过程名
+    DECLARE V_TMP_TAB VARCHAR(50) DEFAULT 'T_ADS_TEMP_LCA_MAIN_CAT_EPD_NORM_CALC_DT'; --临时表名
+    DECLARE V_PNAME VARCHAR(50) DEFAULT 'P_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_CALC_DT'; --存储过程名
     DECLARE V_QUERY_STR CLOB(1 M); --查询SQL
     DECLARE V_TMP_NAME VARCHAR(128);
     --完整的临时表名
@@ -65,6 +63,7 @@ BEGIN
 
     --取活动数据
     SET V_QUERY_STR = 'SELECT REC_ID,
+                      CERTIFICATION_NUMBER,
                       BATCH_NUMBER,
                       START_YM,
                       END_YM,
@@ -92,9 +91,10 @@ BEGIN
                           ELSE UNIT
                           END
                                                                        AS UNIT
-               FROM BG00MAC102.T_ADS_FACT_LCA_PROC_DATA
+               FROM BG00MAC102.T_ADS_FACT_LCA_PROC_DATA_AUTO
                WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || '''
-                 AND BATCH_NUMBER = ''' || V_MAIN_CAT_BATCH_NUMBER || '''';
+                 AND CERTIFICATION_NUMBER = ''' || V_CERTIFICATION_NUMBER || '''
+                 AND DATA_TYPE IN (''1'', ''2'')';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'TEMP_DATA', V_QUERY_STR);
 
 
@@ -127,7 +127,7 @@ BEGIN
                               SOURCE_PROC_KEY,
                               UNIT_COST
                        FROM ' || V_TMP_SCHEMA || '.' || V_MATRIX_TAB_NAME || '
-                       WHERE BATCH_NUMBER = ''' || V_MAIN_CAT_BATCH_NUMBER || '''
+                       WHERE CERTIFICATION_NUMBER = ''' || V_CERTIFICATION_NUMBER || '''
                          AND COMPANY_CODE = ''' || V_COMPANY_CODE || '''
                          AND INV = ''Y''
                          AND UNIT_COST != 0';
@@ -498,7 +498,8 @@ BEGIN
     SELECT *
     FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_INPUT
     WHERE ITEM_CODE NOT IN (SELECT DISTINCT ITEM_CODE FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_BY_PRODUCT
-                       UNION SELECT DISTINCT PRODUCT_CODE FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_PROC_PRODUCT_LIST)';
+                       UNION SELECT DISTINCT PRODUCT_CODE FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB ||
+                      '_PROC_PRODUCT_LIST)';
     CALL BG00MAC102.P_CREATE_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB, 'INPUT_UPSTREAM', V_QUERY_STR);
 
 
@@ -779,7 +780,9 @@ BEGIN
 
 
     SET V_QUERY_STR = 'WITH RESULT1 AS (SELECT HEX(RAND())                      AS REC_ID,
-                                             ''' || V_MAIN_CAT_BATCH_NUMBER || '''  AS BATCH_NUMBER,
+                                             ''' || V_CERTIFICATION_NUMBER || '''  AS CERTIFICATION_NUMBER,
+                                             (SELECT DISTINCT MAX(BATCH_NUMBER) FROM ' || V_TMP_SCHEMA || '.' ||
+                      V_TMP_TAB || '_TEMP_DATA)  AS BATCH_NUMBER,
                                              ''' || V_COMPANY_CODE || '''       AS COMPANY_CODE,
                                              A.PROC_KEY,
                                              A.PROC_CODE,
@@ -815,21 +818,20 @@ BEGIN
     SET V_QUERY_STR = 'DELETE FROM ' || V_TMP_SCHEMA || '.' || V_MAIN_CAT_TAB_NAME || '
                        WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || '''
                        AND FACTOR_VERSION = ''' || V_FACTOR_VERSION || '''
-                       AND BATCH_NUMBER = ''' || V_MAIN_CAT_BATCH_NUMBER || '''';
+                       AND CERTIFICATION_NUMBER = ''' || V_CERTIFICATION_NUMBER || '''';
     PREPARE stmt FROM V_QUERY_STR;
     EXECUTE stmt;
 
 
-    SET V_QUERY_STR = 'INSERT INTO ' || V_TMP_SCHEMA || '.' || V_MAIN_CAT_TAB_NAME || ' (REC_ID, BATCH_NUMBER, FACTOR_VERSION, START_YM, END_YM, COMPANY_CODE,
+    SET V_QUERY_STR = 'INSERT INTO ' || V_TMP_SCHEMA || '.' || V_MAIN_CAT_TAB_NAME || ' (REC_ID, CERTIFICATION_NUMBER, BATCH_NUMBER, FACTOR_VERSION, COMPANY_CODE,
                                                               PROC_KEY, PROC_CODE, PROC_NAME, PRODUCT_CODE,
                                                               PRODUCT_NAME, LCI_ELEMENT_CODE,
                                                               C1_DIRECT, C2_BP, C3_OUT, C4_BP_NEG, C5_TRANS, C_INSITE,
                                                               C_OUTSITE, C_CYCLE, REC_CREATE_TIME)
                        SELECT REC_ID,
+                              CERTIFICATION_NUMBER,
                               BATCH_NUMBER,
                               ''' || V_FACTOR_VERSION || ''',
-                              ''' || V_START_YM || ''',
-                              ''' || V_END_YM || ''',
                               COMPANY_CODE,
                               PROC_KEY,
                               PROC_CODE,
@@ -851,59 +853,59 @@ BEGIN
     EXECUTE stmt;
 
     -- DIST
-    SET V_QUERY_STR = 'DELETE FROM BG00MAC102.T_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_DIST
-                       WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || '''
-                       AND FACTOR_VERSION = ''' || V_FACTOR_VERSION || '''
-                       AND BATCH_NUMBER = ''' || V_MAIN_CAT_BATCH_NUMBER || '''';
-    PREPARE stmt FROM V_QUERY_STR;
-    EXECUTE stmt;
+--     SET V_QUERY_STR = 'DELETE FROM BG00MAC102.T_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_DIST
+--                        WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || '''
+--                        AND FACTOR_VERSION = ''' || V_FACTOR_VERSION || '''
+--                        AND BATCH_NUMBER = ''' || V_MAIN_CAT_BATCH_NUMBER || '''';
+--     PREPARE stmt FROM V_QUERY_STR;
+--     EXECUTE stmt;
 
 
-    SET V_QUERY_STR = 'INSERT INTO BG00MAC102.T_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_DIST
-                        (REC_ID, BATCH_NUMBER, START_YM, END_YM, COMPANY_CODE, SOURCE_PROC_KEY, SOURCE_PROC_CODE, SOURCE_PROC_NAME,
-                         TARGET_PROC_KEY, TARGET_PROC_CODE, TARGET_PROC_NAME, PRODUCT_CODE, PRODUCT_NAME, ITEM_CAT_CODE, ITEM_CAT_NAME,
-                         ITEM_CODE, ITEM_NAME, LCI_ELEMENT_CODE, TYPE, LOAD, REC_CREATE_TIME, FACTOR_VERSION)
-                        SELECT HEX(RAND())                              AS REC_ID,
-                               ''' || V_MAIN_CAT_BATCH_NUMBER || '''    AS BATCH_NUMBER,
-                               ''' || V_START_YM || '''                 AS START_YM,
-                               ''' || V_END_YM || '''                   AS END_YM,
-                               ''' || V_COMPANY_CODE || '''             AS COMPANY_CODE,
-                               A.SOURCE_PROC_KEY,
-                               B.PROC_CODE              AS SOURCE_PROC_CODE,
-                               B.PROC_NAME              AS SOURCE_PROC_NAME,
-                               A.TARGET_PROC_KEY,
-                               C.PROC_CODE              AS TARGET_PROC_CODE,
-                               C.PROC_NAME              AS TARGET_PROC_NAME,
-                               C.PRODUCT_CODE           AS PRODUCT_CODE,
-                               C.PRODUCT_NAME           AS PRODUCT_NAME,
-                               ITEM_CAT_CODE,
-                               ITEM_CAT_NAME,
-                               ITEM_CODE,
-                               ITEM_NAME,
-                               LCI_ELEMENT_CODE,
-                               TYPE,
-                               LOAD,
-                               TO_CHAR(CURRENT_TIMESTAMP, ''yyyyMMddHH24MI''),
-                               ''' || V_FACTOR_VERSION || '''           AS FACTOR_VERSION
-                        FROM (SELECT *
-                              FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C1_CYCLE
-                              UNION
-                              SELECT *
-                              FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C2_CYCLE
-                              UNION
-                              SELECT *
-                              FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C3_CYCLE
-                              UNION
-                              SELECT *
-                              FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C4_CYCLE
-                              UNION
-                              SELECT *
-                              FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C5_CYCLE) A
-                                 JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_PROC_PRODUCT_LIST B ON A.SOURCE_PROC_KEY = B.PROC_KEY
-                                 JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB ||
-                      '_PROC_PRODUCT_LIST C ON A.TARGET_PROC_KEY = C.PROC_KEY';
-    PREPARE stmt FROM V_QUERY_STR;
-    EXECUTE stmt;
+--     SET V_QUERY_STR = 'INSERT INTO BG00MAC102.T_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_DIST
+--                         (REC_ID, BATCH_NUMBER, START_YM, END_YM, COMPANY_CODE, SOURCE_PROC_KEY, SOURCE_PROC_CODE, SOURCE_PROC_NAME,
+--                          TARGET_PROC_KEY, TARGET_PROC_CODE, TARGET_PROC_NAME, PRODUCT_CODE, PRODUCT_NAME, ITEM_CAT_CODE, ITEM_CAT_NAME,
+--                          ITEM_CODE, ITEM_NAME, LCI_ELEMENT_CODE, TYPE, LOAD, REC_CREATE_TIME, FACTOR_VERSION)
+--                         SELECT HEX(RAND())                              AS REC_ID,
+--                                ''' || V_MAIN_CAT_BATCH_NUMBER || '''    AS BATCH_NUMBER,
+--                                ''' || V_START_YM || '''                 AS START_YM,
+--                                ''' || V_END_YM || '''                   AS END_YM,
+--                                ''' || V_COMPANY_CODE || '''             AS COMPANY_CODE,
+--                                A.SOURCE_PROC_KEY,
+--                                B.PROC_CODE              AS SOURCE_PROC_CODE,
+--                                B.PROC_NAME              AS SOURCE_PROC_NAME,
+--                                A.TARGET_PROC_KEY,
+--                                C.PROC_CODE              AS TARGET_PROC_CODE,
+--                                C.PROC_NAME              AS TARGET_PROC_NAME,
+--                                C.PRODUCT_CODE           AS PRODUCT_CODE,
+--                                C.PRODUCT_NAME           AS PRODUCT_NAME,
+--                                ITEM_CAT_CODE,
+--                                ITEM_CAT_NAME,
+--                                ITEM_CODE,
+--                                ITEM_NAME,
+--                                LCI_ELEMENT_CODE,
+--                                TYPE,
+--                                LOAD,
+--                                TO_CHAR(CURRENT_TIMESTAMP, ''yyyyMMddHH24MI''),
+--                                ''' || V_FACTOR_VERSION || '''           AS FACTOR_VERSION
+--                         FROM (SELECT *
+--                               FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C1_CYCLE
+--                               UNION
+--                               SELECT *
+--                               FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C2_CYCLE
+--                               UNION
+--                               SELECT *
+--                               FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C3_CYCLE
+--                               UNION
+--                               SELECT *
+--                               FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C4_CYCLE
+--                               UNION
+--                               SELECT *
+--                               FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_C5_CYCLE) A
+--                                  JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_PROC_PRODUCT_LIST B ON A.SOURCE_PROC_KEY = B.PROC_KEY
+--                                  JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB ||
+--                       '_PROC_PRODUCT_LIST C ON A.TARGET_PROC_KEY = C.PROC_KEY';
+--     PREPARE stmt FROM V_QUERY_STR;
+--     EXECUTE stmt;
 
 
     ------------------------------------处理逻辑(结束)------------------------------------

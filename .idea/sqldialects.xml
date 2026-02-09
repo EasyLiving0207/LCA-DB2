@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/DATABASE/AO.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/EF_CAT.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/EF_DOC.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/EF_LIB.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/EF_VIEW.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/GEO.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/IMPACT.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/T_ADS_BR_LCA_PCR_IMPACT_INDICATOR.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/T_ADS_DIM_LCA_DATABASE_VERSION.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/T_ADS_DIM_LCA_PCR.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/T_ADS_DIM_LCA_SYSTEM_MODEL.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/UNIT_PROCESS.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/VIEW.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD/ADP.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/EPD/DT.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD/EP.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD/FACTOR_LIB_NEW.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/EPD/GREEN_ELEC.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD/GWP.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD/GWP_RG.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD/GWP_TA.sql" dialect="DB2" />
@@ -20,9 +31,15 @@
     <file url="file://$PROJECT_DIR$/EPD/UNPAIRED.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD/WATER.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD/main_cat_norm.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/EPD/main_cat_norm_dt.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/EPD_CONS/AUTH/AUTH_TA.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/EPD_CONS/AUTH/AUTH_ZG.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/EPD_CONS/SENSITIVITY_ZG.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD_CONS/main_cat_cons.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/CALL.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/CONTRAST.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/DIFF.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/DT/SUBCLASS_CALC_DT.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/SUBCLASS_CALC.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/SUBCLASS_JOIN_DIST.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/SUBCLASS_READ_ACTI_DATA.sql" dialect="DB2" />
@@ -32,6 +49,7 @@
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/TEST.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/EP03.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/EPD/SUBCLASS_GWP_NORM_CALC.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/PROCEDURE/EPD/TEST.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/EPD_CONS/P_ADS_FACT_LCA_SUBCLASS_EPD_CONS_CALC_AUTO_BATCH_FULL_DIST.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/EPD_CONS/SUBCLASS_EPD_CONS_CALC_BUFF_MONTH.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/EPD_CONS/SUBCLASS_EPD_CONS_MONTH_AUTO_BATCH_AUTH.sql" dialect="DB2" />

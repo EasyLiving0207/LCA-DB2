@@ -3,12 +3,8 @@ CREATE OR REPLACE PROCEDURE BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_RECURSION(
     IN V_COMPANY_CODE VARCHAR(6),
     IN V_START_YM VARCHAR(6),
     IN V_END_YM VARCHAR(6),
-    IN V_FACTOR_YEAR VARCHAR(6),
     IN V_FACTOR_VERSION VARCHAR(100),
     IN V_AUTO_BATCH BOOLEAN,
-    IN V_BATCH_SUFFIX VARCHAR(100),
-    IN V_MAIN_CAT_TAB_NAME VARCHAR(100),
-    IN V_MAIN_CAT_BATCH_NUMBER VARCHAR(100),
     IN V_SUBCLASS_TAB_NAME VARCHAR(100),
     IN V_SUBCLASS_RESULT_TAB_NAME VARCHAR(100),
     IN V_SUBCLASS_RESULT_DIST_TAB_NAME VARCHAR(100)
@@ -427,7 +423,10 @@ BEGIN
                                                  ON A.LCI_ELEMENT_CODE = B.LCI_ELEMENT_CODE
                                        LEFT JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_PROC_PRODUCT_LIST D
                                           ON A.INDEX_CODE = D.INDEX_CODE
-                                       LEFT JOIN (SELECT *
+                                       LEFT JOIN (SELECT DISTINCT UNIT_CODE,
+                                                                  DEPT_CODE,
+                                                                  DEPT_NAME,
+                                                                  DEPT_MID_NAME
                                                   FROM BG00MAC102.T_WH_LCA_UNIT_CODE_2022
                                                   WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || ''') C
                                           ON D.UNIT_CODE = C.UNIT_CODE
@@ -476,7 +475,7 @@ BEGIN
                               ''' || V_FACTOR_VERSION || ''',
                               ''' || V_COMPANY_CODE || ''',
                               ''' || V_AUTO_BATCH || ''',
-                              ''' || V_MAIN_CAT_BATCH_NUMBER || ''',
+                              BATCH_NUMBER,
                               ''' || V_SUBCLASS_TAB_NAME || ''',
                               UPDATE_DATE,
                               INDEX_CODE,
@@ -504,14 +503,14 @@ BEGIN
                               FLAG,
                               LCI_ELEMENT_CODE,
                               LCI_ELEMENT_CNAME,
-                              C1 + C2 + C3 + C4 + C5,
-                              C1,
-                              C2,
-                              C3,
-                              C4,
-                              C5,
-                              C1 + C2,
-                              C3 + C4 + C5,
+                              COALESCE(C1, 0) + COALESCE(C2, 0) + COALESCE(C3, 0) + COALESCE(C4, 0) + COALESCE(C5, 0),
+                              COALESCE(C1, 0),
+                              COALESCE(C2, 0),
+                              COALESCE(C3, 0),
+                              COALESCE(C4, 0),
+                              COALESCE(C5, 0),
+                              COALESCE(C1, 0) + COALESCE(C2, 0),
+                              COALESCE(C3, 0) + COALESCE(C4, 0) + COALESCE(C5, 0),
                               TO_CHAR(CURRENT_TIMESTAMP, ''yyyyMMddHH24MI'')
                        FROM (SELECT A.*, B.LCI_ELEMENT_CNAME, C.DEPT_NAME, C.DEPT_CODE, C.DEPT_MID_NAME,
                                     D.UPDATE_DATE,
@@ -534,7 +533,10 @@ BEGIN
                                                  ON A.LCI_ELEMENT_CODE = B.LCI_ELEMENT_CODE
                                        LEFT JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_PROC_PRODUCT_LIST D
                                           ON A.INDEX_CODE = D.INDEX_CODE
-                                       LEFT JOIN (SELECT *
+                                       LEFT JOIN (SELECT DISTINCT UNIT_CODE,
+                                                                  DEPT_CODE,
+                                                                  DEPT_NAME,
+                                                                  DEPT_MID_NAME
                                                   FROM BG00MAC102.T_WH_LCA_UNIT_CODE_2022
                                                   WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || ''') C
                                           ON D.UNIT_CODE = C.UNIT_CODE

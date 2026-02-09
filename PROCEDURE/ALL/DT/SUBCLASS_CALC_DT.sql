@@ -1,18 +1,16 @@
-CREATE OR REPLACE PROCEDURE BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_CALC(IN V_PCR VARCHAR(6),
-                                                                    IN V_COMPANY_CODE VARCHAR(6),
-                                                                    IN V_START_YM VARCHAR(6),
-                                                                    IN V_END_YM VARCHAR(6),
-                                                                    IN V_FACTOR_YEAR VARCHAR(6),
-                                                                    IN V_FACTOR_VERSION VARCHAR(100),
-                                                                    IN V_AUTO_BATCH BOOLEAN,
-                                                                    IN V_BATCH_SUFFIX VARCHAR(100),
-                                                                    IN V_MAIN_CAT_TAB_NAME VARCHAR(100),
-                                                                    IN V_MAIN_CAT_BATCH_NUMBER VARCHAR(100),
-                                                                    IN V_SUBCLASS_TAB_NAME VARCHAR(100),
-                                                                    IN V_SUBCLASS_RESULT_TAB_NAME VARCHAR(100),
-                                                                    IN V_SUBCLASS_RESULT_DIST_TAB_NAME VARCHAR(100),
-                                                                    IN V_SUBCLASS_FILTER_CONDITION VARCHAR(1000))
-    SPECIFIC P_ADS_FACT_LCA_SUBCLASS_CALC
+CREATE OR REPLACE PROCEDURE BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_CALC_DT(IN V_PCR VARCHAR(6),
+                                                                       IN V_COMPANY_CODE VARCHAR(6),
+                                                                       IN V_FACTOR_YEAR VARCHAR(6),
+                                                                       IN V_FACTOR_VERSION VARCHAR(100),
+                                                                       IN V_AUTO_BATCH BOOLEAN,
+                                                                       IN V_BATCH_SUFFIX VARCHAR(100),
+                                                                       IN V_MAIN_CAT_TAB_NAME VARCHAR(100),
+                                                                       IN V_CERTIFICATION_NUMBER VARCHAR(100),
+                                                                       IN V_SUBCLASS_TAB_NAME VARCHAR(100),
+                                                                       IN V_SUBCLASS_RESULT_TAB_NAME VARCHAR(100),
+                                                                       IN V_SUBCLASS_RESULT_DIST_TAB_NAME VARCHAR(100),
+                                                                       IN V_SUBCLASS_FILTER_CONDITION VARCHAR(1000))
+    SPECIFIC P_ADS_FACT_LCA_SUBCLASS_CALC_DT
     LANGUAGE SQL
     NOT DETERMINISTIC
     EXTERNAL ACTION
@@ -26,14 +24,14 @@ BEGIN
     DECLARE V_LAST_TIMESTAMP TIMESTAMP;
 
     DECLARE V_LOG_SCHEMA VARCHAR(32) DEFAULT 'BG00MAC102'; --日志表所在SCHEMA
-    DECLARE V_ROUTINE_NAME VARCHAR(128) DEFAULT 'P_ADS_FACT_LCA_SUBCLASS_CALC'; --存储过程名
+    DECLARE V_ROUTINE_NAME VARCHAR(128) DEFAULT 'P_ADS_FACT_LCA_SUBCLASS_CALC_DT'; --存储过程名
     DECLARE V_PARM_INFO VARCHAR(4096) DEFAULT NULL;
     DECLARE SQLCODE INTEGER;
     DECLARE SQLSTATE CHAR (5);
 
     ------------------------------------日志变量定义------------------------------------
     DECLARE V_TMP_SCHEMA VARCHAR(32) DEFAULT 'BG00MAC102'; --临时表SCHEMA
-    DECLARE V_TMP_TAB VARCHAR(50) DEFAULT 'T_ADS_TEMP_LCA_SUBCLASS_CALC'; --临时表名
+    DECLARE V_TMP_TAB VARCHAR(50) DEFAULT 'T_ADS_TEMP_LCA_SUBCLASS_CALC_DT'; --临时表名
     DECLARE V_QUERY_STR CLOB(1 M);
     --查询SQL
     --完整的临时表名
@@ -56,8 +54,6 @@ BEGIN
     --取活动数据
     CALL BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_READ_ACTI_DATA(V_PCR,
                                                            V_COMPANY_CODE,
-                                                           V_START_YM,
-                                                           V_END_YM,
                                                            V_SUBCLASS_TAB_NAME,
                                                            V_SUBCLASS_FILTER_CONDITION);
 

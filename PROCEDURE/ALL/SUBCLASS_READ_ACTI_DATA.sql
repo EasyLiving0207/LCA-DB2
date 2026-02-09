@@ -2,15 +2,7 @@ CREATE OR REPLACE PROCEDURE BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_READ_ACTI_DATA(IN
                                                                               IN V_COMPANY_CODE VARCHAR(6),
                                                                               IN V_START_YM VARCHAR(6),
                                                                               IN V_END_YM VARCHAR(6),
-                                                                              IN V_FACTOR_YEAR VARCHAR(6),
-                                                                              IN V_FACTOR_VERSION VARCHAR(100),
-                                                                              IN V_AUTO_BATCH BOOLEAN,
-                                                                              IN V_BATCH_SUFFIX VARCHAR(100),
-                                                                              IN V_MAIN_CAT_TAB_NAME VARCHAR(100),
-                                                                              IN V_MAIN_CAT_BATCH_NUMBER VARCHAR(100),
                                                                               IN V_SUBCLASS_TAB_NAME VARCHAR(100),
-                                                                              IN V_SUBCLASS_RESULT_TAB_NAME VARCHAR(100),
-                                                                              IN V_SUBCLASS_RESULT_DIST_TAB_NAME VARCHAR(100),
                                                                               IN V_SUBCLASS_FILTER_CONDITION VARCHAR(1000))
     SPECIFIC P_ADS_FACT_LCA_SUBCLASS_READ_ACTI_DATA
     LANGUAGE SQL
@@ -183,7 +175,10 @@ BEGIN
                                        B.DEPT_NAME,
                                        B.DEPT_MID_NAME
                                 FROM RANK A
-                                         LEFT JOIN (SELECT *
+                                         LEFT JOIN (SELECT DISTINCT UNIT_CODE,
+                                                                    DEPT_CODE,
+                                                                    DEPT_NAME,
+                                                                    DEPT_MID_NAME
                                                       FROM BG00MAC102.T_WH_LCA_UNIT_CODE_2022
                                                       WHERE COMPANY_CODE = ''' || V_COMPANY_CODE || ''') B
                                               ON A.UNIT_CODE = B.UNIT_CODE),
