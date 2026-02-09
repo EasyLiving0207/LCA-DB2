@@ -44,6 +44,17 @@ select *
 from T_ADS_FACT_LCA_CR0001_AUTO
 where CERTIFICATION_NUMBER = '202509TAM01000002';
 
+CALL BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_CALC_DT('NORM',
+                                                'TA',
+                                                '2025',
+                                                'NORM_Ecoinvent3.11',
+                                                '202509TAM01000002',
+                                                'T_ADS_FACT_LCA_CR0001_AUTO');
+
+
+
+
+
 
 
 

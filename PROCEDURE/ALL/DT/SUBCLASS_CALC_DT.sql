@@ -2,14 +2,8 @@ CREATE OR REPLACE PROCEDURE BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_CALC_DT(IN V_PCR 
                                                                        IN V_COMPANY_CODE VARCHAR(6),
                                                                        IN V_FACTOR_YEAR VARCHAR(6),
                                                                        IN V_FACTOR_VERSION VARCHAR(100),
-                                                                       IN V_AUTO_BATCH BOOLEAN,
-                                                                       IN V_BATCH_SUFFIX VARCHAR(100),
-                                                                       IN V_MAIN_CAT_TAB_NAME VARCHAR(100),
                                                                        IN V_CERTIFICATION_NUMBER VARCHAR(100),
-                                                                       IN V_SUBCLASS_TAB_NAME VARCHAR(100),
-                                                                       IN V_SUBCLASS_RESULT_TAB_NAME VARCHAR(100),
-                                                                       IN V_SUBCLASS_RESULT_DIST_TAB_NAME VARCHAR(100),
-                                                                       IN V_SUBCLASS_FILTER_CONDITION VARCHAR(1000))
+                                                                       IN V_SUBCLASS_TAB_NAME VARCHAR(100))
     SPECIFIC P_ADS_FACT_LCA_SUBCLASS_CALC_DT
     LANGUAGE SQL
     NOT DETERMINISTIC
@@ -52,10 +46,10 @@ BEGIN
     VALUES ('data', 'begin', null, CURRENT_TIMESTAMP);
 
     --取活动数据
-    CALL BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_READ_ACTI_DATA(V_PCR,
-                                                           V_COMPANY_CODE,
-                                                           V_SUBCLASS_TAB_NAME,
-                                                           V_SUBCLASS_FILTER_CONDITION);
+    CALL BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_READ_ACTI_DATA_DT(V_PCR,
+                                                              V_COMPANY_CODE,
+                                                              V_CERTIFICATION_NUMBER,
+                                                              V_SUBCLASS_TAB_NAME);
 
     INSERT INTO BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_CALC_DEBUG(proc_name, step_desc, var_value, log_time)
     VALUES ('data', 'end', null, CURRENT_TIMESTAMP);
@@ -63,13 +57,9 @@ BEGIN
     INSERT INTO BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_CALC_DEBUG(proc_name, step_desc, var_value, log_time)
     VALUES ('energy', 'begin', null, CURRENT_TIMESTAMP);
 
-    CALL BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_READ_ENERGY_RESULT(V_PCR,
-                                                               V_COMPANY_CODE,
-                                                               V_FACTOR_VERSION,
-                                                               V_AUTO_BATCH,
-                                                               V_BATCH_SUFFIX,
-                                                               V_MAIN_CAT_TAB_NAME,
-                                                               V_MAIN_CAT_BATCH_NUMBER);
+    CALL BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_READ_ENERGY_RESULT_DT(V_COMPANY_CODE,
+                                                                  V_FACTOR_VERSION,
+                                                                  V_CERTIFICATION_NUMBER);
 
     INSERT INTO BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_CALC_DEBUG(proc_name, step_desc, var_value, log_time)
     VALUES ('energy', 'end', null, CURRENT_TIMESTAMP);
@@ -79,10 +69,10 @@ BEGIN
     VALUES ('factor', 'begin', null, CURRENT_TIMESTAMP);
 
 
-    CALL BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_READ_FACTOR(V_PCR,
-                                                        V_COMPANY_CODE,
-                                                        V_FACTOR_YEAR,
-                                                        V_FACTOR_VERSION);
+    CALL BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_READ_FACTOR_DT(V_PCR,
+                                                           V_COMPANY_CODE,
+                                                           V_FACTOR_YEAR,
+                                                           V_FACTOR_VERSION);
 
     INSERT INTO BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_CALC_DEBUG(proc_name, step_desc, var_value, log_time)
     VALUES ('factor', 'end', null, CURRENT_TIMESTAMP);
@@ -92,8 +82,8 @@ BEGIN
     VALUES ('dist', 'begin', null, CURRENT_TIMESTAMP);
 
 
-    CALL BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_JOIN_DIST(V_PCR,
-                                                      V_COMPANY_CODE);
+    CALL BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_JOIN_DIST_DT(V_PCR,
+                                                         V_COMPANY_CODE);
 
     INSERT INTO BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_CALC_DEBUG(proc_name, step_desc, var_value, log_time)
     VALUES ('dist', 'end', null, CURRENT_TIMESTAMP);
@@ -103,15 +93,11 @@ BEGIN
     VALUES ('recursion', 'begin', null, CURRENT_TIMESTAMP);
 
 
-    CALL BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_RECURSION(V_PCR,
-                                                      V_COMPANY_CODE,
-                                                      V_START_YM,
-                                                      V_END_YM,
-                                                      V_FACTOR_VERSION,
-                                                      V_AUTO_BATCH,
-                                                      V_SUBCLASS_TAB_NAME,
-                                                      V_SUBCLASS_RESULT_TAB_NAME,
-                                                      V_SUBCLASS_RESULT_DIST_TAB_NAME);
+    CALL BG00MAC102.P_ADS_FACT_LCA_SUBCLASS_RECURSION_DT(V_PCR,
+                                                         V_COMPANY_CODE,
+                                                         V_FACTOR_VERSION,
+                                                         V_CERTIFICATION_NUMBER,
+                                                         V_SUBCLASS_TAB_NAME);
 
     INSERT INTO BG00MAC102.T_ADS_FACT_LCA_SUBCLASS_CALC_DEBUG(proc_name, step_desc, var_value, log_time)
     VALUES ('recursion', 'end', null, CURRENT_TIMESTAMP);
@@ -119,8 +105,8 @@ BEGIN
     ------------------------------------处理逻辑(结束)------------------------------------
 
 --     删除生成的临时表
-    CALL BG00MAC102.P_DROP_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB);
-    COMMIT;
+--     CALL BG00MAC102.P_DROP_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB);
+--     COMMIT;
 
 
     --过程结束时间

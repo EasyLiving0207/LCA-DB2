@@ -31,7 +31,6 @@
     <file url="file://$PROJECT_DIR$/EPD/UNPAIRED.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD/WATER.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD/main_cat_norm.sql" dialect="DB2" />
-    <file url="file://$PROJECT_DIR$/EPD/main_cat_norm_dt.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD_CONS/AUTH/AUTH_TA.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD_CONS/AUTH/AUTH_ZG.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD_CONS/SENSITIVITY_ZG.sql" dialect="DB2" />
@@ -40,6 +39,12 @@
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/CONTRAST.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/DIFF.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/DT/SUBCLASS_CALC_DT.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/DT/SUBCLASS_JOIN_DIST_DT.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/DT/SUBCLASS_READ_ACTI_DATA_DT.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/DT/SUBCLASS_READ_ENERGY_RESULT_DT.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/DT/SUBCLASS_READ_FACTOR_DT.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/DT/SUBCLASS_RECURSION_DT.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/DT/main_cat_norm_dt.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/SUBCLASS_CALC.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/SUBCLASS_JOIN_DIST.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/SUBCLASS_READ_ACTI_DATA.sql" dialect="DB2" />
