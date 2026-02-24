@@ -2,10 +2,12 @@
 <project version="4">
   <component name="DataSourcePerFileMappings">
     <file url="file://$PROJECT_DIR$/DATABASE/AO.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
-    <file url="file://$PROJECT_DIR$/DATABASE/EF_CAT.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
-    <file url="file://$PROJECT_DIR$/DATABASE/EF_DOC.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
-    <file url="file://$PROJECT_DIR$/DATABASE/EF_LIB.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
-    <file url="file://$PROJECT_DIR$/DATABASE/EF_VIEW.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/EF/DQR.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/EF/DQR_CAT.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/EF/EF_CAT.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/EF/EF_DOC.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/EF/EF_LIB.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/EF/EF_VIEW.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/DATABASE/GEO.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/DATABASE/IMPACT.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/DATABASE/T_ADS_BR_LCA_PCR_IMPACT_INDICATOR.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
