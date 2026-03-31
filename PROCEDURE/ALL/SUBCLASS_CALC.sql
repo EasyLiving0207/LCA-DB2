@@ -123,8 +123,8 @@ BEGIN
     ------------------------------------处理逻辑(结束)------------------------------------
 
 --     删除生成的临时表
-    CALL BG00MAC102.P_DROP_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB);
-    COMMIT;
+--     CALL BG00MAC102.P_DROP_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB);
+--     COMMIT;
 
 
     --过程结束时间

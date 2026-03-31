@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/DATABASE/AO.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/EF/DQR.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/EF/DQR_CAT.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/EF/EF_CAT.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/EF/EF_DOC.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/EF/EF_LIB.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/EF/EF_VIEW.sql" dialect="DB2" />
-    <file url="file://$PROJECT_DIR$/DATABASE/GEO.sql" dialect="DB2" />
-    <file url="file://$PROJECT_DIR$/DATABASE/IMPACT.sql" dialect="DB2" />
-    <file url="file://$PROJECT_DIR$/DATABASE/T_ADS_BR_LCA_PCR_IMPACT_INDICATOR.sql" dialect="DB2" />
-    <file url="file://$PROJECT_DIR$/DATABASE/T_ADS_DIM_LCA_DATABASE_VERSION.sql" dialect="DB2" />
-    <file url="file://$PROJECT_DIR$/DATABASE/T_ADS_DIM_LCA_PCR.sql" dialect="DB2" />
-    <file url="file://$PROJECT_DIR$/DATABASE/T_ADS_DIM_LCA_SYSTEM_MODEL.sql" dialect="DB2" />
-    <file url="file://$PROJECT_DIR$/DATABASE/UNIT_PROCESS.sql" dialect="DB2" />
-    <file url="file://$PROJECT_DIR$/DATABASE/VIEW.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/AO.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/BIGCLASS_ALLOCATION.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/BIGCLASS_RECORD.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/CALL.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/LCA_UNIT_CONVERSION.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/ELEM_FLOW.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/GEO.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/IMPACT.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/PCR_ALLOCATION.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/TEST.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/T_ADS_BR_LCA_PCR_IMPACT_INDICATOR.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/T_ADS_DIM_LCA_DATABASE_VERSION.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/T_ADS_DIM_LCA_PCR.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/T_ADS_DIM_LCA_SYSTEM_MODEL.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/UNIT_PROCESS.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/VIEW.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD/ADP.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD/DT.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD/EP.sql" dialect="DB2" />
@@ -35,6 +42,8 @@
     <file url="file://$PROJECT_DIR$/EPD/main_cat_norm.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD_CONS/AUTH/AUTH_TA.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD_CONS/AUTH/AUTH_ZG.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/EPD_CONS/SENSITIVITY.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/EPD_CONS/SENSITIVITY_NEW.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD_CONS/SENSITIVITY_ZG.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/EPD_CONS/main_cat_cons.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/ALL/CALL.sql" dialect="DB2" />

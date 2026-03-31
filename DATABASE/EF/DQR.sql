@@ -16,6 +16,9 @@ create table BG00MAC102.T_ADS_FACT_EMISSION_FACTOR_DQR
 )
     distribute by hash (EMISSION_FACTOR_ID, DQR_CATEGORY);
 
+
+
+
 comment on table BG00MAC102.T_ADS_FACT_EMISSION_FACTOR_DQR is '排放因子数据质量评分';
 
 comment on column BG00MAC102.T_ADS_FACT_EMISSION_FACTOR_DQR.EMISSION_FACTOR_ID is '排放因子ID';

@@ -151,7 +151,7 @@ BEGIN
     SET V_QUERY_STR = 'WITH TEMP AS (SELECT A.*, B.PREV_RANK
                                      FROM (SELECT DISTINCT UPDATE_DATE, INDEX_CODE, MAT_TRACK_NO, MAT_SEQ_NO, FAMILY_CODE, UNIT_CODE, UNIT_NAME
                                            FROM ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_DATA) A
-                                              JOIN (SELECT DISTINCT A.MAT_TRACK_NO, MAX(A.MAT_SEQ_NO) AS PREV_RANK
+                                              LEFT JOIN (SELECT DISTINCT A.MAT_TRACK_NO, MAX(A.MAT_SEQ_NO) AS PREV_RANK
                                                     FROM ' || V_TMP_SCHEMA || '.' || V_SUBCLASS_TAB_NAME || ' A
                                                     JOIN ' || V_TMP_SCHEMA || '.' || V_TMP_TAB || '_MAT_TRACK_NO B
                                                       ON A.MAT_TRACK_NO = B.MAT_TRACK_NO
@@ -168,7 +168,7 @@ BEGIN
                                            END                                                          AS PREV_INDEX_CODE,
                                        CASE
                                            WHEN FAMILY_CODE = ''00'' THEN MAT_SEQ_NO
-                                           ELSE CAST(LENGTH(FAMILY_CODE) / 2 AS BIGINT) + PREV_RANK END AS RANK
+                                           ELSE CAST(LENGTH(FAMILY_CODE) / 2 AS BIGINT) + COALESCE(PREV_RANK, 0) END AS RANK
                                 FROM TEMP),
                        DEPT AS (SELECT A.*,
                                        B.DEPT_CODE,

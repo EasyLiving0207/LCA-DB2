@@ -1,0 +1,24 @@
+create table BG00MAC102.T_ADS_FACT_LCA_UNIT_CONVERSION_FACTOR
+(
+    UNIT_NAME_BEFORE  VARCHAR(255)         not null
+        primary key,
+    UNIT_NAME_AFTER   VARCHAR(255)         not null,
+    CONVERSION_FACTOR DECIMAL(20, 10)      not null,
+    IS_CANONICAL      BOOLEAN default TRUE not null,
+    REMARK            VARCHAR(255)
+)
+    distribute by hash (UNIT_NAME_BEFORE);
+
+comment on table BG00MAC102.T_ADS_FACT_LCA_UNIT_CONVERSION_FACTOR is 'LCA单位转换系数';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_UNIT_CONVERSION_FACTOR.UNIT_NAME_BEFORE is '原单位名称';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_UNIT_CONVERSION_FACTOR.UNIT_NAME_AFTER is '转换后单位名称';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_UNIT_CONVERSION_FACTOR.CONVERSION_FACTOR is '转换系数';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_UNIT_CONVERSION_FACTOR.IS_CANONICAL is '是否为标准单位';
+
+comment on column BG00MAC102.T_ADS_FACT_LCA_UNIT_CONVERSION_FACTOR.REMARK is '备注';
+
+select distinct UNIT_NAME from T_ADS_DIM_LCA_ELEMENTARY_FLOW;

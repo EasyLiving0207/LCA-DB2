@@ -152,3 +152,160 @@ select *
 from T_ADS_FACT_LCA_MAIN_CAT_EPD_CONS_RESULT
 where COMPANY_CODE = 'ZG';
 
+
+select distinct NAME
+from T_ADS_WH_LCA_BACKGROUND_FACTOR_LIBRARY
+where FLAG = 'STREAM'
+order by NAME;
+
+select distinct LCA_DATA_ITEM_CAT_CODE, LCA_DATA_ITEM_CODE, LCA_DATA_ITEM_NAME
+from T_ADS_FACT_LCA_PROC_DATA
+where COMPANY_CODE = 'TA'
+  and LCA_DATA_ITEM_CAT_CODE > '05'
+  and BATCH_NUMBER like '202501202512%'
+order by LCA_DATA_ITEM_CAT_CODE;
+
+
+select UNIT_PROCESS_NAME, BACKGROUND_INFO
+from T_ADS_DIM_LCA_UNIT_PROCESS
+where UNIT_PROCESS_NAME in ('海运',
+                            '汽运',
+                            '河运',
+                            '铁运')
+
+
+
+with BR as (select *
+            from T_ADS_FACT_LCA_PROC_DATA
+            where BATCH_NUMBER = '20250120251220260227YS'
+              and COMPANY_CODE = 'BR'),
+     TA as (select *
+            from T_ADS_FACT_LCA_PROC_DATA
+            where COMPANY_CODE = 'TA'
+              and BATCH_NUMBER = '20250120251220260114YS')
+select HEX(RAND()),
+       '20250120251220260227YS',
+       START_YM,
+       END_YM,
+       LCA_PROC_CODE,
+       LCA_PROC_NAME,
+       PRODUCT_CODE,
+       PRODUCT_NAME,
+       LCA_DATA_ITEM_CAT_CODE,
+       LCA_DATA_ITEM_CAT_NAME,
+       LCA_DATA_ITEM_CODE,
+       LCA_DATA_ITEM_NAME,
+       VALUE,
+       UNIT,
+       INDEX_CODE,
+       'BR',
+       REC_CREATE_TIME,
+       REC_CREATOR,
+       MAT_STATUS,
+       WG_PRODUCT_CODE
+from TA;
+
+
+
+insert into T_ADS_WH_LCA_ITEM_CONTRAST
+select HEX(RAND()),
+       PCR,
+       VERSION,
+       'BR',
+       ITEM_CODE,
+       ITEM_NAME,
+       UUID,
+       FLAG,
+       'TA',
+       REC_CREATE_TIME,
+       REC_REVISOR,
+       REC_REVISE_TIME,
+       REMARK
+from T_ADS_WH_LCA_ITEM_CONTRAST
+where COMPANY_CODE = 'TA'
+  and (VERSION = 'NORM_Ecoinvent3.11'
+    or VERSION is null);
+
+
+select *
+from T_ADS_WH_LCA_ITEM_CONTRAST
+where COMPANY_CODE = 'BR';
+
+
+select *
+from T_ADS_FACT_LCA_MAIN_CAT_EPD_NORM_RESULT
+where COMPANY_CODE = 'BR'
+  and BATCH_NUMBER = '20250120251220260227YS'
+  and LCI_ELEMENT_CODE = 'GWP-total'
+  and FACTOR_VERSION like 'NORM%'
+  and PROC_CODE in (select distinct LCA_PROC_CODE
+                    from T_ADS_FACT_LCA_PROC_DATA
+                    where COMPANY_CODE = 'BR'
+                      and BATCH_NUMBER = '20250120251220260227YS'
+                      and WG_PRODUCT_CODE = '')
+order by PROC_KEY;
+
+
+with data_all as (select distinct *
+                  from T_ADS_FACT_LCA_PROC_DATA
+                  where COMPANY_CODE = 'BR'
+                    and BATCH_NUMBER = '20250120251220260227YS'),
+     data_br as (select distinct *
+                 from T_ADS_FACT_LCA_PROC_DATA
+                 where COMPANY_CODE = 'BR'
+                   and BATCH_NUMBER = '20250120251220260227YS'
+                   and WG_PRODUCT_CODE = ''),
+     data_ta as (select distinct *
+                 from T_ADS_FACT_LCA_PROC_DATA
+                 where COMPANY_CODE = 'BR'
+                   and BATCH_NUMBER = '20250120251220260227YS'
+                   and WG_PRODUCT_CODE = 'TA')
+select distinct LCA_DATA_ITEM_CAT_NAME, LCA_DATA_ITEM_CODE, LCA_DATA_ITEM_NAME
+from data_br
+where LCA_DATA_ITEM_CODE not in (select distinct ITEM_CODE
+                                 from T_ADS_WH_LCA_ITEM_CONTRAST
+                                 where COMPANY_CODE = 'BR'
+                                   and (VERSION = 'NORM_Ecoinvent3.11'
+                                     or VERSION is null)
+                                 union
+                                 select distinct PRODUCT_CODE
+                                 from data_all)
+order by LCA_DATA_ITEM_CAT_NAME, LCA_DATA_ITEM_CODE;
+
+
+select *
+from T_ADS_WH_LCA_ITEM_CONTRAST
+where ITEM_CODE = '65900';
+
+select *
+from T_ADS_WH_LCA_BACKGROUND_FACTOR_LIBRARY
+where NAME = '防锈油';
+
+
+select *
+from T_ADS_WH_LCA_BACKGROUND_FACTOR_LIBRARY
+where VERSION = 'NORM_Ecoinvent3.11'
+  and LCI_ELEMENT_CODE = 'GWP-total';
+
+
+select *
+from T_ADS_WH_LCA_ITEM_CONTRAST
+where COMPANY_CODE = 'BR'
+  and VERSION = 'NORM_Ecoinvent3.11';
+
+
+select *
+from T_ADS_WH_LCA_ITEM_CONTRAST
+where VERSION is null;
+
+select *
+from T_ADS_WH_ZP_FACTOR_LIBRARY
+where ITEM_CODE = 'A-20250124-2-CG';
+
+
+select *
+from T_ADS_WH_LCA_MAT_DATA;
+
+
+select count(*)
+from T_ADS_WH_LCA_ITEM_CONTRAST;
