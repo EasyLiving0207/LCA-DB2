@@ -1,0 +1,66 @@
+PCR_INDICATOR_ID,PCR,INDICATOR_CODE,INDICATOR_NAME_IN_PCR,INDICATOR_CNAME_IN_PCR,INDICATOR_UNIT_IN_PCR,REFERENCE_IMPACT_INDICATOR_ID,IS_GWP_TOTAL
+5d768764-9937-4036-828d-4a37274fc3d9,BASIC,HWD,Hazardous waste disposed,危险固体废弃物(HWD),kg,65a34170-e3cc-50f0-b310-c676da5beefc,false
+e70a7beb-9204-415d-90c7-ea6ab8d6dfaf,CONS,GWP-biogenic,Climate change - Biogenic,全球变暖潜力(GWP100)-生物质,kg CO2 eq,dd2a79c0-42cf-46c3-a9eb-3b896e6dc7f2,false
+4029d217-2618-4056-9c00-0ab65310021e,CONS,EP-freshwater,"Eutrophication, freshwater",富营养化潜力(EP)-淡水,kg P eq,9a2cb714-da62-47d9-b6f0-be51d96837cf,false
+5c7824e9-bb59-4761-ba25-a5b910a54c5c,CONS,RWD,Radioactive waste disposed,放射性固体废弃物(RWD),kg,d723a672-71a2-5e59-967a-bb7d27cfe799,false
+a016d9bd-06e9-4ee8-ac15-e40da822e905,BASIC,GWP-fossil,GWP100 - fossil,全球变暖潜力(GWP100)-化石能源,kg CO2 eq,035f4640-8768-44c8-8e45-a9dabd4b8441,false
+527ee5c8-7673-42bc-8d8e-4a581986308c,CONS,NRSF,Use of non-renewable secondary fuels,不可再生二次燃料(NRSF),MJ (LHV),21833f58-9cb3-4a26-b0c8-bca99e33f1a3,false
+ecdeec38-1670-4c94-baa2-8ce79a45f1b8,BASIC,PERM,,一次能源-可再生能源(PER)-用作原材料,MJ (LHV),40d43c22-976d-5b5d-bafe-10b207268899,false
+777029b9-6175-404b-9880-a77ea7651857,CONS,AP,Acidification,酸化潜力(AP),mol H+ eq,980d21a5-ae07-4b50-a170-2e3388d8a7ea,false
+84f134e6-e508-4c04-977b-489d0f85be2c,CONS,PERM,PERM,一次能源-可再生能源(PER)-用作原材料,MJ (LHV),40d43c22-976d-5b5d-bafe-10b207268899,false
+bd917b19-ff4a-4ce6-986e-b51e96691b2e,CONS,PERT,PERT,一次能源-可再生能源(PER)-合计,MJ (LHV),27d59a4d-8dd9-5596-b597-d64bf9fb04bb,false
+8c07714c-de15-4630-862a-fe434f5184ce,CONS,EEE,Exported energy - electricity,输出的能量(EE)-电力,MJ,c8f966d4-db21-580f-983d-6137ef76b9d8,false
+d27ea770-6e06-44f7-b71a-64e8ff88ed0c,BASIC,ODP,Ozone layer depletion (ODP),平流层臭氧层消耗潜力(ODP),kg CFC-11 eq,b6647543-8832-4c2f-af46-75927f851c05,false
+5d0052cd-7488-44c5-954b-f3ec0508c810,BASIC,GWP-total,GWP100 - total,全球变暖潜力(GWP100)-合计,kg CO2 eq,87d85ddc-eeb7-4c46-bdb2-4ad5fdb0e6b1,true
+d1aa22f8-3986-4d11-9803-47824af8a33a,BASIC,SM,Use of secondary material,二次材料利用量(SM),kg,693780c7-a787-53dc-978e-93419284eaf1,false
+c0ae832a-5add-43ec-bafa-46f7b18ace07,BASIC,ADPE,Abiotic depletion,非生物资源资源耗竭潜力(ADP)-矿物元素,kg Sb eq,f9a48cde-8ca6-426a-8b6c-d55e529566f8,false
+11b36155-8818-4d37-b3e2-4eaed778d427,CONS,GWP-total,Climate change - Total,全球变暖潜力(GWP100)-合计,kg CO2 eq,c953f95b-9d3b-4574-aa1c-6fd8498540e7,true
+527307ea-a4b7-4472-b61a-b82c40b78503,CONS,EP-terrestrial,"Eutrophication, terrestrial",富营养化潜力(EP)-陆地,mol N eq,a7499ad9-7843-442d-a03c-3bb31c9f2997,false
+a6b9b188-3c8e-4df1-9686-024140a759de,CONS,PERE,PERE,一次能源-可再生能源(PER)-用作能量载体,MJ (LHV),597d24fc-b43b-54f2-a964-2f2f688b1b51,false
+d0935899-4503-4942-b224-33faaf5996ac,BASIC,ETP-terrestrial,Terrestrial ecotoxicity,生态毒性(ETP)-陆地,"kg 1,4-DB eq",15aa9cec-9211-40fa-b6cf-014e7ff73bd4,false
+c017b0e4-1a3d-4abf-8b03-b07f8f62d73e,BASIC,POCP,Photochemical oxidation,对流层臭氧生成潜力(POCP),kg C2H4 eq,a377c6b5-3b02-43fc-8038-c35c573e17d4,false
+52ee9c90-83fc-4f63-b4db-0f3084234284,CONS,PM,Particulate matter,颗粒物(PM),disease inc.,e097169b-8428-418e-a8af-dc68f9f917df,false
+0d205fbb-8c0f-44b7-8095-e8092fa2ec78,CONS,EE,Exported energy,输出的能量(EE),MJ,3113339f-48f2-52ec-ac7b-5913bfb91197,false
+be745c27-1988-41a6-826a-59f5d5712eb9,CONS,PENRT,PENRT,一次能源-不可再生能源(PENR)-合计,MJ (LHV),5307ee96-601d-5d3c-9bd0-e2f388928160,false
+b9af5d3a-c871-4bc7-8ca6-ea006d6e1db7,CONS,IRP,Ionising radiation,电离辐射(IRP),kBq U-235 eq,e0a1302f-c915-4d3d-8173-6e930a485cbe,false
+42825e83-4239-4945-b0ea-f21f05d7895b,BASIC,EP,Eutrophication,富营养化潜力(EP),kg PO4 eq,36a9b35e-9698-4efc-a602-5f582666f069,false
+c4caca52-16ca-450a-8a5a-f3a9f4e36a3b,BASIC,AP,Acidification,酸化潜力(AP),kg SO2 eq,bfbecdfe-7374-4c10-9fe7-c886fdd1978d,false
+6def0551-dcfe-4c65-8d87-731cecb33f41,BASIC,PENRE,Non-renewable,一次能源-不可再生能源(PENR)-用作能量载体,MJ (LHV),2aff4284-d2cf-5102-8c6b-618505125cea,false
+8cb5743d-377b-454c-926f-91b9354fc1a7,BASIC,GWP-biogenic,GWP100 - biogenic,全球变暖潜力(GWP100)-生物质,kg CO2 eq,1423407a-76e4-4eb9-ace9-480d24b1e8b2,false
+385dcb59-7b84-40ff-9074-79e79891a988,CONS,HTP-nc,"Human toxicity, non-cancer",人体毒性(HTP)-非癌症,CTUh,fc20b72d-96e0-42b5-9dff-62943adc9e2e,false
+6a5298da-3e54-43a3-99fc-aac7600fd658,CONS,PENRM,PENRM,一次能源-不可再生能源(PENR)-用作原材料,MJ (LHV),43abef46-717f-513c-8679-a64a03812282,false
+5b8fdf03-d6e4-449f-b637-c7e9adcadebe,BASIC,ETP-marine,Marine aquatic ecotoxicity,生态毒性(ETP)-海洋,"kg 1,4-DB eq",2089f8c8-5d7a-42b6-8287-22554b2f7013,false
+57f56a35-1d08-46f6-98f6-84997897bc75,BASIC,GWP-luluc,GWP100 - land transformation,全球变暖潜力(GWP100)-土地利用和土地用途改变,kg CO2 eq,3f855cee-cfcb-459b-99a7-1e6c81e98148,false
+144c58cc-c782-4b36-b434-3edec20d4ca5,CONS,HTP-c,"Human toxicity, cancer",人体毒性(HTP)-癌症,CTUh,e402d7a6-8f83-4a56-bf33-e3932f3f3692,false
+ca1ccebd-320c-4a8e-8c90-bd30d90c4d16,CONS,RSF,Use of renewable secondary fuels,可再生二次燃料(RSF),MJ (LHV),91f8c015-248a-54d5-90e5-7d8a0df6bafd,false
+1ab87119-93e0-4dad-b318-e38df2a22f2d,CONS,HWD,Hazardous waste disposed,危险固体废弃物(HWD),kg,65a34170-e3cc-50f0-b310-c676da5beefc,false
+523c1569-c0f0-4920-bbb3-50572270825a,BASIC,ETP-fw,Fresh water aquatic ecotox.,生态毒性(ETP)-淡水,"kg 1,4-DB eq",690cf42b-2716-414f-9532-2f33e0e8cf07,false
+9cd3b230-f441-44f8-99a8-3c13d846a5ad,CONS,ETP-fw,"Ecotoxicity, freshwater",生态毒性(ETP)-淡水,CTUe,f8dc7583-1caf-4f7f-b315-b7aa885f32f2,false
+a9f7f05d-3381-44ea-969e-5933f6b48042,CONS,EET,Exported energy - heat,输出的能量(EE)-热力,MJ,65e01148-59a4-50f3-a8bc-6f6c45ce3f32,false
+bd46eaa5-ff3c-45ba-83e2-799ec4f8a5a3,BASIC,RWD,Radioactive waste disposed,放射性固体废弃物(RWD),kg,d723a672-71a2-5e59-967a-bb7d27cfe799,false
+de996c08-4acd-46b4-ab55-3ffc221852b9,CONS,GWP-luluc,Climate change - Land use and LU change,全球变暖潜力(GWP100)-土地利用和土地用途改变,kg CO2 eq,ddd513a1-879d-4ad4-be1c-bb812ad7ef13,false
+e2cc5e55-3c17-465c-b521-f0328fb223a0,CONS,NHWD,Non-hazardous waste disposed,无危险固体废弃物(NHWD),kg,446dc6d2-1353-59d9-978b-12e08b761937,false
+437f7667-ce11-4385-a014-cfe1f5c1cd3f,BASIC,ADPF,Abiotic depletion (fossil fuels),非生物资源耗竭潜力(ADP)-化石燃料,MJ,a731d4ee-5daa-44c2-9254-3a619bc5c328,false
+d26ad756-6d04-4d2e-886d-d6a0d99c6168,BASIC,FW,Net use of fresh water,新水耗量(FW),m3,dab8aea6-14b3-4286-9cf1-d6afc2ffc374,false
+1a78c276-a7fb-4197-9c63-2d6b211db6f8,CONS,MER,Materials for energy recovery,可用于能源回收的材料(MER),kg,84ccf375-458a-55a5-b8bd-a8dd3184c2b9,false
+522ecbec-f238-49f1-9527-cd12873666f2,BASIC,PENRM,,一次能源-不可再生能源(PENR)-用作原材料,MJ (LHV),43abef46-717f-513c-8679-a64a03812282,false
+0e3cc2a4-a305-4e31-bcc6-29b418abb0d1,BASIC,NRSF,Use of non-renewable secondary fuels,不可再生二次燃料(NRSF),MJ (LHV),21833f58-9cb3-4a26-b0c8-bca99e33f1a3,false
+937e4d99-6c03-4d74-835e-176564019c79,CONS,EP-marine,"Eutrophication, marine",富营养化潜力(EP)-海水,kg N eq,a708144e-ccb3-43b4-b071-54d334020d60,false
+ebe1dc7f-b657-4331-8b7a-2d4fedee1c42,CONS,ODP,Ozone depletion,平流层臭氧层消耗潜力(ODP),kg CFC11 eq,8a2aa79b-e44e-4852-a0b8-c2e674a5893a,false
+d853e4b3-044d-4409-8863-e3c5dc792e9b,CONS,ADPF,"Resource use, fossils",非生物资源耗竭潜力(ADP)-化石燃料,MJ,c3aa9052-d504-4e62-9790-2331af08b3fa,false
+c2f77b62-c7f1-443b-81f6-8dee450bb297,CONS,POCP,Photochemical ozone formation,对流层臭氧生成潜力(POCP),kg NMVOC eq,b8e30be2-338c-452e-a493-16370fb29113,false
+038bd5df-ca7e-4739-a220-4a35bb2a7f2b,CONS,PENRE,PENRE,一次能源-不可再生能源(PENR)-用作能量载体,MJ (LHV),2aff4284-d2cf-5102-8c6b-618505125cea,false
+84093e7b-aafb-4cb9-bcb7-991ab2521607,CONS,SM,Use of secondary material,二次材料利用量(SM),kg,693780c7-a787-53dc-978e-93419284eaf1,false
+6386e45e-c7d6-4bc8-9e97-fd1ae22eb5d1,BASIC,PERE,Renewable,一次能源-可再生能源(PER)-用作能量载体,MJ (LHV),597d24fc-b43b-54f2-a964-2f2f688b1b51,false
+d5061295-d434-4644-841b-4f2e0f3c98ac,BASIC,PERT,Renewable,一次能源-可再生能源(PER)-合计,MJ (LHV),27d59a4d-8dd9-5596-b597-d64bf9fb04bb,false
+8c8d1b8b-36f7-4987-844f-4329031a2815,CONS,LU,Land use,土地利用(LU),Pt,f53e3a4a-0a16-456d-aad6-529ff1eff68a,false
+f6245707-8f9d-41b4-b1cd-2778a1247ac4,CONS,CRU,Components for re-use,可再利用组件(CRU),kg,5e5d9d0d-26ad-4774-8838-37d6d3b98e8d,false
+958f48b1-8528-4e0e-adc8-93f5164ba9bc,BASIC,PENRT,Non-renewable,一次能源-不可再生能源(PENR)-合计,MJ (LHV),5307ee96-601d-5d3c-9bd0-e2f388928160,false
+0ebcdc7a-466b-4eef-a6b0-f626c5d1e452,CONS,ADPE,"Resource use, minerals and metals",非生物资源资源耗竭潜力(ADP)-矿物元素,kg Sb eq,b9531a5f-e85f-4b79-b606-3257a6316317,false
+7e212249-6bb3-4c90-aaa4-d2ad1cc8c03f,CONS,MFR,Materials for recycling,可回收材料(MFR),kg,8eb08146-4811-54ec-ab8d-82e91a6af82b,false
+f15cc882-ecf0-475c-86f8-34c967469ca0,CONS,FW,Net use of fresh water,新水耗量(FW),m3,60d94d0a-c6d1-55ea-875a-645ed7da2544,false
+46cc0b20-8487-4896-b42e-715d8698b9e4,BASIC,HTP,Human toxicity,人体毒性(HTP),"kg 1,4-DB eq",de31245f-5c3a-4780-bc82-9c03e3a0be88,false
+c47a0730-9261-44bf-ac7d-8c7ba031f4c7,BASIC,NHWD,Non-hazardous waste disposed,无危险固体废弃物(NHWD),kg,446dc6d2-1353-59d9-978b-12e08b761937,false
+9317385d-d58f-4814-80ff-310053845d16,CONS,GWP-fossil,Climate change - Fossil,全球变暖潜力(GWP100)-化石能源,kg CO2 eq,d04419ca-0223-4ede-8503-5479b780c403,false
+48fab541-204d-46a8-931b-906fa581c6db,CONS,WDP,Water use,水资源耗竭潜力(WDP),m3 depriv.,c798f4df-184b-4fbd-8d03-bcd71a2196ba,false
+bfcf8143-8d71-4729-bc70-5ab10fc6f1e5,BASIC,RSF,Use of renewable secondary fuels,可再生二次燃料(RSF),MJ (LHV),91f8c015-248a-54d5-90e5-7d8a0df6bafd,false

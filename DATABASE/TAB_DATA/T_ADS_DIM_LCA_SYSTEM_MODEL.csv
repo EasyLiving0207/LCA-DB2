@@ -1,0 +1,6 @@
+SYSTEM_MODEL,SYSTEM_MODEL_NAME,DESCRIPTION,IS_ACTIVE
+consequential,"Substitution, consequential, long-term",Consequential system model in which substitution is applied to resolve multi-functionality and demand is met by unconstrained or marginal suppliers.,true
+cutoff,"Allocation, cut-off by classification","Attributional system model in which wastes are the producer’s responsibility (“polluter pays”), and there is an incentivisation to use recyclable products, that are available burden free (cut-off).",true
+undefined,Undefined,"Undefined unit processes are unlinked and multi-output, meaning no suppliers are determined and no allocation is applied.",true
+apos,Allocation at the point of substitution,Attributional system model in which the responsibility over wastes (burdens) are shared between producers and sub-sequent users of the valuable products generated in the treatment processes.,true
+EN15804,"Allocation, cut-off, EN15804","Attributional interpretation of EN15804, ISO21930 and ISO14025, developed to support the needs of Environmental Product Declaration (EPD) practitioners.",true

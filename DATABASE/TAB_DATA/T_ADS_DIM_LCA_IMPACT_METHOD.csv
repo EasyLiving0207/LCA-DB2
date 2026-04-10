@@ -1,0 +1,59 @@
+IMPACT_METHOD_ID,IMPACT_METHOD_NAME,IMPACT_METHOD_VERSION,IS_CURRENT,ECOINVENT_DOCUMENTATION,FURTHER_DOCUMENTATION,CHARACTERIZATION_FACTOR_SOURCE_URL
+dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,"ReCiPe 2016 v1.03, endpoint (H)",2016 v1.03 (SimaPro),true,latest implementation report,https://www.rivm.nl/en/life-cycle-assessment-lca/downloads,https://www.rivm.nl/documenten/recipe2016cfsv1120180117
+7c75c405-5084-429a-9edf-3f1d1fefad82,TRACI v2.1,v2.1,true,latest implementation report,https://www.epa.gov/chemical-research/tool-reduction-and-assessment-chemicals-and-other-environmental-impacts-traci,see link to documentation
+208ef1bf-6c80-401e-b773-54f0960c09d9,EF v3.0 no LT,v3.0,false,latest implementation report,https://eplca.jrc.ec.europa.eu/LCDN/EF_archive.xhtml,see link to documentation
+e57693cf-ed07-416c-8831-58f044f1bd76,IPCC 2021 no LT,2021,true,latest implementation report,https://www.ipcc.ch/report/ar6/wg1/,"https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Chapter07.pdf
+https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Chapter_07_Supplementary_Material.pdf 
+https://github.com/chrisroadmap/ar6/blob/main/data_output/7sm/metrics_su"
+1b75e464-5938-4fbb-abc6-c15790d99ea7,"ReCiPe 2016 v1.03, midpoint (I) no LT",2016 v1.03 (SimaPro),true,latest implementation report,https://www.rivm.nl/en/life-cycle-assessment-lca/downloads,https://www.rivm.nl/documenten/recipe2016cfsv1120180117
+35716c60-7337-4442-9f3a-42effd692b82,CML v4.8 2016,v4.8,true,latest implementation report,https://www.universiteitleiden.nl/en/research/research-projects/science/cml-new-dutch-lca-guide,https://www.universiteitleiden.nl/en/research/research-output/science/cml-ia-characterisation-factors
+25583383-5a50-4fbf-9850-c9f2d57607b5,Inventory results and indicators,v3.11,true,,,
+0310cf09-b06f-45ef-af69-b5a41880170d,"ReCiPe 2016 v1.03, midpoint (H)",2016 v1.03 (SimaPro),true,latest implementation report,https://www.rivm.nl/en/life-cycle-assessment-lca/downloads,https://www.rivm.nl/documenten/recipe2016cfsv1120180117
+7b047a8c-f78c-4100-b733-fad9eb0ed0ce,EN15804+A2 - Indicators describing biogenic carbon content at factory gate,,true,dedicated report,,
+6e67b147-f0eb-48eb-bc09-0260d78a8f59,"ReCiPe 2016 v1.03, midpoint (E) no LT",2016 v1.03 (SimaPro),true,latest implementation report,https://www.rivm.nl/en/life-cycle-assessment-lca/downloads,https://www.rivm.nl/documenten/recipe2016cfsv1120180117
+be309eb5-a03c-4546-9608-81b504e08735,"ReCiPe 2016 v1.03, midpoint (I)",2016 v1.03 (SimaPro),true,latest implementation report,https://www.rivm.nl/en/life-cycle-assessment-lca/downloads,https://www.rivm.nl/documenten/recipe2016cfsv1120180117
+f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,Ecological Scarcity 2021 no LT,2021,true,latest implementation report,https://www.bafu.admin.ch/bafu/en/home/topics/economy-consumption/economy-and-consumption-publications/publications-economy-and-consumption/eco-factors-switzerland.html,see link to documentation
+b42b5d7d-371c-4c00-a601-cf9572670e00,"ReCiPe 2016 v1.03, endpoint (E) no LT",2016 v1.03 (SimaPro),true,latest implementation report,https://www.rivm.nl/en/life-cycle-assessment-lca/downloads,https://www.rivm.nl/documenten/recipe2016cfsv1120180117
+6aa69c4d-9315-4ec7-802b-22e5ce740ea4,Ecological Scarcity 2021,2021,true,latest implementation report,https://www.bafu.admin.ch/bafu/en/home/topics/economy-consumption/economy-and-consumption-publications/publications-economy-and-consumption/eco-factors-switzerland.html,see link to documentation
+24cd9adc-bbf8-49bc-a452-7f57073d7c6f,TRACI v2.1 no LT,v2.1,true,latest implementation report,https://www.epa.gov/chemical-research/tool-reduction-and-assessment-chemicals-and-other-environmental-impacts-traci,see link to documentation
+2866e7bc-b77a-4e03-bd91-811890e254c0,EN15804+A2 - Indicators describing resource use,,true,dedicated report,,
+cd086eff-2645-4f06-b500-dbfa1ae94285,EN15804+A2 - Indicators describing waste categories,,true,dedicated report,,
+1bdce405-4884-4dea-ba55-397eba6ed51e,EF v3.0,v3.0,false,latest implementation report,https://eplca.jrc.ec.europa.eu/LCDN/EF_archive.xhtml,see link to documentation
+ac3b6c62-8053-4725-9756-07064cfcc810,EPS 2020d no LT,2020d,true,latest implementation report,https://www.ivl.se/english/ivl/publications/publications/eps-weighting-factors---version-2020d.html,https://www.ivl.se/download/18.694ca0617a1de98f472f9c/1628415088657/FULLTEXT01.pdf
+4c67589f-536d-484e-aa38-a2d5fe0e1e0d,"USEtox v2.13, midpoint no LT",v2.13,true,latest implementation report,https://usetox.org/model/download,https://usetox.org/model/download
+0634f451-e29f-4f37-96c1-803e3f9a5abd,EN15804+A2 - Indicators describing output flows,,true,dedicated report,,
+ec605685-78f5-4d1b-a73f-5412044417b8,Crustal Scarcity Indicator 2020,2020,true,latest implementation report,https://doi.org/10.1007/s11367-020-01781-1,https://research.chalmers.se/publication/519861/file/519861_Fulltext.pdf
+4774e3fa-dbf0-4ba1-b15d-9ff90110f950,Cumulative Exergy Demand (CExD),2021,true,latest implementation report,https://www.vdi.de/richtlinien/details/vdi-4600-cumulative-energy-demand-kea-terms-definitions-methods-of-calculation,
+4d9ac60a-73ab-40cf-bc71-d967ef59865e,"ReCiPe 2016 v1.03, endpoint (I)",2016 v1.03 (SimaPro),true,latest implementation report,https://www.rivm.nl/en/life-cycle-assessment-lca/downloads,https://www.rivm.nl/documenten/recipe2016cfsv1120180117
+b19894fe-e19c-41ed-9819-6d0053d02b98,EN15804+A2 - Additional impact categories and indicators,EF v3.0 / v3.1,true,latest implementation report,,
+ebc9c6e7-cb4d-4531-bfeb-284a9696c3e1,"USEtox v2.13, endpoint no LT",v2.13,true,latest implementation report,https://usetox.org/model/download,https://usetox.org/model/download
+a0eb6ad1-a4aa-47aa-a80e-a94961846fc7,EPS 2020d,2020d,true,latest implementation report,https://www.ivl.se/english/ivl/publications/publications/eps-weighting-factors---version-2020d.html,https://www.ivl.se/download/18.694ca0617a1de98f472f9c/1628415088657/FULLTEXT01.pdf
+45ce7db6-4f98-48be-b7da-70fed54ab279,"USEtox v2.13, endpoint",v2.13,true,latest implementation report,https://usetox.org/model/download,https://usetox.org/model/download
+878dcbcd-0c37-4d68-9081-fc0c5a567217,"IMPACT World+ v2.1, footprint version",v2.1,true,latest implementation report,,https://zenodo.org/record/8200703
+4d49bc9f-dfbf-4c8d-9a98-f9bf7c6e8114,IPCC 2013 no LT,2013,false,latest and v3.2 implementation reports,"http://www.climatechange2013.org/images/report/WG1AR5_Chapter08_FINAL.pdf
+http://www.climatechange2013.org/images/report/WG1AR5_Ch08SM_FINAL.pdf
+http://onlinelibrary.wiley.com/doi/10.1002/rog.20013/abstract",see link to documentation
+1a570833-0403-4be3-9a8c-106a06786830,IPCC 2021 (incl. biogenic CO2),2021,true,latest implementation report,https://www.ipcc.ch/report/ar6/wg1/,"https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Chapter07.pdf
+https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Chapter_07_Supplementary_Material.pdf 
+https://github.com/chrisroadmap/ar6/blob/main/data_output/7sm/metrics_su"
+9f706f7a-3b76-47f8-ad14-c97d61c06e63,CML v4.8 2016 no LT,v4.8,true,latest implementation report,https://www.universiteitleiden.nl/en/research/research-projects/science/cml-new-dutch-lca-guide,https://www.universiteitleiden.nl/en/research/research-output/science/cml-ia-characterisation-factors
+1dc61e56-76cb-474b-91b5-9ff9011116ff,Ecological Footprint,2008,true,latest implementation report,http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.396.7103&rep=rep1&type=pdf,
+08618be5-a881-4be2-8849-47eb6b2b35d4,IPCC 2021 (incl. biogenic CO2) no LT,2021,true,latest implementation report,,
+87a57579-d6c4-477c-a327-f863804a15aa,"ReCiPe 2016 v1.03, endpoint (E)",2016 v1.03 (SimaPro),true,latest implementation report,https://www.rivm.nl/en/life-cycle-assessment-lca/downloads,https://www.rivm.nl/documenten/recipe2016cfsv1120180117
+e1ba87fc-66bd-4be7-8b09-e4d14da279be,"ReCiPe 2016 v1.03, endpoint (H) no LT",2016 v1.03 (SimaPro),true,latest implementation report,https://www.rivm.nl/en/life-cycle-assessment-lca/downloads,https://www.rivm.nl/documenten/recipe2016cfsv1120180117
+abe1bab4-939a-41ea-bf79-6db62d2c8a93,"USEtox v2.13, midpoint",v2.13,true,latest implementation report,https://usetox.org/model/download,https://usetox.org/model/download
+f1d1c1a0-8ecf-441c-8576-a18d463df41b,EF v3.1,v3.1,true,latest implementation report,https://eplca.jrc.ec.europa.eu/LCDN/developerEF.xhtml,https://eplca.jrc.ec.europa.eu/permalink/EF3_1/EF-LCIAMethod_CF(EF-v3.1).xlsx
+11e3b622-f745-4742-ad90-57c3efeef416,IPCC 2013,2013,false,latest and v3.2 implementation reports,"http://www.climatechange2013.org/images/report/WG1AR5_Chapter08_FINAL.pdf
+http://www.climatechange2013.org/images/report/WG1AR5_Ch08SM_FINAL.pdf
+http://onlinelibrary.wiley.com/doi/10.1002/rog.20013/abstract",see link to documentation
+3b556c4d-862e-4fef-b735-ce7bd31a0217,"ReCiPe 2016 v1.03, midpoint (E)",2016 v1.03 (SimaPro),true,latest implementation report,https://www.rivm.nl/en/life-cycle-assessment-lca/downloads,https://www.rivm.nl/documenten/recipe2016cfsv1120180117
+b5192a30-6786-4ef8-a955-e2645c3d5420,EN15804+A2 - Core impact categories and indicators,EF v3.0 / v3.1,true,latest implementation report,,
+167c6bac-650c-4413-adfe-9f93b2b22488,IPCC 2021,2021,true,latest implementation report,https://www.ipcc.ch/report/ar6/wg1/,"https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Chapter07.pdf
+https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Chapter_07_Supplementary_Material.pdf 
+https://github.com/chrisroadmap/ar6/blob/main/data_output/7sm/metrics_su"
+78594638-6ea2-4bd2-b8ca-371494d952a7,EF v3.1 no LT,v3.1,true,latest implementation report,https://eplca.jrc.ec.europa.eu/LCDN/developerEF.xhtml,https://eplca.jrc.ec.europa.eu/permalink/EF3_1/EF-LCIAMethod_CF(EF-v3.1).xlsx
+5ea371a5-944c-431b-b9a5-9ff901112067,Ecosystem Damage Potential,2007,true,latest and v2.2 implementation reports,"https://link.springer.com/article/10.1065/lca2006.12.292.1
+https://link.springer.com/article/10.1065/lca2006.12.292.2",https://link.springer.com/article/10.1065%2Flca2006.12.292.2
+48197fde-fc9e-4563-8eb0-6ea9a5598a5c,"ReCiPe 2016 v1.03, endpoint (I) no LT",2016 v1.03 (SimaPro),true,latest implementation report,https://www.rivm.nl/en/life-cycle-assessment-lca/downloads,https://www.rivm.nl/documenten/recipe2016cfsv1120180117
+81928238-d7ba-45fc-9f28-af354c2b7dd3,"ReCiPe 2016 v1.03, midpoint (H) no LT",2016 v1.03 (SimaPro),true,latest implementation report,https://www.rivm.nl/en/life-cycle-assessment-lca/downloads,https://www.rivm.nl/documenten/recipe2016cfsv1120180117
+73998dad-83a3-4212-b61d-ec1a50ce5898,Cumulative Energy Demand (CED),2021,true,latest implementation report,https://www.vdi.de/richtlinien/details/vdi-4600-cumulative-energy-demand-kea-terms-definitions-methods-of-calculation,

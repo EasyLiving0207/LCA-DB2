@@ -9,8 +9,11 @@
     <file url="file://$PROJECT_DIR$/DATABASE/EF/EF_VIEW.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/MODEL/AO.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/BIGCLASS_ALLOCATION.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/BIGCLASS_DELETION.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/BIGCLASS_PROPAGATION.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/BIGCLASS_RECORD.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/CALL.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/DIFF.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/LCA_UNIT_CONVERSION.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/MODEL/ELEM_FLOW.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/DATABASE/MODEL/GEO.sql" dialect="DB2" />
@@ -70,5 +73,7 @@
     <file url="file://$PROJECT_DIR$/PROCEDURE/EPD_CONS/SUBCLASS_EPD_CONS_CALC_BUFF_MONTH.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/EPD_CONS/SUBCLASS_EPD_CONS_MONTH_AUTO_BATCH_AUTH.sql" dialect="DB2" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/RES_TABLE.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/query_distinct_columns.sql" dialect="DB2" />
+    <file url="file://$PROJECT_DIR$/query_primary_keys.sql" dialect="DB2" />
   </component>
 </project>

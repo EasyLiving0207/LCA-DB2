@@ -1,0 +1,640 @@
+IMPACT_CATEGORY_ID,IMPACT_METHOD_ID,IMPACT_CATEGORY_NAME,IMPACT_CATEGORY_NAME_IN_METHOD
+b82da458-2540-4883-a7d6-7493ea7c2e6e,4774e3fa-dbf0-4ba1-b15d-9ff90110f950,"energy resources: renewable, water",
+65fff9e1-2a4a-4e18-9612-8149b8bcaebe,1bdce405-4884-4dea-ba55-397eba6ed51e,climate change: fossil,Climate change-Fossil
+ddeea92f-d43c-40b1-91ca-533b3d47d506,208ef1bf-6c80-401e-b773-54f0960c09d9,eutrophication: freshwater no LT,"Eutrophication, freshwater"
+c249af73-a179-4488-b88f-bbfb3ad2405f,f1d1c1a0-8ecf-441c-8576-a18d463df41b,climate change: fossil,Climate change-Fossil
+22bd24af-f055-4fef-bb21-2487355e635b,f1d1c1a0-8ecf-441c-8576-a18d463df41b,human toxicity: carcinogenic,"Human toxicity, cancer"
+a865f3ca-269f-402e-9b42-2cdc9f414d06,f1d1c1a0-8ecf-441c-8576-a18d463df41b,photochemical oxidant formation: human health,Photochemical ozone formation - human health
+c0d428d3-e353-4df7-8712-874cccdfc950,78594638-6ea2-4bd2-b8ca-371494d952a7,"human toxicity: non-carcinogenic, organics no LT","Human toxicity, non-cancer_organics"
+63c314cd-5b68-49cf-8828-174dbd1fa91a,78594638-6ea2-4bd2-b8ca-371494d952a7,water use no LT,Water use
+756cd412-3b5b-4a55-99a4-32bbdde57692,ac3b6c62-8053-4725-9756-07064cfcc810,total no LT,
+0dfe225e-e29d-431d-9774-76f3c79b13a3,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,land use,Land use
+2bc24d27-d25d-4523-b5ff-9e3c6503a7b7,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,climate change no LT,Global warming
+44e0e611-508c-43ce-9ca7-709a9e93bf02,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,emissions to air no LT,Heavy metals into air
+518f6a64-ea01-4b25-b514-1a86bf3ca3e5,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,emissions to water no LT,Heavy metals into water
+4b4c8928-034b-4458-9074-1b02ccebc4d5,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,emissions to water no LT,Water pollutants
+001d6c71-5b55-45af-b3d5-8aa7bd36dcc3,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,water use no LT,"Water resources, evaporated"
+2d584449-36c0-4177-9aa2-f1fa42e6bcff,167c6bac-650c-4413-adfe-9f93b2b22488,climate change: total (excl. biogenic CO2),climate change
+2670298b-864d-43b7-9162-60bab8ee6fc0,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+9b5a86f7-106e-4a54-b9bd-52c0b73cfe2a,25583383-5a50-4fbf-9850-c9f2d57607b5,resources,
+07ccb29e-c0f8-40e5-9e99-5853892b0bf8,25583383-5a50-4fbf-9850-c9f2d57607b5,resources,
+00f57142-bb24-48ad-b0f2-7e3aff8fef11,87a57579-d6c4-477c-a327-f863804a15aa,total: human health,
+0a43e0e2-3fe1-4191-8091-ea315a9a57bc,b42b5d7d-371c-4c00-a601-cf9572670e00,human health no LT,
+21aeb149-fe17-491b-9b64-a7868b9b2ab8,b42b5d7d-371c-4c00-a601-cf9572670e00,total: human health no LT,
+c0b54f37-d3d9-4b89-8ca0-d395b583649e,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,ecosystem quality,Terrestrial ecosystems
+68e4c69d-8149-4e87-a16a-2384b882f001,e1ba87fc-66bd-4be7-8b09-e4d14da279be,total: human health no LT,
+b45c2d5c-5a6d-428a-873c-38f1a428e435,4d9ac60a-73ab-40cf-bc71-d967ef59865e,human health,Human health
+6e3dd799-cda2-44bb-9e44-7be1b6a339bc,4d9ac60a-73ab-40cf-bc71-d967ef59865e,total: ecosystem quality,
+6886e604-ec8e-416f-8740-54756078c071,3b556c4d-862e-4fef-b735-ce7bd31a0217,ecotoxicity: marine,Marine ecotoxicity
+7b47c22d-cd18-4935-a6d9-4c6466ac2940,6e67b147-f0eb-48eb-bc09-0260d78a8f59,eutrophication: freshwater no LT,
+0ad83c96-106e-40b8-9584-ac5fc6f5fbe1,be309eb5-a03c-4546-9608-81b504e08735,photochemical oxidant formation: human health,Photochemical oxidant formation: human health
+3b76615a-b7d6-4f21-a359-de4a5a9b5b05,1b75e464-5938-4fbb-abc6-c15790d99ea7,acidification: terrestrial no LT,
+54bb154d-5131-4df6-b552-62d63094e02f,b5192a30-6786-4ef8-a955-e2645c3d5420,climate change: land use and land use change (EF v3.1 - IPCC 2021),
+e9ea6ab7-be15-45be-8ca5-0bcfce49c837,35716c60-7337-4442-9f3a-42effd692b82,eutrophication,eutrophication (fate not incl.)
+21779a0c-6fae-414f-b374-3fd846a4b001,9f706f7a-3b76-47f8-ad14-c97d61c06e63,energy resources: non-renewable no LT,abiotic depletion (fossil fuels)
+4403f95c-79f0-44d1-a59e-9ff90110f8d2,73998dad-83a3-4212-b61d-ec1a50ce5898,"energy resources: non-renewable, biomass",
+5419a42f-7940-491e-bdcf-bb0bd057bc63,73998dad-83a3-4212-b61d-ec1a50ce5898,energy resources: renewable,
+21704eb1-a136-4568-a526-cbd777a354fa,208ef1bf-6c80-401e-b773-54f0960c09d9,acidification no LT,Acidification
+7bb0ddb2-eec5-42fb-827c-34b13bd7a9d5,f1d1c1a0-8ecf-441c-8576-a18d463df41b,acidification,Acidification
+3e43e255-bc68-4c86-8011-c41a4b574e45,f1d1c1a0-8ecf-441c-8576-a18d463df41b,energy resources: non-renewable,"Resource use, fossils"
+10c34625-7975-4710-b8a4-9242369a6d87,f1d1c1a0-8ecf-441c-8576-a18d463df41b,eutrophication: marine,Eutrophication marine
+9476ad4a-1e8b-40a3-99ba-b4f2a82395ed,f1d1c1a0-8ecf-441c-8576-a18d463df41b,ionising radiation: human health,"Ionising radiation, human health"
+1a4ba69f-d14b-47fc-ac7a-f84c20202fcc,78594638-6ea2-4bd2-b8ca-371494d952a7,"human toxicity: carcinogenic, organics no LT","Human toxicity, cancer_organics"
+6a2b3415-9056-4778-acc8-1104b5d072ce,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,waste disposal no LT,Radioactive waste to deposit
+ee4c0fe6-c6c8-4124-a58d-9ff901112067,5ea371a5-944c-431b-b9a5-9ff901112067,land transformation,
+31bcfded-7bd6-4c64-be6d-2b5becf88da9,167c6bac-650c-4413-adfe-9f93b2b22488,climate change: total (excl. biogenic CO2),climate change
+45884ed6-b1fa-4135-8630-b773687546c0,e57693cf-ed07-416c-8831-58f044f1bd76,climate change: emissions from direct land use change no LT,climate change
+1bd13e5a-b362-426c-9d59-9d9a47144302,e57693cf-ed07-416c-8831-58f044f1bd76,climate change: total (excl. biogenic CO2) no LT,climate change
+6336559b-8169-41e9-8667-b7b1260fcb31,87a57579-d6c4-477c-a327-f863804a15aa,human health,Human health
+5fe7b66e-6b89-4f74-8c3a-991cc4278cd5,b42b5d7d-371c-4c00-a601-cf9572670e00,ecosystem quality no LT,
+bcfc2649-e280-45bb-95d8-68c33a010a69,b42b5d7d-371c-4c00-a601-cf9572670e00,ecosystem quality no LT,
+2b671eca-e28f-4527-836f-1b66d68452b8,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,ecosystem quality,Marine ecosystems
+c0256465-9b98-4ed0-8efd-ecde9be9f19e,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,human health,Human health
+6be6e506-828d-41ac-830e-c31da3ebf315,e1ba87fc-66bd-4be7-8b09-e4d14da279be,total: natural resources no LT,
+f061fec6-91b6-4c74-8863-155aacfb4b9a,4d9ac60a-73ab-40cf-bc71-d967ef59865e,ecosystem quality,Terrestrial ecosystems
+372ed7ea-baa8-4022-8f41-c44df6e6bffd,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,human health no LT,
+7513b4eb-d3ee-41f0-89ac-4a9be644ae64,6e67b147-f0eb-48eb-bc09-0260d78a8f59,climate change no LT,
+76c90471-76b3-4e28-a960-9ae93871145a,6e67b147-f0eb-48eb-bc09-0260d78a8f59,photochemical oxidant formation: human health no LT,
+87eb01d3-cc95-4b5d-a2e6-52942d23d1ae,81928238-d7ba-45fc-9f28-af354c2b7dd3,eutrophication: freshwater no LT,
+5cb62e99-48b6-4896-9f6a-95275f1ea787,1b75e464-5938-4fbb-abc6-c15790d99ea7,ionising radiation no LT,
+71e218dd-1584-43bd-b83c-1d7e8ed35759,b19894fe-e19c-41ed-9819-6d0053d02b98,human toxicity: non-carcinogenic (EF v3.0),
+27fb1ae4-0b86-4ef0-ae70-bf008c4c5d32,b5192a30-6786-4ef8-a955-e2645c3d5420,eutrophication: freshwater,
+3db36018-4449-4227-8b1a-fdc1b69e532f,35716c60-7337-4442-9f3a-42effd692b82,ecotoxicity: marine,Marine aquatic ecotoxicity (MAETP inf)
+b4c66279-af3e-4036-8a91-133f08bd1687,9f706f7a-3b76-47f8-ad14-c97d61c06e63,ecotoxicity: freshwater no LT,Freshwater aquatic ecotoxicity (FAETP inf)
+7f8d4c2a-7ee8-49df-ad26-850349e47521,ec605685-78f5-4d1b-a73f-5412044417b8,material resources: metals/minerals,CSP (kg Si eq/kg)
+3bb71601-4d4b-4f06-a9dd-b50bee8e62e5,73998dad-83a3-4212-b61d-ec1a50ce5898,"energy resources: renewable, water",
+f3a134ce-b1ab-4e0a-8223-9ff90110f968,4774e3fa-dbf0-4ba1-b15d-9ff90110f950,material resources: minerals,
+cea14783-863e-4093-9a74-297b9ea410eb,208ef1bf-6c80-401e-b773-54f0960c09d9,eutrophication: marine no LT,Eutrophication marine
+044e7b25-9dcd-4cc4-a242-bc46a030868d,208ef1bf-6c80-401e-b773-54f0960c09d9,"human toxicity: non-carcinogenic, metals no LT","Human toxicity, non-cancer_metals"
+c07bdd14-a538-490a-8478-475af2ea6c4e,208ef1bf-6c80-401e-b773-54f0960c09d9,ozone depletion no LT,Ozone depletion
+0a2c2a76-4944-4444-bc9b-dcf1af28a3b9,a0eb6ad1-a4aa-47aa-a80e-a94961846fc7,emissions to air,
+33e1e613-09b8-48d0-9db0-f95291a180ea,ac3b6c62-8053-4725-9756-07064cfcc810,emissions to air no LT,
+1132570b-a776-4133-b100-b0f5f511538f,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,emissions to air,Radioactive substances into air
+1f6e2715-9638-4b46-886c-d8953fb0f96d,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,emissions to soil,Pesticides into soil
+29656dcd-0bbc-48cd-94ff-f6d7afda3e36,878dcbcd-0c37-4d68-9081-fc0c5a567217,energy resources: non-renewable,Fossil and nuclear energy use
+0b145a5d-b511-4641-b9ac-82a58be2402d,167c6bac-650c-4413-adfe-9f93b2b22488,climate change: direct land use change,climate change
+2053bf98-0546-40ed-9043-a39e1453bc2e,167c6bac-650c-4413-adfe-9f93b2b22488,climate change: total (excl. biogenic CO2),climate change
+db8da6cd-5783-47fe-82e7-b67ac51bb0cd,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+78db7af0-8d4d-4165-b284-3dbca4a54e5a,87a57579-d6c4-477c-a327-f863804a15aa,ecosystem quality,Marine ecosystems
+be13c8b1-d4fc-4b0b-87dd-ac3132b5783b,87a57579-d6c4-477c-a327-f863804a15aa,human health,Human health
+17e72536-bd26-46e7-a506-3db870901d69,e1ba87fc-66bd-4be7-8b09-e4d14da279be,ecosystem quality no LT,
+c66ff00a-8116-4baf-998e-5a6bffc33ce3,4d9ac60a-73ab-40cf-bc71-d967ef59865e,ecosystem quality,Terrestrial ecosystems
+54890f1b-25dd-49da-8593-bb7835f63d92,4d9ac60a-73ab-40cf-bc71-d967ef59865e,ecosystem quality,Terrestrial ecosystems
+012533ec-2652-4dc0-82b5-95da86083f6c,4d9ac60a-73ab-40cf-bc71-d967ef59865e,ecosystem quality,Freshwater ecosystems
+6bb67523-e142-4e03-888e-7cc0a588b000,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,human health no LT,
+e7ae2e68-f23a-4c0c-b250-32856196bb44,3b556c4d-862e-4fef-b735-ce7bd31a0217,human toxicity: non-carcinogenic,Human toxicity: non-cancer
+ba984e27-abeb-4890-a097-c94d3e8ddeba,3b556c4d-862e-4fef-b735-ce7bd31a0217,land use,Land use
+0f62c4b0-3e7e-4e03-839e-2a595ea1e5ba,81928238-d7ba-45fc-9f28-af354c2b7dd3,material resources: metals/minerals no LT,
+50ba1a43-2d84-4529-bb14-f3e20f9fd6b3,be309eb5-a03c-4546-9608-81b504e08735,particulate matter formation,Fine particulate matter formation
+35ec2189-61fe-4338-8cb0-6da7870816fb,b5192a30-6786-4ef8-a955-e2645c3d5420,water use,
+43a544aa-b414-4711-9e99-7fea3475e89f,0634f451-e29f-4f37-96c1-803e3f9a5abd,exported energy - heat,
+f9d2524d-a0e6-420a-8d36-c0ed28ed7286,2866e7bc-b77a-4e03-bd91-811890e254c0,use of non-renewable secondary fuels,
+36c4e853-2c01-410b-ac7d-10302e61f7be,73998dad-83a3-4212-b61d-ec1a50ce5898,"energy resources: renewable, geothermal, solar, wind",
+2a3fcc94-fc93-4c37-bda4-52d5c6f3e758,208ef1bf-6c80-401e-b773-54f0960c09d9,"human toxicity: carcinogenic, metals no LT","Human toxicity, cancer_metals"
+d3011bcc-358e-4030-b46c-4a3f605ec535,f1d1c1a0-8ecf-441c-8576-a18d463df41b,"human toxicity: carcinogenic, inorganics","Human toxicity, cancer_inorganics"
+a3922e4e-1d0c-4495-812f-96e1587b6cea,f1d1c1a0-8ecf-441c-8576-a18d463df41b,particulate matter formation,EF-particulate Matter
+611d5f32-1467-42a5-bdea-6151d5772a79,78594638-6ea2-4bd2-b8ca-371494d952a7,climate change: fossil no LT,Climate change-Fossil
+31781cbf-780b-4842-94ec-b4f367c2f3ab,78594638-6ea2-4bd2-b8ca-371494d952a7,ionising radiation: human health no LT,"Ionising radiation, human health"
+c5593531-f722-4e03-ae66-a0bcc9f70558,78594638-6ea2-4bd2-b8ca-371494d952a7,ozone depletion no LT,Ozone depletion
+31fccafa-e725-4c36-9ade-193ed8cfa037,a0eb6ad1-a4aa-47aa-a80e-a94961846fc7,"energy resources: non-renewable, fossil",abiotic resources
+8d02ecc9-5530-47e7-b953-725c6838717c,167c6bac-650c-4413-adfe-9f93b2b22488,climate change: biogenic (excl. CO2),climate change
+316849c4-eaa6-42f6-a0f6-bd656746345d,08618be5-a881-4be2-8849-47eb6b2b35d4,climate change: biogenic emissions (incl. CO2) no LT,climate change
+0c21ed81-a56f-4425-ae61-41c0e2fa2a6f,08618be5-a881-4be2-8849-47eb6b2b35d4,climate change: total (incl. biogenic CO2) no LT,climate change
+3f503dbd-4830-4213-8ce5-96295e2d40ba,e57693cf-ed07-416c-8831-58f044f1bd76,"climate change: fossil (excl. biogenic CO2, incl. SLCFs) no LT",climate change
+15a0586e-023a-49f3-a2a4-a54cbdf0cbb2,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+c452835f-e57e-4f9c-ae42-d1f6055e5169,87a57579-d6c4-477c-a327-f863804a15aa,ecosystem quality,Terrestrial ecosystems
+8442ded2-14c0-427e-a3cd-fb90bb83d54a,b42b5d7d-371c-4c00-a601-cf9572670e00,human health no LT,
+76c6faad-21b7-44b3-b052-e2874619e580,4d9ac60a-73ab-40cf-bc71-d967ef59865e,total: natural resources,
+87d735a7-40ee-411f-bf77-ece57d69f5de,3b556c4d-862e-4fef-b735-ce7bd31a0217,acidification: terrestrial,Terrestrial acidification
+310437d0-f9a7-42c6-b775-9646e755df91,3b556c4d-862e-4fef-b735-ce7bd31a0217,ozone depletion,Ozone depletion
+0cb2a90a-6fe1-457a-8e13-8742c1cec589,3b556c4d-862e-4fef-b735-ce7bd31a0217,particulate matter formation,Fine particulate matter formation
+ecb51a21-a204-4395-b62e-a14ca667b47b,81928238-d7ba-45fc-9f28-af354c2b7dd3,water use no LT,
+e2881782-4423-457a-8fba-1bb95387ce58,7c75c405-5084-429a-9edf-3f1d1fefad82,ecotoxicity: freshwater,Ecotoxicity
+e03a0185-5198-4042-95e8-d209b9d2cdc1,24cd9adc-bbf8-49bc-a452-7f57073d7c6f,ecotoxicity: freshwater no LT,
+857dfb00-ca67-44a0-844f-c5bb1e119d3c,abe1bab4-939a-41ea-bf79-6db62d2c8a93,ecotoxicity: freshwater,Freshwater aquatic ecotoxicity
+9c42c396-b21a-4cc5-a752-720537b47306,4c67589f-536d-484e-aa38-a2d5fe0e1e0d,ecotoxicity: freshwater no LT,Freshwater aquatic ecotoxicity
+0ab55f9e-ddc9-4dca-9819-322efc6953fb,2866e7bc-b77a-4e03-bd91-811890e254c0,net use of fresh water,
+874e52fa-2604-4a66-9e5f-5caad3cebba3,cd086eff-2645-4f06-b500-dbfa1ae94285,non-hazardous waste disposed,
+23576fd1-a750-4a99-a4d0-1e6e5954afff,9f706f7a-3b76-47f8-ad14-c97d61c06e63,acidification no LT,"acidification (incl. fate, average Europe total, A&B)"
+b6bf4bfe-3de6-4895-95d8-3157e3b8f63c,9f706f7a-3b76-47f8-ad14-c97d61c06e63,climate change no LT,global warming (GWP100)
+87bb037f-f25d-4753-8c24-7ca6cf68fb91,1bdce405-4884-4dea-ba55-397eba6ed51e,climate change,Climate change
+c8ad7cce-4163-40f3-9787-8d8029ed6280,208ef1bf-6c80-401e-b773-54f0960c09d9,"ecotoxicity: freshwater, inorganics no LT","Ecotoxicity, freshwater_inorganics"
+9f502272-74a6-4c72-bb17-053c9aa471a1,208ef1bf-6c80-401e-b773-54f0960c09d9,"human toxicity: carcinogenic, inorganics no LT","Human toxicity, cancer_inorganics"
+87153a47-9107-409f-8dd2-388a834ece47,f1d1c1a0-8ecf-441c-8576-a18d463df41b,eutrophication: freshwater,"Eutrophication, freshwater"
+71bf79a7-7532-4c33-9a88-fb973d43fd6a,78594638-6ea2-4bd2-b8ca-371494d952a7,eutrophication: freshwater no LT,"Eutrophication, freshwater"
+57b4ac4e-08ab-4ac8-8c25-291dd3628c9e,e57693cf-ed07-416c-8831-58f044f1bd76,climate change: biogenic (excl. CO2) no LT,climate change
+6d5ddc10-003c-4568-87ac-9979ca145fc1,e57693cf-ed07-416c-8831-58f044f1bd76,climate change: total (excl. biogenic CO2) no LT,climate change
+929d6de6-ae0f-4694-8c39-2093dfa1f1e7,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+03270185-68e1-4b90-9ef4-61988975d88e,25583383-5a50-4fbf-9850-c9f2d57607b5,resources,
+dadeb39a-eeca-4dd4-a539-0dd298b855a6,25583383-5a50-4fbf-9850-c9f2d57607b5,waste disposal,
+3baf6b3c-40a1-4f85-b5ef-0f859b83bbf4,25583383-5a50-4fbf-9850-c9f2d57607b5,waste disposal,
+0a03d8a3-ad06-4e5a-9e6e-a13f4b45fff2,87a57579-d6c4-477c-a327-f863804a15aa,ecosystem quality,Terrestrial ecosystems
+66f46fdd-5526-490c-9641-e1db30b63fae,b42b5d7d-371c-4c00-a601-cf9572670e00,ecosystem quality no LT,
+53949dcf-03ea-493a-8427-94c8ee35fefd,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,human health,Human health
+e406812a-0aa3-4ba6-bdf2-561300b6c54d,e1ba87fc-66bd-4be7-8b09-e4d14da279be,human health no LT,
+2d41451f-e105-4c4a-9b7d-c25cae2fb3df,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,human health no LT,
+856b8c40-145a-4584-b288-c16d0fbbdbf8,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,total: natural resources no LT,
+869fe4a5-b5b9-4e26-a3f8-47949393ec1e,3b556c4d-862e-4fef-b735-ce7bd31a0217,ecotoxicity: freshwater,Freshwater ecotoxicity
+2d5c9921-2b92-46d7-b833-bdb53f7d500f,3b556c4d-862e-4fef-b735-ce7bd31a0217,human toxicity: carcinogenic,Human toxicity: cancer
+d2b8505c-553b-4015-a0ce-271905364655,6e67b147-f0eb-48eb-bc09-0260d78a8f59,ecotoxicity: freshwater no LT,
+ba33cfc4-11be-41eb-9a44-8337f1f647a1,0310cf09-b06f-45ef-af69-b5a41880170d,land use,Land use
+9288c1d0-9c57-42e3-ade8-afbd1722caa5,81928238-d7ba-45fc-9f28-af354c2b7dd3,photochemical oxidant formation: terrestrial ecosystems no LT,
+d5cfa21a-d40b-4934-b11b-7cafceb2710d,be309eb5-a03c-4546-9608-81b504e08735,eutrophication: marine,Marine eutrophication
+68363ea9-89de-42c1-b8d8-573969f98ec6,1b75e464-5938-4fbb-abc6-c15790d99ea7,eutrophication: marine no LT,
+cc7b32bd-7e54-46ff-ad57-7ed2ce04e794,24cd9adc-bbf8-49bc-a452-7f57073d7c6f,particulate matter formation no LT,
+7a57849a-be67-43cb-b6fc-5f453a6cef71,ebc9c6e7-cb4d-4531-bfeb-284a9696c3e1,human health no LT,Human health
+8de23620-5372-4f05-9815-41aecbb401d1,7b047a8c-f78c-4100-b733-fad9eb0ed0ce,biogenic carbon content in accompanying packaging,
+12e81523-afc9-4957-9b1e-8483091fb48f,1bdce405-4884-4dea-ba55-397eba6ed51e,acidification,Acidification
+ada94810-deeb-48f3-b5a7-46bed60bd679,1bdce405-4884-4dea-ba55-397eba6ed51e,"human toxicity: carcinogenic, metals","Human toxicity, cancer_metals"
+424ff0c8-6df4-4c4a-b789-b63147fc8fdc,1bdce405-4884-4dea-ba55-397eba6ed51e,water use,Water use
+e39b7ff0-883a-454b-944d-7a1795f80fac,208ef1bf-6c80-401e-b773-54f0960c09d9,climate change: fossil no LT,Climate change-Fossil
+0e952dea-4bf4-467f-bcf4-e86ca91004e5,208ef1bf-6c80-401e-b773-54f0960c09d9,"human toxicity: non-carcinogenic, organics no LT","Human toxicity, non-cancer_organics"
+24277caf-315f-4c4c-8b79-523124ccea05,f1d1c1a0-8ecf-441c-8576-a18d463df41b,"human toxicity: non-carcinogenic, inorganics","Human toxicity, non-cancer_inorganics"
+bab0fb39-9397-41e9-9572-3cd0902cd5f6,78594638-6ea2-4bd2-b8ca-371494d952a7,photochemical oxidant formation: human health no LT,Photochemical ozone formation - human health
+8297d4a2-7828-47b8-ae23-8738d0480efa,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,natural resources,Biotic resources
+5a5936aa-44d8-46ee-b000-f996ecb8c331,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,emissions to soil no LT,Heavy metals into soil
+33359a97-e0bb-4579-ae3b-a629a8ecc48d,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,ozone depletion no LT,Ozone layer depletion
+9b75a4aa-d2a8-4373-b1cc-3fcbef1a5cc1,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,total no LT,
+23ef867c-d253-4a67-bfee-d658147b4768,167c6bac-650c-4413-adfe-9f93b2b22488,climate change: emissions from direct land use change,climate change
+215901ce-6199-4add-97ef-c4d3204a7328,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+09e5881d-66e7-47fb-bb7b-ab98b49f58ca,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+e3bc6904-d5ce-4994-b97b-d2d9403c315a,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+09fbbfbf-95d5-414a-8417-91d5e1f5c7b1,b42b5d7d-371c-4c00-a601-cf9572670e00,human health no LT,
+7bb72996-588c-479a-a55b-4a0c25e9ec07,e1ba87fc-66bd-4be7-8b09-e4d14da279be,ecosystem quality no LT,
+7196ba4d-201a-4c37-8fdc-b846f209a0ca,4d9ac60a-73ab-40cf-bc71-d967ef59865e,human health,Human health
+8638f5b0-61b7-4502-bfe6-809b38c0156b,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,ecosystem quality no LT,
+f56035e5-1064-4a7f-90ab-e5e29d0a56ea,0310cf09-b06f-45ef-af69-b5a41880170d,eutrophication: marine,Marine eutrophication
+fb5078d6-c1ec-4274-877d-00eed80494f7,0310cf09-b06f-45ef-af69-b5a41880170d,ionising radiation,Ionising radiation
+694b9969-f244-42ba-8451-43b7704d4a17,0310cf09-b06f-45ef-af69-b5a41880170d,particulate matter formation,Fine particulate matter formation
+5c982c99-cb53-4109-89fc-e70ae7f20739,1b75e464-5938-4fbb-abc6-c15790d99ea7,ecotoxicity: marine no LT,
+91142c38-1391-4ff2-9d44-7804ff869ddf,1b75e464-5938-4fbb-abc6-c15790d99ea7,photochemical oxidant formation: human health no LT,
+93149f95-c634-4a69-9951-5175bb71308b,7c75c405-5084-429a-9edf-3f1d1fefad82,photochemical oxidant formation,Smog
+f9c855a1-76d2-47f9-8f00-a43d29ab5183,24cd9adc-bbf8-49bc-a452-7f57073d7c6f,human toxicity: non-carcinogenic no LT,
+59fc7e85-4981-4a77-baec-499b96a7351d,abe1bab4-939a-41ea-bf79-6db62d2c8a93,human toxicity: non-carcinogenic,Human non-cancer toxicity
+447b2688-dd7b-4572-86fb-ba350b0c2d66,b5192a30-6786-4ef8-a955-e2645c3d5420,climate change: fossil (EF v3.1 - IPCC 2021),
+ff8a287e-675b-4fa9-9ee8-3e7629a237cd,9f706f7a-3b76-47f8-ad14-c97d61c06e63,ecotoxicity: terrestrial no LT,Terrestrial ecotoxicity (TETP inf)
+48fb30c1-cc5e-4349-a1d7-b31318103a9b,9f706f7a-3b76-47f8-ad14-c97d61c06e63,material resources: metals/minerals no LT,"abiotic depletion (elements, ultimate ultimate reserves)"
+2fc38b3d-c003-456b-a600-094e40bdea11,9f706f7a-3b76-47f8-ad14-c97d61c06e63,ozone depletion no LT,ozone layer depletion (ODP steady state)
+6548fdf6-5272-4c1d-87ae-9ff90110f963,4774e3fa-dbf0-4ba1-b15d-9ff90110f950,"energy resources: renewable, biomass",
+e1c37718-1a91-4b58-8909-9480790afa50,208ef1bf-6c80-401e-b773-54f0960c09d9,"human toxicity: non-carcinogenic, inorganics no LT","Human toxicity, non-cancer_inorganics"
+898e6dee-8569-441e-9bb5-83bcc0498013,208ef1bf-6c80-401e-b773-54f0960c09d9,land use no LT,Land use
+41d8be82-2d0d-45bb-8611-d2a3c3bd6921,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,emissions to air no LT,Carcinogenic substances into air
+6480fd29-ffe9-4f83-af6e-5035a9f98853,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,emissions to water no LT,Radioactive substances into water
+2eef1d3e-81d9-40b2-ab1f-554d68332c3d,e57693cf-ed07-416c-8831-58f044f1bd76,climate change: aircraft emissions no LT,climate change
+249df1f4-d3f8-4b3d-b613-a6fe8d54fafb,87a57579-d6c4-477c-a327-f863804a15aa,human health,Human health
+bd933161-8d01-4737-8de2-ebbf8ec8b27e,87a57579-d6c4-477c-a327-f863804a15aa,human health,Human health
+d3024630-b486-48e4-9548-cd39fbc2c811,b42b5d7d-371c-4c00-a601-cf9572670e00,natural resources no LT,
+c08da64c-d174-4f80-8415-7d2b253fe92b,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,ecosystem quality,Freshwater ecosystems
+ad474d7e-a357-4edc-ad63-28624c529fbc,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,human health,Human health
+f3fc7ea3-1f58-40b9-9720-017471af1c1d,e1ba87fc-66bd-4be7-8b09-e4d14da279be,human health no LT,
+0a697521-c78b-4e23-ad16-8ad54ad10b67,4d9ac60a-73ab-40cf-bc71-d967ef59865e,ecosystem quality,Freshwater ecosystems
+ea8211f2-5ee5-4012-9785-f965dd345416,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,natural resources no LT,
+4641f574-5552-48cd-b68f-af96fd4bc899,6e67b147-f0eb-48eb-bc09-0260d78a8f59,photochemical oxidant formation: terrestrial ecosystems no LT,
+4eeb30db-3625-456f-99df-0ca72a4b9ae3,81928238-d7ba-45fc-9f28-af354c2b7dd3,climate change no LT,
+536315f1-fd19-4896-9992-44baa7e6c92e,81928238-d7ba-45fc-9f28-af354c2b7dd3,"energy resources: non-renewable, fossil no LT",
+94c4bf54-176d-4292-a605-a851fa4c4136,24cd9adc-bbf8-49bc-a452-7f57073d7c6f,eutrophication no LT,
+856b0452-c35a-44c7-a23a-9e819b2675a7,24cd9adc-bbf8-49bc-a452-7f57073d7c6f,human toxicity: carcinogenic no LT,
+052f7ba7-9746-4b02-babb-63dab6fa978f,ebc9c6e7-cb4d-4531-bfeb-284a9696c3e1,ecosystem quality no LT,Freshwater aquatic ecotoxicity
+21b5cc52-876c-4605-8cb3-f67003e5c14e,b5192a30-6786-4ef8-a955-e2645c3d5420,acidification,
+bd135238-1a22-4a6c-992e-912cbfb66798,7b047a8c-f78c-4100-b733-fad9eb0ed0ce,biogenic carbon content in product,
+56b48868-3cf4-4acb-b052-0ba8dc244642,0634f451-e29f-4f37-96c1-803e3f9a5abd,materials for energy recovery,
+90527aa7-2aad-4c6d-9abb-13788ab55975,2866e7bc-b77a-4e03-bd91-811890e254c0,use of non-renewable primary energy resources used as raw materials,
+195b9e4d-8f84-4236-80bf-5be38c3f5cda,9f706f7a-3b76-47f8-ad14-c97d61c06e63,ecotoxicity: marine no LT,Marine aquatic ecotoxicity (MAETP inf)
+800c1ce0-dca8-4b57-bbeb-7909601ecbd6,9f706f7a-3b76-47f8-ad14-c97d61c06e63,eutrophication no LT,eutrophication (fate not incl.)
+b8fe09a3-8c79-420e-ae78-6d37e136dbcb,4774e3fa-dbf0-4ba1-b15d-9ff90110f950,total,
+3dd03150-54a1-4891-8189-8180fcd4e088,1bdce405-4884-4dea-ba55-397eba6ed51e,"ecotoxicity: freshwater, metals","Ecotoxicity, freshwater_metals"
+2c84617f-e008-4c54-a506-d9d75a188d88,f1d1c1a0-8ecf-441c-8576-a18d463df41b,eutrophication: terrestrial,"Eutrophication, terrestrial"
+da6788c4-bbe8-43d1-8945-cbcccd154ff7,78594638-6ea2-4bd2-b8ca-371494d952a7,land use no LT,Land use
+0c582dd7-4359-4a1b-a0a8-8294db348479,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,emissions to water,POP into water
+37ba182b-b391-4d41-8549-b56dea81d2e4,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,emissions to air no LT,Main air pollutants and PM
+e07987d5-4783-4b84-9482-2db62adc6b09,167c6bac-650c-4413-adfe-9f93b2b22488,climate change: total (excl. biogenic CO2),climate change
+916b03b9-ab9f-4086-8fc1-e20dd939a460,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+e8ffbddc-c519-4ab4-b34a-96e78c8372c2,25583383-5a50-4fbf-9850-c9f2d57607b5,resources,
+14f4313d-164a-4b99-85ff-f39d19f8422e,b42b5d7d-371c-4c00-a601-cf9572670e00,ecosystem quality no LT,
+de079d7b-3612-4d40-9391-888d89557e4f,b42b5d7d-371c-4c00-a601-cf9572670e00,human health no LT,
+e988f4fc-c9cc-4def-8394-f79445432a0f,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,human health,Human health
+b2dc806b-1a6b-4323-b03d-57d188ac6834,e1ba87fc-66bd-4be7-8b09-e4d14da279be,human health no LT,
+4148699b-2d74-48ad-9bdf-250892bcf49f,e1ba87fc-66bd-4be7-8b09-e4d14da279be,human health no LT,
+f577eb33-4198-4eb5-974c-2e956ce1a88b,4d9ac60a-73ab-40cf-bc71-d967ef59865e,natural resources,Resources
+c4e1fc3c-1ef6-461e-9ed8-38368ac23b1b,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,ecosystem quality no LT,
+80114ce2-cf19-410c-b38e-fa10710b9483,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,ecosystem quality no LT,
+c772a0b6-7013-484f-80c7-984372570196,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,human health no LT,
+0be40178-6779-4ad9-8adc-2aaa43b81ab8,3b556c4d-862e-4fef-b735-ce7bd31a0217,photochemical oxidant formation: terrestrial ecosystems,Photochemical oxidant formation: terrestrial ecosystems
+019a79bb-4a58-4226-b5f6-b3ef60bb0068,0310cf09-b06f-45ef-af69-b5a41880170d,human toxicity: non-carcinogenic,Human toxicity: non-cancer
+d56f4cdb-75ff-48a6-98b8-30ff998da32b,81928238-d7ba-45fc-9f28-af354c2b7dd3,ecotoxicity: terrestrial no LT,
+6e4ca683-8be0-42cb-b327-cc592f5f3b5f,7c75c405-5084-429a-9edf-3f1d1fefad82,acidification,Acidification
+11e72f5d-312e-4307-ade5-cf1319fbbdf2,0634f451-e29f-4f37-96c1-803e3f9a5abd,materials for recycling,
+c7c113ae-9fef-489b-b9e6-a46b12f00ad9,35716c60-7337-4442-9f3a-42effd692b82,climate change,global warming (GWP100)
+74db3e6e-3a03-4620-b782-d3e3a9d85336,35716c60-7337-4442-9f3a-42effd692b82,ozone depletion,ozone layer depletion (ODP steady state)
+0b5325c2-4606-49fa-8533-6a0992ae689c,73998dad-83a3-4212-b61d-ec1a50ce5898,"energy resources: non-renewable, fossil",
+26a0a251-0b84-4300-b108-1e3dec435a3e,1bdce405-4884-4dea-ba55-397eba6ed51e,human toxicity: carcinogenic,"Human toxicity, cancer"
+a0c5e8c2-7b6c-4cc8-bdbe-549bac1262ac,1bdce405-4884-4dea-ba55-397eba6ed51e,ionising radiation: human health,"Ionising radiation, human health"
+c29603b4-7f08-497e-898e-3e3caec86e71,208ef1bf-6c80-401e-b773-54f0960c09d9,human toxicity: carcinogenic no LT,"Human toxicity, cancer"
+46bf7cc4-a680-42b1-b8e7-32627852c9d7,208ef1bf-6c80-401e-b773-54f0960c09d9,material resources: metals/minerals no LT,"Resource use, minerals and metals"
+bef42b33-899b-4a06-a589-14486d206a3e,f1d1c1a0-8ecf-441c-8576-a18d463df41b,water use,Water use
+96ef991f-995a-4561-ac6d-bf54d3d30e74,78594638-6ea2-4bd2-b8ca-371494d952a7,"ecotoxicity: freshwater, organics no LT","Ecotoxicity, freshwater_organics"
+5b78da53-7efd-4000-9836-050ea4caabc8,78594638-6ea2-4bd2-b8ca-371494d952a7,eutrophication: marine no LT,Eutrophication marine
+0ea164a1-a398-4d25-8770-35dc3545d030,a0eb6ad1-a4aa-47aa-a80e-a94961846fc7,emissions to soil,
+58231ce3-1beb-49f6-a545-cd6b02779bb6,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,emissions to soil no LT,Pesticides into soil
+1bad0867-cf7e-48fe-86ae-57a5de5029c1,e57693cf-ed07-416c-8831-58f044f1bd76,climate change: total (excl. biogenic CO2) no LT,climate change
+c9449d54-f514-47ae-835d-b0aeceddcd2b,87a57579-d6c4-477c-a327-f863804a15aa,ecosystem quality,Freshwater ecosystems
+7aaed5ab-bce4-4d20-99a2-ae52c25374d3,b42b5d7d-371c-4c00-a601-cf9572670e00,ecosystem quality no LT,
+e25b4c81-0c98-476b-a582-646954333ae0,b42b5d7d-371c-4c00-a601-cf9572670e00,natural resources no LT,
+5127b367-7558-45ac-a619-9faf302b4d66,e1ba87fc-66bd-4be7-8b09-e4d14da279be,ecosystem quality no LT,
+adc1e393-be83-4254-81ff-0cec3c52fb47,e1ba87fc-66bd-4be7-8b09-e4d14da279be,ecosystem quality no LT,
+e50749c5-f602-4bbf-924c-84a40cf56a53,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,human health no LT,
+a7cc23bd-6a4d-411d-9221-fcd39155a313,81928238-d7ba-45fc-9f28-af354c2b7dd3,photochemical oxidant formation: human health no LT,
+8ec25434-433a-4729-8b1d-85e2181fff27,1b75e464-5938-4fbb-abc6-c15790d99ea7,eutrophication: freshwater no LT,
+9821b39e-3c1a-4663-897a-7f7a24f28745,45ce7db6-4f98-48be-b7da-70fed54ab279,ecosystem quality,Freshwater aquatic ecotoxicity
+468406b6-e606-40a1-b819-aa5d6866563b,b5192a30-6786-4ef8-a955-e2645c3d5420,climate change: biogenic (EF v3.1 - IPCC 2021),
+28acaf97-9f74-4b61-bbab-347e5c73bb8b,0634f451-e29f-4f37-96c1-803e3f9a5abd,exported energy - electricity,
+3b27350b-8887-4e9c-a0a3-095facbda732,2866e7bc-b77a-4e03-bd91-811890e254c0,use of secondary material,
+94377fc4-1b8b-486d-83e2-9ff90110f964,4774e3fa-dbf0-4ba1-b15d-9ff90110f950,"energy resources: non-renewable, biomass",
+5360f955-4792-47d6-9eb1-ccaf63db3ee7,f1d1c1a0-8ecf-441c-8576-a18d463df41b,ecotoxicity: freshwater,"Ecotoxicity, freshwater"
+384d6a26-1ef7-4419-92b6-0b827673fbe5,f1d1c1a0-8ecf-441c-8576-a18d463df41b,land use,Land use
+9c93e9c3-8e39-41e8-97b5-ea6598804753,78594638-6ea2-4bd2-b8ca-371494d952a7,human toxicity: non-carcinogenic no LT,"Human toxicity, non-cancer"
+39334f74-7a6a-4820-876e-5bf3612441b5,ac3b6c62-8053-4725-9756-07064cfcc810,emissions to water no LT,
+5c5a6e24-5280-42df-a66d-695326428d00,ac3b6c62-8053-4725-9756-07064cfcc810,"energy resources: non-renewable, fossil no LT",abiotic resources
+178e28af-0aeb-43a2-ab96-9ff901111700,1dc61e56-76cb-474b-91b5-9ff9011116ff,land occupation,
+d93155e4-4753-4315-92cd-f83e1cd06bdb,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,emissions to air,Heavy metals into air
+5bc1aa4e-3b34-478e-8fb3-a59c132b074a,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,emissions to air no LT,Radioactive substances into air
+6f9e95a3-5474-4673-96c4-b70614269ce6,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,natural resources no LT,Biotic resources
+3f944656-4aa1-45a1-b24a-9ccbe38caa1a,878dcbcd-0c37-4d68-9081-fc0c5a567217,human health,Remaining Human health damage
+f4b13f47-118c-447f-a43c-76b5e0ca85a8,25583383-5a50-4fbf-9850-c9f2d57607b5,resources,
+9da0b5f6-0a72-4611-8ab0-cfcc8eaf8a5c,87a57579-d6c4-477c-a327-f863804a15aa,ecosystem quality,Terrestrial ecosystems
+c6427e1b-5890-46a7-a301-d863194f6db6,b42b5d7d-371c-4c00-a601-cf9572670e00,ecosystem quality no LT,
+af1bf973-a011-4e86-a682-268b3a52c9ba,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,ecosystem quality,Freshwater ecosystems
+d0324fc4-4f4b-44a8-88ea-92948eef713f,e1ba87fc-66bd-4be7-8b09-e4d14da279be,natural resources no LT,
+c5fb8522-3acc-467c-9716-0d6e93ce914d,81928238-d7ba-45fc-9f28-af354c2b7dd3,ozone depletion no LT,
+ea683a5d-0508-4b83-9ecc-03d7f530179e,be309eb5-a03c-4546-9608-81b504e08735,ecotoxicity: marine,Marine ecotoxicity
+2b7491ee-0506-404b-abd8-38df69f1eb75,be309eb5-a03c-4546-9608-81b504e08735,human toxicity: carcinogenic,Human toxicity: cancer
+e4d8d66c-0d99-42a6-a67c-e7c59ff6c8de,be309eb5-a03c-4546-9608-81b504e08735,water use,Water use
+5c36b973-adbb-4e51-816f-b4c6edfe2c57,1b75e464-5938-4fbb-abc6-c15790d99ea7,ecotoxicity: freshwater no LT,
+7dc1885f-c489-49d4-bb4d-10a67c53f3c4,1b75e464-5938-4fbb-abc6-c15790d99ea7,photochemical oxidant formation: terrestrial ecosystems no LT,
+ab49bd31-66bc-442f-8066-99ce496b733d,7c75c405-5084-429a-9edf-3f1d1fefad82,ozone depletion,Ozone Depletion
+ec081180-6f2d-46cb-ac7e-597ebbd50daf,24cd9adc-bbf8-49bc-a452-7f57073d7c6f,photochemical oxidant formation no LT,
+2fda2679-1074-4ace-864f-bc8ddfb7f171,b5192a30-6786-4ef8-a955-e2645c3d5420,material resources: metals/minerals,
+191b123f-34d2-4da6-9b7e-e5dd7c938be8,1bdce405-4884-4dea-ba55-397eba6ed51e,energy resources: non-renewable,"Resource use, fossils"
+1a4b6bbc-0b9f-4900-906e-a3f4acef44fb,1bdce405-4884-4dea-ba55-397eba6ed51e,eutrophication: terrestrial,"Eutrophication, terrestrial"
+56e8538c-efc0-4965-bb35-e74dd1928b98,208ef1bf-6c80-401e-b773-54f0960c09d9,"human toxicity: carcinogenic, organics no LT","Human toxicity, cancer_organics"
+c7eb3f22-d396-4db7-b81c-e36760aac3e2,78594638-6ea2-4bd2-b8ca-371494d952a7,"human toxicity: carcinogenic, inorganics no LT","Human toxicity, cancer_inorganics"
+3489eddf-6524-4095-ab19-d33e35e786f0,08618be5-a881-4be2-8849-47eb6b2b35d4,"climate change: total (incl. biogenic CO2, incl. SLCFs) no LT",climate change
+27471b68-3bf2-445e-8c49-7ac858ca0873,e57693cf-ed07-416c-8831-58f044f1bd76,climate change: direct land use change no LT,climate change
+4d63e40d-cbad-4f12-9f01-c1c1914c316a,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+94fe8958-4b9e-4e7d-b9d8-6730aee4bbf0,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+7c6dd6f0-b04b-4f3c-96ae-9af8bb60b76b,87a57579-d6c4-477c-a327-f863804a15aa,human health,Human health
+1c06e77a-d58f-44df-b24c-52ac1eb5cc43,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,ecosystem quality,Terrestrial ecosystems
+64bda09c-a14a-4c19-b428-5143f847014e,e1ba87fc-66bd-4be7-8b09-e4d14da279be,human health no LT,
+0a4461ef-d566-41a9-a247-e8b459b7e7bd,4d9ac60a-73ab-40cf-bc71-d967ef59865e,human health,Human health
+fe5ea62b-bf97-4790-b5e2-efd5b036d821,4d9ac60a-73ab-40cf-bc71-d967ef59865e,natural resources,Resources
+cafb1f40-6bcd-4ec9-9caf-4241652aac9f,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,ecosystem quality no LT,
+7847cf86-7d56-44bb-b9a8-ac8dd868ee97,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,ecosystem quality no LT,
+b5aedd22-6172-4546-a580-110e28abb4a4,3b556c4d-862e-4fef-b735-ce7bd31a0217,ionising radiation,Ionising radiation
+97bb8221-8355-4c01-8a72-d6867c66b631,6e67b147-f0eb-48eb-bc09-0260d78a8f59,eutrophication: marine no LT,
+d5cce0cc-55e1-4d85-97c1-ac0db9c29dff,6e67b147-f0eb-48eb-bc09-0260d78a8f59,human toxicity: carcinogenic no LT,
+eac9ea43-fe2f-426a-b2dd-7d33e247e3fe,0310cf09-b06f-45ef-af69-b5a41880170d,material resources: metals/minerals,Mineral resource scarcity
+1138120f-a5e0-49dd-b014-a9b19fba5b1e,0310cf09-b06f-45ef-af69-b5a41880170d,ozone depletion,Ozone depletion
+2b795520-419c-4b6d-bfe1-2d14e383f491,81928238-d7ba-45fc-9f28-af354c2b7dd3,ecotoxicity: freshwater no LT,
+88d562cd-2d8a-450b-8468-c05d5e800e51,81928238-d7ba-45fc-9f28-af354c2b7dd3,eutrophication: marine no LT,
+d2ee2e4c-1d5d-40ac-8b34-9b7cba779610,be309eb5-a03c-4546-9608-81b504e08735,ecotoxicity: freshwater,Freshwater ecotoxicity
+fc6839a2-0dd4-4dc5-bec4-9bd60d441d1c,be309eb5-a03c-4546-9608-81b504e08735,ionising radiation,Ionising radiation
+6da5413c-06b1-4c57-aea3-f79baf3409b6,be309eb5-a03c-4546-9608-81b504e08735,land use,Land use
+97b96cc8-85f0-432a-8bbf-b4bd32ef3c77,1b75e464-5938-4fbb-abc6-c15790d99ea7,climate change no LT,
+7d7e2c61-19e9-47e4-8d0a-23dd9eb1899b,b19894fe-e19c-41ed-9819-6d0053d02b98,land use,
+08abdca6-3d31-4b9b-88de-8d1646490c3d,b5192a30-6786-4ef8-a955-e2645c3d5420,climate change: fossil (EF v3.0 - IPCC 2013),
+2a209f64-e165-4b1d-8af0-541237f50ba0,b5192a30-6786-4ef8-a955-e2645c3d5420,eutrophication: terrestrial,
+8968f194-cece-4f8e-908a-10db76e00124,2866e7bc-b77a-4e03-bd91-811890e254c0,use of renewable secondary fuels,
+6c855afd-b06c-48eb-8dfe-fc5622a28dbf,4774e3fa-dbf0-4ba1-b15d-9ff90110f950,energy resources: renewable,
+b79136a0-92dc-430b-8806-37e581ba05d8,4774e3fa-dbf0-4ba1-b15d-9ff90110f950,material resources,
+1dead7c7-eead-4b23-8a24-9ff90110f950,4774e3fa-dbf0-4ba1-b15d-9ff90110f950,material resources: metals,
+f2989f42-cfd2-49cf-846a-9ff90110f971,4774e3fa-dbf0-4ba1-b15d-9ff90110f950,material resources: water,
+27f10fa9-9278-4879-9556-eb4acccab703,1bdce405-4884-4dea-ba55-397eba6ed51e,ecotoxicity: freshwater,"Ecotoxicity, freshwater"
+0f503555-74f9-4613-9cca-acb0764d9941,1bdce405-4884-4dea-ba55-397eba6ed51e,"human toxicity: non-carcinogenic, metals","Human toxicity, non-cancer_metals"
+8b249cf5-36f3-4c31-ba98-272462bef694,1bdce405-4884-4dea-ba55-397eba6ed51e,land use,Land use
+0acc4cd4-f31a-408f-aea2-f75f71d4fe04,1bdce405-4884-4dea-ba55-397eba6ed51e,photochemical oxidant formation: human health,Photochemical ozone formation - human health
+83a62309-7166-47a1-a465-530d5e3ef655,208ef1bf-6c80-401e-b773-54f0960c09d9,climate change: biogenic no LT,Climate change-Biogenic
+dd072822-8a32-4f62-943b-b8498aa3327a,f1d1c1a0-8ecf-441c-8576-a18d463df41b,material resources: metals/minerals,"Resource use, minerals and metals"
+e3c5bf97-a930-4edb-bad1-0d505085c928,78594638-6ea2-4bd2-b8ca-371494d952a7,acidification no LT,Acidification
+8d5dfe07-96a7-409f-9453-ec23d486eadd,78594638-6ea2-4bd2-b8ca-371494d952a7,energy resources: non-renewable no LT,"Resource use, fossils"
+28490239-25fd-4b3b-b8be-491df33c541e,a0eb6ad1-a4aa-47aa-a80e-a94961846fc7,land use,
+53f28d1a-4eb7-46d2-8a75-3f2c50cd0567,ac3b6c62-8053-4725-9756-07064cfcc810,land use no LT,
+539f8f58-0efd-47e3-b303-cfde62f5a542,11e3b622-f745-4742-ad90-57c3efeef416,climate change,
+de7c1925-ec4e-487f-b3f7-cfc23da4f506,4d49bc9f-dfbf-4c8d-9a98-f9bf7c6e8114,climate change no LT,
+823ed5f3-0478-4394-8b41-8dec0016afd9,167c6bac-650c-4413-adfe-9f93b2b22488,climate change: fossil emissions (excl. aircraft emissions),climate change
+2dff679b-e0c4-4869-92c6-7c8a6fcacd1e,167c6bac-650c-4413-adfe-9f93b2b22488,climate change: total (excl. biogenic CO2),climate change
+36c28f6c-2ad9-4efc-8bd1-4cec25878824,1a570833-0403-4be3-9a8c-106a06786830,climate change: biogenic emissions (incl. CO2),climate change
+5337bfd0-f2ea-4f5a-a00e-f7f58191c089,e57693cf-ed07-416c-8831-58f044f1bd76,"climate change: biogenic (excl. CO2, incl. SLCFs) no LT",climate change
+89ff8f48-cd66-4ba6-bc20-22646d300431,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+a9ab8d04-4ff3-419b-8158-11f31d9e1ab2,25583383-5a50-4fbf-9850-c9f2d57607b5,resources,
+4d5ce32a-cc2e-4393-b04f-0a857caead23,87a57579-d6c4-477c-a327-f863804a15aa,ecosystem quality,Freshwater ecosystems
+48782936-82a3-4fc1-ac2e-e085e834b5e5,87a57579-d6c4-477c-a327-f863804a15aa,ecosystem quality,Terrestrial ecosystems
+cd963dbe-4672-4a08-a966-b0960625cf77,87a57579-d6c4-477c-a327-f863804a15aa,ecosystem quality,Freshwater ecosystems
+08565312-73b3-4f2d-be5c-628405d37e18,87a57579-d6c4-477c-a327-f863804a15aa,ecosystem quality,Terrestrial ecosystems
+9edf65fe-f0aa-4519-89fd-3a5238b4948c,b42b5d7d-371c-4c00-a601-cf9572670e00,ecosystem quality no LT,
+c05646a1-ce1a-4f8f-bf2a-417b76b78be1,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,ecosystem quality,Terrestrial ecosystems
+708ddc92-85d2-4113-b01b-51bf75498df1,e1ba87fc-66bd-4be7-8b09-e4d14da279be,ecosystem quality no LT,
+5668bd41-58b5-4d65-bf91-13a5adfc848f,e1ba87fc-66bd-4be7-8b09-e4d14da279be,ecosystem quality no LT,
+57b38391-6ce3-43d4-8505-d052d4d6e0af,e1ba87fc-66bd-4be7-8b09-e4d14da279be,human health no LT,
+2db9d12d-69d0-4699-a6f1-562a5964c18f,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,human health no LT,
+71b312ca-a14e-4b41-8777-701ed194faf6,3b556c4d-862e-4fef-b735-ce7bd31a0217,eutrophication: freshwater,Freshwater eutrophication
+9d6fbae1-89a1-463e-9d20-251252cabee1,3b556c4d-862e-4fef-b735-ce7bd31a0217,water use,Water use
+a3b955f3-a7f5-4a41-b0c8-60cd754bfcdd,0310cf09-b06f-45ef-af69-b5a41880170d,eutrophication: freshwater,Freshwater eutrophication
+593896b6-b6a6-4f00-9c36-6aa40a9f0c2c,81928238-d7ba-45fc-9f28-af354c2b7dd3,ionising radiation no LT,
+d4af076c-7439-4207-a407-bcc6b81c5e33,81928238-d7ba-45fc-9f28-af354c2b7dd3,particulate matter formation no LT,
+7853a0d9-41c9-48ff-9fd7-c5fc96b781c7,be309eb5-a03c-4546-9608-81b504e08735,eutrophication: freshwater,Freshwater eutrophication
+27aef48a-7cc6-49ce-8f84-97f1a6639954,1b75e464-5938-4fbb-abc6-c15790d99ea7,particulate matter formation no LT,
+1b079109-ec37-4eb1-b4fc-7a43e27dad27,b5192a30-6786-4ef8-a955-e2645c3d5420,climate change: land use and land use change (EF v3.0 - IPCC 2013),
+1f8067f1-181a-40bc-9f71-9bced43f63ff,b5192a30-6786-4ef8-a955-e2645c3d5420,ozone depletion,
+656f93ea-1f0e-4171-abb3-7add4e9c6c5c,cd086eff-2645-4f06-b500-dbfa1ae94285,intermediate and low-level radioactive waste disposed,
+90b2732a-cc11-4f9f-93ac-6d890afa7fd3,35716c60-7337-4442-9f3a-42effd692b82,acidification,"acidification (incl. fate, average Europe total, A&B)"
+0f2b6b14-f992-4bb9-8cb6-75f92ed9c649,35716c60-7337-4442-9f3a-42effd692b82,ecotoxicity: freshwater,Freshwater aquatic ecotoxicity (FAETP inf)
+e3384118-3025-4392-802b-19c34fd65dab,35716c60-7337-4442-9f3a-42effd692b82,photochemical oxidant formation,photochemical oxidation (high NOx)
+a3df454b-75dd-4a5d-93d1-8c56c49702f5,73998dad-83a3-4212-b61d-ec1a50ce5898,energy resources: non-renewable,
+0c614808-e353-44f7-8106-2b0ca15c01e3,4774e3fa-dbf0-4ba1-b15d-9ff90110f950,"energy resources: renewable, wind",
+7a74463e-bb0d-4f69-97c2-394b01e21be0,208ef1bf-6c80-401e-b773-54f0960c09d9,photochemical oxidant formation: human health no LT,Photochemical ozone formation - human health
+fee1b729-2920-4032-945f-bbb06a83d785,78594638-6ea2-4bd2-b8ca-371494d952a7,climate change: biogenic no LT,Climate change-Biogenic
+0bbdb785-2dfa-49c3-bd25-f1ccce77b6e0,78594638-6ea2-4bd2-b8ca-371494d952a7,human toxicity: carcinogenic no LT,"Human toxicity, cancer"
+3373b8f7-9e47-48a0-952d-eca26205a558,a0eb6ad1-a4aa-47aa-a80e-a94961846fc7,material resources: metals,abiotic resources
+3b53c4d5-c4f4-43bf-833d-de1570c2eba9,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,water use,"Water resources, evaporated"
+e5238201-7503-4bfe-aab5-9ff90111207b,5ea371a5-944c-431b-b9a5-9ff901112067,land occupation,
+a6d2bd6a-b51c-48c8-8582-6246eda2eb63,4d49bc9f-dfbf-4c8d-9a98-f9bf7c6e8114,climate change no LT,
+486aa172-8a7a-4dd9-b4b4-12328acd0a7d,167c6bac-650c-4413-adfe-9f93b2b22488,climate change: direct land use change (incl. SLCFs),climate change
+82b960da-c0cd-4475-a5b8-1580ee44bf82,e57693cf-ed07-416c-8831-58f044f1bd76,"climate change: total (excl. biogenic CO2, incl. SLCFs) no LT",climate change
+7579afbd-4e98-4b75-af14-f3d7c2fca8ad,25583383-5a50-4fbf-9850-c9f2d57607b5,waste disposal,
+16882843-58ef-4dbd-a700-aa0874811f6f,25583383-5a50-4fbf-9850-c9f2d57607b5,waste disposal,
+ab0ff8be-215e-4f98-bf1f-cf8469fba8e9,87a57579-d6c4-477c-a327-f863804a15aa,human health,Human health
+aa4a7d1c-8a95-42a6-898f-85f55fe66008,b42b5d7d-371c-4c00-a601-cf9572670e00,ecosystem quality no LT,
+44561360-0e64-40b2-a8b6-9004c94e76da,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,ecosystem quality,Terrestrial ecosystems
+54df09b9-e2a4-40ad-9e03-9d63abc780c5,e1ba87fc-66bd-4be7-8b09-e4d14da279be,total: ecosystem quality no LT,
+843ed1b2-da45-4306-9fa1-3b14fe0d9c61,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,total: ecosystem quality no LT,
+e9972392-58b2-42ca-a528-2f827359df94,6e67b147-f0eb-48eb-bc09-0260d78a8f59,"energy resources: non-renewable, fossil no LT",
+9b351b9b-5e8e-4974-b2d9-123c9fc4a136,6e67b147-f0eb-48eb-bc09-0260d78a8f59,land use no LT,
+1b605d1f-fc8b-460f-a682-71585f9985e9,0310cf09-b06f-45ef-af69-b5a41880170d,ecotoxicity: terrestrial,Terrestrial ecotoxicity
+203b6c7c-5406-4715-bb30-bbfeffb9d9d7,81928238-d7ba-45fc-9f28-af354c2b7dd3,human toxicity: carcinogenic no LT,
+05e2dfc5-d3e1-4716-8d27-b3916c83400a,be309eb5-a03c-4546-9608-81b504e08735,ozone depletion,Ozone depletion
+d5f31381-4baf-4e79-a70f-46322e2c66ef,24cd9adc-bbf8-49bc-a452-7f57073d7c6f,climate change no LT,
+69cd8f96-1b5a-47b8-8b2b-98fd7c5d3988,b19894fe-e19c-41ed-9819-6d0053d02b98,human toxicity: carcinogenic,
+b065dd2b-440b-4515-a095-d55d3dc483e7,2866e7bc-b77a-4e03-bd91-811890e254c0,total use of renewable primary energy resources (primary energy and primary energy resources used as raw materials),
+3daafa94-287b-42a8-bc86-dcb2261a13b8,35716c60-7337-4442-9f3a-42effd692b82,ecotoxicity: terrestrial,Terrestrial ecotoxicity (TETP inf)
+73a3fb30-597d-4995-82fa-f1320caed981,35716c60-7337-4442-9f3a-42effd692b82,material resources: metals/minerals,"abiotic depletion (elements, ultimate ultimate reserves)"
+eb20bf3a-4f80-40e0-8d64-1a733a1bb331,73998dad-83a3-4212-b61d-ec1a50ce5898,"energy resources: renewable, solar",
+775da674-5fa1-491b-a4cb-0dbf27f8b6fb,1bdce405-4884-4dea-ba55-397eba6ed51e,ozone depletion,Ozone depletion
+6bbf9a4d-94c0-41c7-b49c-3d5b9b5294ba,208ef1bf-6c80-401e-b773-54f0960c09d9,energy resources: non-renewable no LT,"Resource use, fossils"
+b0d997d9-d5c2-4a36-8cb8-7d4241b39c83,f1d1c1a0-8ecf-441c-8576-a18d463df41b,climate change: biogenic,Climate change-Biogenic
+72e731fc-3bbc-467d-892c-dc2982ba794a,78594638-6ea2-4bd2-b8ca-371494d952a7,climate change no LT,Climate change
+1b7bb131-eaef-44ba-92dd-599257923c43,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,waste disposal,"Waste, non radioactive "
+940167ad-2569-456d-81eb-9ff901112085,5ea371a5-944c-431b-b9a5-9ff901112067,total,
+9405d635-e30d-4954-bd75-921a22ec39ec,4d49bc9f-dfbf-4c8d-9a98-f9bf7c6e8114,climate change no LT,
+215987ad-b31b-4f63-a293-952b15231453,1a570833-0403-4be3-9a8c-106a06786830,climate change: total (incl. biogenic CO2),climate change
+400f5843-4d5a-4c12-ab81-7624b6525fce,e57693cf-ed07-416c-8831-58f044f1bd76,climate change: direct land use change (incl. SLCFs) no LT,climate change
+d9e5ca4b-6cf1-4d84-a271-783ab969a9b8,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+0f6107eb-e8ec-40b4-a380-69b935e889ba,25583383-5a50-4fbf-9850-c9f2d57607b5,waste disposal,
+cfc73c6b-8d77-4442-85e0-865f72dcbf05,87a57579-d6c4-477c-a327-f863804a15aa,natural resources,Resources
+fb55bc3b-a5c8-4790-838f-0db2c3d95bc3,87a57579-d6c4-477c-a327-f863804a15aa,natural resources,Resources
+791d5d95-6cc6-4f9e-a802-5e2bf50479c0,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,human health,Human health
+b48b8962-9d3b-40d5-9943-d5a146c5e996,e1ba87fc-66bd-4be7-8b09-e4d14da279be,ecosystem quality no LT,
+76e498dd-20ea-4b9f-b9d5-c3829092fa02,4d9ac60a-73ab-40cf-bc71-d967ef59865e,ecosystem quality,Freshwater ecosystems
+a4d54055-4ea7-4a29-b714-2881849752ac,4d9ac60a-73ab-40cf-bc71-d967ef59865e,ecosystem quality,Marine ecosystems
+9b8b8bd8-324b-4310-a5d4-d08e61d00cf3,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,ecosystem quality no LT,
+29a1cda3-4ee1-4801-a944-5effcc12ddc6,81928238-d7ba-45fc-9f28-af354c2b7dd3,acidification: terrestrial no LT,
+9904d29a-24e9-4e69-8a48-e2dcf4e95162,be309eb5-a03c-4546-9608-81b504e08735,"energy resources: non-renewable, fossil",Fossil resource scarcity
+96501ed2-860f-4508-b030-1ecbd285e1fb,4c67589f-536d-484e-aa38-a2d5fe0e1e0d,human toxicity: non-carcinogenic no LT,Human non-cancer toxicity
+61725b89-194c-4640-aa0f-30199a8bedc5,b19894fe-e19c-41ed-9819-6d0053d02b98,ionising radiation: human health,
+0defc72d-13f4-4135-a2f9-0d7630bfa453,b5192a30-6786-4ef8-a955-e2645c3d5420,climate change: biogenic (EF v3.0 - IPCC 2013),
+08390b12-2291-462f-a5f2-b2da1dbaf8dc,b5192a30-6786-4ef8-a955-e2645c3d5420,climate change: total (EF v3.0 - IPCC 2013),
+43c0d56a-cde3-417a-9624-5f349f8dba1d,b5192a30-6786-4ef8-a955-e2645c3d5420,climate change: total (EF v3.1 - IPCC 2021),
+1ac9fb82-be8f-4fc2-9574-e58e8bb7c43f,0634f451-e29f-4f37-96c1-803e3f9a5abd,components for re-use,
+8b52effc-5809-4a96-a0eb-ce49da71f218,2866e7bc-b77a-4e03-bd91-811890e254c0,use of renewable primary energy excluding renewable primary energy resources used as raw materials,
+302f0193-9b72-4728-9e10-426c00c417c3,cd086eff-2645-4f06-b500-dbfa1ae94285,hazardous waste disposed,
+c33b622f-55b0-42c6-9735-9ff90110f965,4774e3fa-dbf0-4ba1-b15d-9ff90110f950,"energy resources: non-renewable, nuclear",
+838ffcba-a1d8-42e6-8ca8-7b30141fb488,208ef1bf-6c80-401e-b773-54f0960c09d9,water use no LT,Water use
+8ee47867-b529-49fd-b56d-47a66b6824e0,f1d1c1a0-8ecf-441c-8576-a18d463df41b,climate change: land use and land use change,Climate change-Land use and land use change
+164b197f-5cae-4158-8259-23b4de188a18,78594638-6ea2-4bd2-b8ca-371494d952a7,climate change: land use and land use change no LT,Climate change-Land use and land use change
+2efe0c5f-3a1d-4ef6-8913-1f709e2d2883,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,mineral resources,Mineral resources
+ab2d664e-76dc-4e75-bac6-02eb66fc03d0,11e3b622-f745-4742-ad90-57c3efeef416,climate change,
+ed89dc0b-6f62-42fa-8847-12d3e7d0c6af,167c6bac-650c-4413-adfe-9f93b2b22488,climate change: fossil,climate change
+2ab6e29a-ebb0-4bf6-8ea6-000fc77780c1,08618be5-a881-4be2-8849-47eb6b2b35d4,climate change: biogenic (incl. CO2) no LT,climate change
+e845d0c1-63dd-408a-a7a5-cd0bbc744c23,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+cdfa8d22-5f81-46d0-95f5-b753dedb6ed8,25583383-5a50-4fbf-9850-c9f2d57607b5,resources,
+22ed5829-bf73-497e-87c3-fa554f1eadf4,87a57579-d6c4-477c-a327-f863804a15aa,ecosystem quality,Freshwater ecosystems
+db53042c-c2d9-4eb9-9eb9-56d79ac478bf,87a57579-d6c4-477c-a327-f863804a15aa,human health,Human health
+5535955a-4e64-4593-b11a-ffba2a219eb4,b42b5d7d-371c-4c00-a601-cf9572670e00,human health no LT,
+a23d6214-9bee-4fe6-ba1d-db779ff15ece,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,natural resources,Resources
+46ac4e13-5b40-4ebc-a1a0-8a5568a07fad,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,total: human health,
+0ea51891-512d-4c7e-aaec-8bf8e491a034,e1ba87fc-66bd-4be7-8b09-e4d14da279be,human health no LT,
+ee635762-9802-49cc-888d-51c0797626a1,4d9ac60a-73ab-40cf-bc71-d967ef59865e,human health,Human health
+bf681006-3156-4bde-b8ef-f61d2c49cd0f,4d9ac60a-73ab-40cf-bc71-d967ef59865e,human health,Human health
+b92c5b3d-e2b3-4ef0-806e-1ef1e264bbf1,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,human health no LT,
+fe52b706-a2b7-40ec-9fdb-c9190b0d3b12,3b556c4d-862e-4fef-b735-ce7bd31a0217,climate change,Climate change
+9e2e940d-996f-482c-920d-b30b74808eb7,6e67b147-f0eb-48eb-bc09-0260d78a8f59,water use no LT,
+846ae060-f025-4d97-b0d6-574248d99354,45ce7db6-4f98-48be-b7da-70fed54ab279,human health,Human health
+80d26704-7eb8-41c7-af33-062375445c51,b19894fe-e19c-41ed-9819-6d0053d02b98,human toxicity: non-carcinogenic (EF v3.1),
+2898a756-fb49-4234-aa35-3e385003769c,b5192a30-6786-4ef8-a955-e2645c3d5420,eutrophication: marine,
+2d1395ba-8a45-438c-8f1d-6b41247c0890,b5192a30-6786-4ef8-a955-e2645c3d5420,photochemical oxidant formation: human health,
+2866e7bc-b77a-4e03-bd91-811890e254c0,0634f451-e29f-4f37-96c1-803e3f9a5abd,exported energy,
+684a5b83-fd8e-4570-8f6e-abade417ea9f,b19894fe-e19c-41ed-9819-6d0053d02b98,ecotoxicity: freshwater (EF v3.0),
+8b213dd9-40cb-4a8f-8e55-4842788269bd,73998dad-83a3-4212-b61d-ec1a50ce5898,"energy resources: renewable, wind",
+c5446b19-110a-443e-a874-07e8add2d30b,73998dad-83a3-4212-b61d-ec1a50ce5898,total,
+1391ef13-0b6f-4561-9767-9ff90110f965,4774e3fa-dbf0-4ba1-b15d-9ff90110f950,"energy resources: non-renewable, fossil",
+458600ff-62d0-42ab-af7f-31fbc2ca0a8e,1bdce405-4884-4dea-ba55-397eba6ed51e,"ecotoxicity: freshwater, organics","Ecotoxicity, freshwater_organics"
+f157732a-b196-4191-9469-62ae8216ec2e,1bdce405-4884-4dea-ba55-397eba6ed51e,"human toxicity: non-carcinogenic, inorganics","Human toxicity, non-cancer_inorganics"
+8ce2288e-b12e-4f0e-b9d1-b57f896629a6,208ef1bf-6c80-401e-b773-54f0960c09d9,ionising radiation: human health no LT,"Ionising radiation, human health"
+81c742c3-6aa9-4862-8ac7-b68b16e02ff9,208ef1bf-6c80-401e-b773-54f0960c09d9,particulate matter formation no LT,EF-particulate Matter
+855f2adc-d84b-4f6e-929d-edd7ea8d2af0,f1d1c1a0-8ecf-441c-8576-a18d463df41b,"ecotoxicity: freshwater, inorganics","Ecotoxicity, freshwater_inorganics"
+27dc7e16-f06f-4a5b-9551-be6291d884a8,78594638-6ea2-4bd2-b8ca-371494d952a7,"ecotoxicity: freshwater, inorganics no LT","Ecotoxicity, freshwater_inorganics"
+dd0c172c-cf8f-4ec7-936b-7ac6d9254dca,78594638-6ea2-4bd2-b8ca-371494d952a7,material resources: metals/minerals no LT,"Resource use, minerals and metals"
+deda07e5-38ac-48b2-a932-9a200795255a,78594638-6ea2-4bd2-b8ca-371494d952a7,particulate matter formation no LT,EF-particulate Matter
+46c65ed7-82a8-4993-b3ba-28e5efdcd4b8,ac3b6c62-8053-4725-9756-07064cfcc810,emissions to soil no LT,
+05ee86c6-5223-4d21-926a-84d68ede7d45,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,energy resources no LT,Energy resources
+6807a796-d898-43de-9a1f-16330ed2de75,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,waste disposal no LT,"Waste, non radioactive "
+6110d7b5-adc8-48e6-8271-226105e48cb4,167c6bac-650c-4413-adfe-9f93b2b22488,climate change: aircraft emissions,climate change
+0c301d2e-0f8d-4721-9a3e-7c7f7e5154b6,167c6bac-650c-4413-adfe-9f93b2b22488,"climate change: fossil (excl. biogenic CO2, incl. SLCFs)",climate change
+166df213-48ad-455a-9845-fa684b13d65b,167c6bac-650c-4413-adfe-9f93b2b22488,"climate change: total (excl. biogenic CO2, incl. SLCFs)",climate change
+70e55e34-175f-4e50-bf5b-0c97098aeff5,e57693cf-ed07-416c-8831-58f044f1bd76,climate change: removals from direct land use change no LT,climate change
+0bce172e-2d97-480d-adf9-5fb5704b8724,e57693cf-ed07-416c-8831-58f044f1bd76,climate change: total (excl. biogenic CO2) no LT,climate change
+4afb8739-54b0-42a7-bb30-c28024799b62,25583383-5a50-4fbf-9850-c9f2d57607b5,resources,
+7148bce1-9dcc-4c1f-b5d7-edf33b8acca2,4d9ac60a-73ab-40cf-bc71-d967ef59865e,human health,Human health
+31076afb-1772-4685-b8ba-5b41e387d5c8,4d9ac60a-73ab-40cf-bc71-d967ef59865e,human health,Human health
+4fec9c4e-78ab-41e1-9e20-2e94a2c8b837,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,ecosystem quality no LT,
+f0704e29-d1f6-46ae-889d-f717dd2ceac8,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,natural resources no LT,
+7e33bb1f-69a2-4eb2-967e-f634768cbadc,6e67b147-f0eb-48eb-bc09-0260d78a8f59,acidification: terrestrial no LT,
+c9365535-7d0e-4fdf-881e-dc9a3b9ed677,0310cf09-b06f-45ef-af69-b5a41880170d,water use,Water use
+50ddc5d4-4731-44b1-b643-b8ca0ce01395,81928238-d7ba-45fc-9f28-af354c2b7dd3,human toxicity: non-carcinogenic no LT,
+74a8f708-afc3-47e5-92d1-d3dd71e2ffab,be309eb5-a03c-4546-9608-81b504e08735,acidification: terrestrial,Terrestrial acidification
+a5bb68a8-3cb3-4f2a-9bc3-f321b26bf63e,be309eb5-a03c-4546-9608-81b504e08735,photochemical oxidant formation: terrestrial ecosystems,Photochemical oxidant formation: terrestrial ecosystems
+c8096a96-618d-4580-901c-859fd277a74b,1b75e464-5938-4fbb-abc6-c15790d99ea7,ecotoxicity: terrestrial no LT,
+3b3a2e29-264e-435c-9ade-04ec48aec3a7,1b75e464-5938-4fbb-abc6-c15790d99ea7,"energy resources: non-renewable, fossil no LT",
+02fc97e5-2bcf-471a-b397-6196293650c6,1b75e464-5938-4fbb-abc6-c15790d99ea7,water use no LT,
+43c168eb-19c2-4174-bd7d-932106288922,7c75c405-5084-429a-9edf-3f1d1fefad82,climate change,Global Warming
+12323275-9349-4178-bf82-b9eda9651685,35716c60-7337-4442-9f3a-42effd692b82,energy resources: non-renewable,abiotic depletion (fossil fuels)
+0dbc07d9-e20c-48c3-bd4c-9ff90110f8d0,73998dad-83a3-4212-b61d-ec1a50ce5898,"energy resources: renewable, geothermal",
+f93be32d-059b-4130-ab5d-2f5953927793,1bdce405-4884-4dea-ba55-397eba6ed51e,"human toxicity: non-carcinogenic, organics","Human toxicity, non-cancer_organics"
+0d28f260-9ba8-4ae2-b79b-4a892c7008da,1bdce405-4884-4dea-ba55-397eba6ed51e,material resources: metals/minerals,"Resource use, minerals and metals"
+5af3fa33-eaa9-4e9b-ba2e-e51b626a5e19,208ef1bf-6c80-401e-b773-54f0960c09d9,climate change: land use and land use change no LT,Climate change-Land use and land use change
+8b134b57-0492-42ec-bd63-385254ce11a5,78594638-6ea2-4bd2-b8ca-371494d952a7,eutrophication: terrestrial no LT,"Eutrophication, terrestrial"
+0c57bc08-b90c-4088-a4ce-9c2797377ad5,a0eb6ad1-a4aa-47aa-a80e-a94961846fc7,emissions to water,
+979efa15-68e7-4698-8e31-1f1cab6ff9d4,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,emissions to soil,Heavy metals into soil
+27a18900-1685-4a5d-b120-37ebb12554c0,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,land use no LT,Land use
+22aa9d73-1eb8-41a7-b04f-0b8ab49a2de6,878dcbcd-0c37-4d68-9081-fc0c5a567217,ecosystem quality,Remaining Ecosystem quality damage
+0eedc4e4-9f27-497d-8a5e-7cd1a3b6b401,25583383-5a50-4fbf-9850-c9f2d57607b5,waste disposal,
+57ffdc3f-2396-4920-b43a-ea21a3085136,87a57579-d6c4-477c-a327-f863804a15aa,ecosystem quality,Marine ecosystems
+9644015f-def7-4ba2-ab5b-5baf0f489bfd,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,ecosystem quality,Marine ecosystems
+38464874-d4c1-401c-ad8c-5da1fdc7acec,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,human health,Human health
+22a03073-6232-4d17-93ce-68320c169c91,e1ba87fc-66bd-4be7-8b09-e4d14da279be,ecosystem quality no LT,
+6f8b967d-d79a-49c2-90af-d8a1e8831829,3b556c4d-862e-4fef-b735-ce7bd31a0217,eutrophication: marine,Marine eutrophication
+2251170f-8291-45ab-b84d-b3f8c95f1903,6e67b147-f0eb-48eb-bc09-0260d78a8f59,particulate matter formation no LT,
+253fc5fa-00c2-4aff-9c59-c02fd825f670,0310cf09-b06f-45ef-af69-b5a41880170d,photochemical oxidant formation: terrestrial ecosystems,Photochemical oxidant formation: terrestrial ecosystems
+13b10f0e-838a-4e65-b044-dcb971be1f5b,1b75e464-5938-4fbb-abc6-c15790d99ea7,ozone depletion no LT,
+4ebc6462-98b8-4188-8830-3bd28e0f9d42,4774e3fa-dbf0-4ba1-b15d-9ff90110f950,energy resources: non-renewable,
+b211a563-5a51-440e-bf4d-f823bcf8fdf4,4774e3fa-dbf0-4ba1-b15d-9ff90110f950,"energy resources: renewable, solar",
+dc81d7bd-5b97-4ee3-a775-6b7ae934693a,1bdce405-4884-4dea-ba55-397eba6ed51e,climate change: biogenic,Climate change-Biogenic
+0a9cb9f1-4149-4899-ad09-2b71ba39b984,1bdce405-4884-4dea-ba55-397eba6ed51e,"human toxicity: carcinogenic, organics","Human toxicity, cancer_organics"
+2dd6fc67-11a8-4289-b59f-d983df8a5e0b,208ef1bf-6c80-401e-b773-54f0960c09d9,human toxicity: non-carcinogenic no LT,"Human toxicity, non-cancer"
+1a0b55c7-46dd-49c5-8495-b8be84b6298a,f1d1c1a0-8ecf-441c-8576-a18d463df41b,climate change,Climate change
+6394b510-41b6-4a5b-89e4-207540f686e0,f1d1c1a0-8ecf-441c-8576-a18d463df41b,"ecotoxicity: freshwater, organics","Ecotoxicity, freshwater_organics"
+1ccd0317-4e57-4be6-a60d-11dd078980ed,f1d1c1a0-8ecf-441c-8576-a18d463df41b,human toxicity: non-carcinogenic,"Human toxicity, non-cancer"
+104a0be6-5593-4440-bce2-373267f3a7f1,878dcbcd-0c37-4d68-9081-fc0c5a567217,climate change,Carbon footprint
+33881768-3188-4e83-bd4c-f70f2f914688,08618be5-a881-4be2-8849-47eb6b2b35d4,climate change: biogenic removals (incl. CO2) no LT,climate change
+257d7fdb-e0fb-411e-8239-963294813bc5,e57693cf-ed07-416c-8831-58f044f1bd76,climate change: fossil no LT,climate change
+277ebfba-c90e-4afc-82f4-c508e0952aff,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+0a85bcc2-c9fe-4dc9-b12d-426850f533a6,25583383-5a50-4fbf-9850-c9f2d57607b5,waste disposal,
+66fb4601-a77e-4585-99f5-6647a7e573fd,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,human health,Human health
+fab1efbd-8f0c-49c2-a434-b4f6ad7ae427,4d9ac60a-73ab-40cf-bc71-d967ef59865e,ecosystem quality,Terrestrial ecosystems
+1eb26d62-cb1f-4d76-8a90-c819855d4641,4d9ac60a-73ab-40cf-bc71-d967ef59865e,human health,Human health
+8b530298-07d5-4792-a448-4e7a33a49842,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,ecosystem quality no LT,
+c69bcf9c-cfdd-4e79-b815-24747880fe42,6e67b147-f0eb-48eb-bc09-0260d78a8f59,human toxicity: non-carcinogenic no LT,
+bf2f425a-0208-4fed-ae53-82cbb0f8f711,6e67b147-f0eb-48eb-bc09-0260d78a8f59,material resources: metals/minerals no LT,
+afa29733-9e9d-4c51-94c5-817b494a9793,0310cf09-b06f-45ef-af69-b5a41880170d,acidification: terrestrial,Terrestrial acidification
+5a24f261-d2d2-40e9-b9c7-83398faeb082,0310cf09-b06f-45ef-af69-b5a41880170d,climate change,Climate change
+30acb630-84fb-498f-af98-6550ab66b02a,0310cf09-b06f-45ef-af69-b5a41880170d,"energy resources: non-renewable, fossil",Fossil resource scarcity
+5d35f6be-90d6-4058-b634-b969ae97a9c8,7c75c405-5084-429a-9edf-3f1d1fefad82,particulate matter formation,HH Particulate
+13f652a6-6577-499b-ae33-47e271feeb9f,4c67589f-536d-484e-aa38-a2d5fe0e1e0d,human toxicity: carcinogenic no LT,Human cancer toxicity
+5eadee7b-5e9b-47ed-add8-4dc0adcf59f5,b19894fe-e19c-41ed-9819-6d0053d02b98,particulate matter formation,
+7745ca65-3d90-4213-91cc-7a64f2a49071,1bdce405-4884-4dea-ba55-397eba6ed51e,eutrophication: freshwater,"Eutrophication, freshwater"
+f54bbc69-fb22-45c5-be80-9a2a1c60f804,1bdce405-4884-4dea-ba55-397eba6ed51e,eutrophication: marine,Eutrophication marine
+4aa812a3-82eb-4b60-b64e-cf9bfb9b5245,1bdce405-4884-4dea-ba55-397eba6ed51e,human toxicity: non-carcinogenic,"Human toxicity, non-cancer"
+5013b639-ba4d-4fa1-b73b-b41c5625dd70,208ef1bf-6c80-401e-b773-54f0960c09d9,ecotoxicity: freshwater no LT,"Ecotoxicity, freshwater"
+92f3265b-a003-4827-a6e3-2621c9744ef8,208ef1bf-6c80-401e-b773-54f0960c09d9,eutrophication: terrestrial no LT,"Eutrophication, terrestrial"
+89bc42ea-f804-48fc-8665-6a41af022ca2,f1d1c1a0-8ecf-441c-8576-a18d463df41b,"human toxicity: carcinogenic, organics","Human toxicity, cancer_organics"
+2b155130-46a0-4346-9308-9f3f2c0fe56e,78594638-6ea2-4bd2-b8ca-371494d952a7,ecotoxicity: freshwater no LT,"Ecotoxicity, freshwater"
+98c90af1-6663-4df9-b7f6-d63db306c5b7,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,emissions to water,Heavy metals into water
+a7fa94a9-64ee-4a1b-a4a4-0b0b38505b69,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,energy resources,Energy resources
+0546e6b5-c418-474d-9644-ff98d46e71f8,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,waste disposal,Radioactive waste to deposit
+4cda1dcd-b063-4ca4-944c-9210c8e69c81,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,emissions to water no LT,POP into water
+09df89ce-fa4d-4a89-85d2-c4df4e5cba07,f7ccc5f2-24df-4135-bab9-d6d0d7eff96f,mineral resources no LT,Mineral resources
+650eccb8-a48c-42eb-b367-3c8d89a009b5,1a570833-0403-4be3-9a8c-106a06786830,"climate change: total (incl. biogenic CO2, incl. SLCFs)",climate change
+e3d8026d-e45f-430e-b39d-52eb8f35d007,25583383-5a50-4fbf-9850-c9f2d57607b5,resources,
+d4480a8a-88eb-4917-8db0-9bec98eb9faa,b42b5d7d-371c-4c00-a601-cf9572670e00,human health no LT,
+8ff6f7c6-804a-4875-ab2c-ae8294f4116a,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,human health,Human health
+9b6b2169-f603-445a-b34c-96e6499f4290,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,natural resources,Resources
+264a1ab3-bb77-49dd-ab8c-597d8cb623ac,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,ecosystem quality no LT,
+508e8cb2-33cc-45b0-9a49-f391e36c57ea,0310cf09-b06f-45ef-af69-b5a41880170d,ecotoxicity: freshwater,Freshwater ecotoxicity
+3aeaa46d-9ffb-483f-96b7-bda9822f738b,81928238-d7ba-45fc-9f28-af354c2b7dd3,ecotoxicity: marine no LT,
+4dd67bb5-af6b-4d76-90c0-f5eb33170d7c,1b75e464-5938-4fbb-abc6-c15790d99ea7,land use no LT,
+b4083b16-a2e0-44a4-a2a6-50007c665dc6,7c75c405-5084-429a-9edf-3f1d1fefad82,human toxicity: carcinogenic,"Human health, cancer "
+0b07bdb9-b3a0-4a42-9def-76120649b550,7c75c405-5084-429a-9edf-3f1d1fefad82,human toxicity: non-carcinogenic,"Human health, non-cancer "
+2746e49f-aed1-4436-b9b0-5b1c7d4704d3,45ce7db6-4f98-48be-b7da-70fed54ab279,human health,Human health
+33d25f74-e61a-4468-92d8-7d132fefd99a,b5192a30-6786-4ef8-a955-e2645c3d5420,energy resources: non-renewable,
+11a8e842-0e01-43d0-bd34-7390ddca2953,9f706f7a-3b76-47f8-ad14-c97d61c06e63,photochemical oxidant formation no LT,photochemical oxidation (high NOx)
+c510585f-f6fe-4c05-ab71-86163c497306,1bdce405-4884-4dea-ba55-397eba6ed51e,particulate matter formation,EF-particulate Matter
+a45678a6-2c5f-4c9d-b233-70e10ae866e6,208ef1bf-6c80-401e-b773-54f0960c09d9,"ecotoxicity: freshwater, metals no LT","Ecotoxicity, freshwater_metals"
+74ca3998-8cb6-4d57-874f-0f9a11e4b5e4,a0eb6ad1-a4aa-47aa-a80e-a94961846fc7,total,monetary impact
+91bdafc8-3e62-441f-aafe-55b2751af0c0,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,emissions to water,Radioactive substances into water
+fd009f23-9726-413b-a5b9-92adedc73dab,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,total,
+2ddef2ee-e80e-48e5-b65f-c06c3ced6474,1a570833-0403-4be3-9a8c-106a06786830,climate change: biogenic (incl. CO2),climate change
+53cbcde5-c7f1-4b80-805f-f6a5d35d57ee,1a570833-0403-4be3-9a8c-106a06786830,climate change: biogenic removals (incl. CO2),climate change
+73c60882-a985-4f2e-a747-9d27d74af228,b42b5d7d-371c-4c00-a601-cf9572670e00,ecosystem quality no LT,
+3073b976-abd8-4a06-8bcd-fb5306ee4c49,b42b5d7d-371c-4c00-a601-cf9572670e00,total: natural resources no LT,
+0928d431-9f8d-4aa5-9599-f890acb7b1d7,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,ecosystem quality,Terrestrial ecosystems
+fe4b3dbd-9446-4981-a780-356fa6b1a3d8,e1ba87fc-66bd-4be7-8b09-e4d14da279be,natural resources no LT,
+196d060e-51d3-4482-923c-2b1a44c467d4,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,human health no LT,
+bf3d8ecc-2fb7-4f7c-8b4b-22a9ea75f9e9,0310cf09-b06f-45ef-af69-b5a41880170d,photochemical oxidant formation: human health,Photochemical oxidant formation: human health
+954fe4b4-4376-4bd5-95cd-1e72b92d3d9e,1b75e464-5938-4fbb-abc6-c15790d99ea7,human toxicity: carcinogenic no LT,
+358461db-d291-4579-a95a-5573ed7ceaf6,1b75e464-5938-4fbb-abc6-c15790d99ea7,human toxicity: non-carcinogenic no LT,
+bf2df6f6-dba4-4df8-a322-c2ad7022136b,7c75c405-5084-429a-9edf-3f1d1fefad82,eutrophication,Eutrophication
+99e4eaba-880f-4786-a008-f1e236eff5cf,ebc9c6e7-cb4d-4531-bfeb-284a9696c3e1,human health no LT,Human health
+b9367e53-f8c6-4881-a701-57dc7e4609d4,abe1bab4-939a-41ea-bf79-6db62d2c8a93,human toxicity: carcinogenic,Human cancer toxicity
+3471cfbd-d223-4396-b1b9-49d535ae3e05,2866e7bc-b77a-4e03-bd91-811890e254c0,use of non-renewable primary energy excluding non-renewable primary energy resources used as raw materials,
+98970ee3-faba-4f3f-9c6f-1958b9a7aec3,cd086eff-2645-4f06-b500-dbfa1ae94285,high-level radioactive waste disposed,
+37d1073d-5724-45cc-a56a-b6a22c710acc,35716c60-7337-4442-9f3a-42effd692b82,human toxicity,human toxicity (HTP inf)
+57c3539f-cf80-4399-a0e9-fbe81aef2bad,73998dad-83a3-4212-b61d-ec1a50ce5898,"energy resources: non-renewable, nuclear",
+a2af24dc-e152-4865-99c4-e7c677bbff9c,1bdce405-4884-4dea-ba55-397eba6ed51e,"human toxicity: carcinogenic, inorganics","Human toxicity, cancer_inorganics"
+5806d9da-b572-4ca0-88f5-aebbf9a0cac2,78594638-6ea2-4bd2-b8ca-371494d952a7,"human toxicity: non-carcinogenic, inorganics no LT","Human toxicity, non-cancer_inorganics"
+ad4f0abd-bf73-4280-83f3-9ff901111711,1dc61e56-76cb-474b-91b5-9ff9011116ff,CO2,
+f502811d-e623-4e5e-a9bc-9ff90111170a,1dc61e56-76cb-474b-91b5-9ff9011116ff,total,
+ca310eb0-5111-44a1-a1e2-16247ba24faf,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,climate change,Global warming
+c40c21e1-69b4-456c-9fed-625bf01519b3,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,emissions to air,Main air pollutants and PM
+51f1b5a1-8a5f-4b24-95c0-7b7597fc8199,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,emissions to air,Carcinogenic substances into air
+a1782d8d-7550-4f34-ab62-78dfdb901ee9,878dcbcd-0c37-4d68-9081-fc0c5a567217,water use,Water scarcity footprint
+99ea213e-8b8a-48fa-afeb-0f59192be995,4d49bc9f-dfbf-4c8d-9a98-f9bf7c6e8114,climate change no LT,
+535a01cf-fc62-468f-b628-9a069c62b21a,e57693cf-ed07-416c-8831-58f044f1bd76,climate change: total (excl. biogenic CO2) no LT,climate change
+43279fe1-473d-4055-9a19-d6066d18b8ca,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+a03ee70f-6a3c-4a1e-83dc-12b6a04c0a97,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+9a628e5a-e1fe-47e0-8178-520b0037f3b7,25583383-5a50-4fbf-9850-c9f2d57607b5,resources,
+00928647-86fc-4f65-902b-8b89b050c20c,87a57579-d6c4-477c-a327-f863804a15aa,total: ecosystem quality,
+0612b094-7e94-456b-9f7e-e3ec976bb231,87a57579-d6c4-477c-a327-f863804a15aa,total: natural resources,
+cc852b06-54a3-4755-9544-cc7d5d1a0fbc,b42b5d7d-371c-4c00-a601-cf9572670e00,ecosystem quality no LT,
+a3c4f620-7b50-4cec-a7d2-9e8be8e02f04,b42b5d7d-371c-4c00-a601-cf9572670e00,ecosystem quality no LT,
+ba69e71b-d317-427b-a2a7-ea4dcce67a15,b42b5d7d-371c-4c00-a601-cf9572670e00,human health no LT,
+414b6dbf-a512-406c-b512-30a0795ef567,b42b5d7d-371c-4c00-a601-cf9572670e00,human health no LT,
+545526cf-aa0e-4ac9-871e-ecb903a8d2c9,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,total: natural resources,
+c01cfc2d-7a4c-41bc-a041-316c703ae1cc,4d9ac60a-73ab-40cf-bc71-d967ef59865e,ecosystem quality,Marine ecosystems
+75c34ac1-52f7-4555-ad0e-e25e934a4b9d,4d9ac60a-73ab-40cf-bc71-d967ef59865e,total: human health,
+a53da31e-70c8-42bb-a5d0-f9cf301fda9d,6e67b147-f0eb-48eb-bc09-0260d78a8f59,ionising radiation no LT,
+72704935-7f5a-4fab-b7aa-fad9e65069f1,0310cf09-b06f-45ef-af69-b5a41880170d,ecotoxicity: marine,Marine ecotoxicity
+fd49ca9a-ee40-4fab-9153-9e3ea59d53a4,81928238-d7ba-45fc-9f28-af354c2b7dd3,land use no LT,
+7511be12-423c-439f-94dc-4067c3c3fdac,be309eb5-a03c-4546-9608-81b504e08735,ecotoxicity: terrestrial,Terrestrial ecotoxicity
+a165eadd-6881-48cd-bbd6-efe06f35de1b,1b75e464-5938-4fbb-abc6-c15790d99ea7,material resources: metals/minerals no LT,
+7f1cac14-6f30-4653-a607-4a9454fd0ac2,b19894fe-e19c-41ed-9819-6d0053d02b98,ecotoxicity: freshwater (EF v3.1),
+4b941d50-0a16-4830-8682-84a7989fc0d8,9f706f7a-3b76-47f8-ad14-c97d61c06e63,human toxicity no LT,human toxicity (HTP inf)
+8b6ff7cc-0310-4727-8523-9ff90110f8d2,73998dad-83a3-4212-b61d-ec1a50ce5898,"energy resources: renewable, biomass",
+73c22282-73bf-4bb1-ae9c-87362149173d,1bdce405-4884-4dea-ba55-397eba6ed51e,"ecotoxicity: freshwater, inorganics","Ecotoxicity, freshwater_inorganics"
+3b49543f-0bf2-4227-96d8-55bfb700bfef,208ef1bf-6c80-401e-b773-54f0960c09d9,"ecotoxicity: freshwater, organics no LT","Ecotoxicity, freshwater_organics"
+18b98978-d365-47be-8bd7-6c879bf545a8,f1d1c1a0-8ecf-441c-8576-a18d463df41b,"human toxicity: non-carcinogenic, organics","Human toxicity, non-cancer_organics"
+648141ee-a884-4101-bc1b-fa7d4e8079f1,ac3b6c62-8053-4725-9756-07064cfcc810,material resources: metals no LT,abiotic resources
+1d1a6538-38af-474d-adeb-9ff9011116ff,1dc61e56-76cb-474b-91b5-9ff9011116ff,nuclear,
+b0f2c522-9c8f-4de2-a5de-680bfaba0843,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,emissions to water,Water pollutants
+97adbcb1-ccd5-4830-9f0f-8cccda3b8891,6aa69c4d-9315-4ec7-802b-22e5ce740ea4,ozone depletion,Ozone layer depletion
+439e78f3-179e-4174-8172-1c478d8bd93d,11e3b622-f745-4742-ad90-57c3efeef416,climate change,
+10a69245-7493-4791-a4d1-b04420564958,b42b5d7d-371c-4c00-a601-cf9572670e00,total: ecosystem quality no LT,
+3d26c489-ff63-457f-a377-29516746c30c,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,ecosystem quality,Terrestrial ecosystems
+4607c2f1-2051-4b47-8a40-d93c23f3f6b1,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,ecosystem quality,Freshwater ecosystems
+d4a13925-bfc5-4925-9149-b1c25fc2ec7b,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,ecosystem quality,Freshwater ecosystems
+bd319943-b13b-483e-8e2b-9726e18c9016,e1ba87fc-66bd-4be7-8b09-e4d14da279be,ecosystem quality no LT,
+8e5ce9da-fcd2-4b0f-a0e7-3c3cd55927fb,e1ba87fc-66bd-4be7-8b09-e4d14da279be,ecosystem quality no LT,
+9bf021dd-cfc7-4e43-946d-f66e634c6aee,e1ba87fc-66bd-4be7-8b09-e4d14da279be,ecosystem quality no LT,
+23496746-6058-46fd-8009-58d4cc7183d5,4d9ac60a-73ab-40cf-bc71-d967ef59865e,ecosystem quality,Terrestrial ecosystems
+fb8898e1-5cc3-4e4b-8ad9-a6b354c40115,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,ecosystem quality no LT,
+0ce7907e-c97d-4960-b482-c0e73e6908d0,3b556c4d-862e-4fef-b735-ce7bd31a0217,"energy resources: non-renewable, fossil",Fossil resource scarcity
+36e5727b-297b-4a78-babf-609aceea9ac5,3b556c4d-862e-4fef-b735-ce7bd31a0217,material resources: metals/minerals,Mineral resource scarcity
+de7df118-0c7f-4eed-8d67-1af967c96273,6e67b147-f0eb-48eb-bc09-0260d78a8f59,ecotoxicity: marine no LT,
+8e97f0da-00c5-46fa-ba69-789e56718462,6e67b147-f0eb-48eb-bc09-0260d78a8f59,ecotoxicity: terrestrial no LT,
+4fb64b5c-163a-42b8-b15e-d9d71488c886,be309eb5-a03c-4546-9608-81b504e08735,climate change,Climate change
+80f84fa3-e0ca-4ce2-bad4-2e4ca532e4aa,be309eb5-a03c-4546-9608-81b504e08735,human toxicity: non-carcinogenic,Human toxicity: non-cancer
+e467ee1d-64ee-4827-bc08-7227b5126a7c,be309eb5-a03c-4546-9608-81b504e08735,material resources: metals/minerals,Mineral resource scarcity
+8f375f46-7033-4aed-a49c-3561b556ee43,24cd9adc-bbf8-49bc-a452-7f57073d7c6f,acidification no LT,
+5d9f7ec3-3e8c-4657-bc12-ec2b0d8a6592,2866e7bc-b77a-4e03-bd91-811890e254c0,total use of non-renewable primary energy resources (primary energy and primary energy resources used as raw materials),
+4f35f291-4ffb-460f-a34e-920bcfdf14c2,2866e7bc-b77a-4e03-bd91-811890e254c0,use of renewable primary energy resources used as raw materials,
+2c218c32-1d71-4662-9cab-1a2093ffd938,1bdce405-4884-4dea-ba55-397eba6ed51e,climate change: land use and land use change,Climate change-Land use and land use change
+fd7056ac-0622-4a2d-abc2-dd05cfcee446,208ef1bf-6c80-401e-b773-54f0960c09d9,climate change no LT,Climate change
+e8d5c261-30b8-4bf8-a78e-4e329bbaa090,f1d1c1a0-8ecf-441c-8576-a18d463df41b,ozone depletion,Ozone depletion
+2023122a-2e95-498f-80eb-78495239ae1c,11e3b622-f745-4742-ad90-57c3efeef416,climate change,
+2a1141af-017c-46d8-b13c-1edf66b0eb2f,167c6bac-650c-4413-adfe-9f93b2b22488,"climate change: biogenic (excl. CO2, incl. SLCFs)",climate change
+29d53354-ddd5-4f7c-aedd-6f61d1d47c9f,167c6bac-650c-4413-adfe-9f93b2b22488,climate change: removals from direct land use change,climate change
+5b274ea6-2c42-48cf-bf30-2d04a0c5c363,e57693cf-ed07-416c-8831-58f044f1bd76,climate change: fossil emissions (excl. aircraft emissions) no LT,climate change
+33aaea91-4500-4399-bb9b-5f4d4f4c2b5f,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to air,
+2bc665ab-5162-4b84-8fd8-1024fa282b5b,25583383-5a50-4fbf-9850-c9f2d57607b5,emissions to water,
+abff8d29-c074-44d1-8f45-3920b219efbe,87a57579-d6c4-477c-a327-f863804a15aa,ecosystem quality,Terrestrial ecosystems
+4715db1f-10d4-4d14-89f8-8c32c19358c5,87a57579-d6c4-477c-a327-f863804a15aa,human health,Human health
+1470035a-06db-4bb4-9ecd-b12826751d10,b42b5d7d-371c-4c00-a601-cf9572670e00,ecosystem quality no LT,
+448d9ad9-7eee-406c-947f-a61a851f594e,dccd97fd-bfe2-4ff9-8616-50a835ddc2f0,total: ecosystem quality,
+817babc4-353f-468c-9325-343277fb7697,e1ba87fc-66bd-4be7-8b09-e4d14da279be,ecosystem quality no LT,
+1543e81b-9d73-4a1c-a067-17fd7bb2eb8d,e1ba87fc-66bd-4be7-8b09-e4d14da279be,human health no LT,
+069c2cdf-9f50-4b8f-a7fd-648f493643db,4d9ac60a-73ab-40cf-bc71-d967ef59865e,ecosystem quality,Freshwater ecosystems
+9f6c0619-7122-4275-8a54-33d1231b5815,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,ecosystem quality no LT,
+8492da46-6599-463f-b2cf-63212f55d30e,48197fde-fc9e-4563-8eb0-6ea9a5598a5c,total: human health no LT,
+268c3203-9bab-4471-ad2b-148af21983b2,3b556c4d-862e-4fef-b735-ce7bd31a0217,ecotoxicity: terrestrial,Terrestrial ecotoxicity
+fc3cc48f-65fe-47f9-a00d-627d272899f2,3b556c4d-862e-4fef-b735-ce7bd31a0217,photochemical oxidant formation: human health,Photochemical oxidant formation: human health
+8aa7b920-5090-4ff0-9ac7-9d23b482cc55,6e67b147-f0eb-48eb-bc09-0260d78a8f59,ozone depletion no LT,
+bdd9185f-8919-44e2-b0b8-d095bab0f71d,0310cf09-b06f-45ef-af69-b5a41880170d,human toxicity: carcinogenic,Human toxicity: cancer
+3b384f80-3479-4653-b81a-69890a15327d,24cd9adc-bbf8-49bc-a452-7f57073d7c6f,ozone depletion no LT,

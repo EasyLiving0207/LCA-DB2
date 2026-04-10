@@ -9,8 +9,11 @@
     <file url="file://$PROJECT_DIR$/DATABASE/EF/EF_VIEW.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/DATABASE/MODEL/AO.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/BIGCLASS_ALLOCATION.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/BIGCLASS_DELETION.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/BIGCLASS_PROPAGATION.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/BIGCLASS_RECORD.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/CALL.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/DIFF.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/DATABASE/MODEL/BIGCLASS/LCA_UNIT_CONVERSION.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/DATABASE/MODEL/ELEM_FLOW.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/DATABASE/MODEL/GEO.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
@@ -87,5 +90,7 @@
     <file url="file://$PROJECT_DIR$/PROCEDURE/RES_TABLE.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/TEST.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
     <file url="file://$PROJECT_DIR$/PROCEDURE/call_subclass_month.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/query_distinct_columns.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
+    <file url="file://$PROJECT_DIR$/query_primary_keys.sql" value="0c1c02ee-faf0-4f52-a421-dcbb310987aa" />
   </component>
 </project>

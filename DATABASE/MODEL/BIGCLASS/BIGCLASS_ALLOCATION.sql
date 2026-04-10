@@ -1,13 +1,13 @@
-CREATE OR REPLACE PROCEDURE BG00MAC102.P_ADS_LCA_BIGCLASS_CALC_ALLOCATION(IN V_BIGCLASS_REC_ID VARCHAR(36),
-                                                                          IN V_PCR VARCHAR(100),
-                                                                          IN V_DATABASE_VERSION VARCHAR(100),
-                                                                          IN V_COMPANY_CODE VARCHAR(20),
-                                                                          IN V_START_YM VARCHAR(8),
-                                                                          IN V_END_YM VARCHAR(8),
-                                                                          IN V_CERTIFICATION_NUMBER VARCHAR(100),
-                                                                          IN V_USING_GREEN_ELECTRICITY BOOLEAN,
-                                                                          IN V_GREEN_ELECTRICITY_PROPORTION DOUBLE,
-                                                                          IN V_REMARK VARCHAR(255))
+CREATE PROCEDURE BG00MAC102.P_ADS_LCA_BIGCLASS_CALC_ALLOCATION(IN V_BIGCLASS_REC_ID VARCHAR(36),
+                                                               IN V_PCR VARCHAR(100),
+                                                               IN V_DATABASE_VERSION VARCHAR(100),
+                                                               IN V_COMPANY_CODE VARCHAR(20),
+                                                               IN V_START_YM VARCHAR(8),
+                                                               IN V_END_YM VARCHAR(8),
+                                                               IN V_CERTIFICATION_NUMBER VARCHAR(100),
+                                                               IN V_USING_GREEN_ELECTRICITY BOOLEAN,
+                                                               IN V_GREEN_ELECTRICITY_PROPORTION DOUBLE,
+                                                               IN V_REMARK VARCHAR(255))
     SPECIFIC P_ADS_LCA_BIGCLASS_CALC_ALLOCATION
     LANGUAGE SQL
     NOT DETERMINISTIC
@@ -20,10 +20,9 @@ BEGIN
 
     ------------------------------------日志变量定义------------------------------------
     DECLARE V_TMP_SCHEMA VARCHAR(32) DEFAULT 'BG00MAC102';
-    DECLARE V_TMP_TAB VARCHAR(50) DEFAULT 'T_ADS_TEMP_LCA_BIGCLASS_CALC_ALLOCATION'; --临时表名
-    DECLARE V_PNAME VARCHAR(50) DEFAULT 'P_ADS_LCA_BIGCLASS_CALC_ALLOCATION'; --存储过程名
     DECLARE V_QUERY_STR CLOB(1 M);
     DECLARE V_BIGCLASS_PROC_DATA_TAB_NAME VARCHAR(255);
+    DECLARE V_TRANSPORT_VERSION VARCHAR(255) DEFAULT '2025';
     DECLARE V_RECORD_TIME TIMESTAMP(6);
     DECLARE RES CURSOR WITH RETURN FOR
         SELECT V_BIGCLASS_REC_ID FROM SYSIBM.SYSDUMMY1;
@@ -33,6 +32,7 @@ BEGIN
 
     EXECUTE IMMEDIATE 'DROP TABLE SESSION.PROC_DATA_ORIGINAL';
     EXECUTE IMMEDIATE 'DROP TABLE SESSION.ALLOCATION';
+    EXECUTE IMMEDIATE 'DROP TABLE SESSION.ACTI_LEVEL';
 
     DECLARE GLOBAL TEMPORARY TABLE SESSION.PROC_DATA_ORIGINAL (
         PROC_KEY VARCHAR(255),
@@ -72,9 +72,24 @@ BEGIN
         PRODUCT_UNIT_AFTER VARCHAR(255)
         ) ON COMMIT PRESERVE ROWS;
 
-    ------------------------------------存储过程变量定义---------------------------------
+    DECLARE GLOBAL TEMPORARY TABLE SESSION.ACTI_LEVEL (
+        PROC_KEY VARCHAR(255),
+        PROC_CODE VARCHAR(255),
+        PROC_NAME VARCHAR(255),
+        PRODUCT_CODE VARCHAR(255),
+        PRODUCT_NAME VARCHAR(255),
+        PRODUCT_VALUE DECIMAL(30, 6),
+        PRODUCT_UNIT VARCHAR(255),
+        ITEM_CAT_CODE VARCHAR(10),
+        ITEM_CAT_NAME VARCHAR(50),
+        ITEM_CODE VARCHAR(255),
+        ITEM_NAME VARCHAR(255),
+        ITEM_VALUE DECIMAL(30, 6),
+        ITEM_UNIT VARCHAR(255),
+        UNIT_COST DOUBLE
+        ) ON COMMIT PRESERVE ROWS;
 
-    CALL BG00MAC102.P_DROP_TEMP_TABLE(V_TMP_SCHEMA, V_TMP_TAB);
+    ------------------------------------存储过程变量定义---------------------------------
 
     SET V_RECORD_TIME = CURRENT_TIMESTAMP;
 
@@ -85,12 +100,7 @@ BEGIN
 
     ------------------------------------处理逻辑(开始)------------------------------------
 
-    DELETE FROM BG00MAC102.T_ADS_FACT_LCA_BIGCLASS_ACTIVITY_LEVEL_IMPACT WHERE BIGCLASS_REC_ID = V_BIGCLASS_REC_ID;
-    DELETE FROM BG00MAC102.T_ADS_FACT_LCA_BIGCLASS_INPUT_OUTPUT_MATRIX WHERE BIGCLASS_REC_ID = V_BIGCLASS_REC_ID;
-
-    DELETE
-    FROM BG00MAC102.T_ADS_DIM_LCA_BIGCLASS_CALC_RECORD
-    WHERE BIGCLASS_REC_ID = V_BIGCLASS_REC_ID;
+    CALL BG00MAC102.P_ADS_LCA_BIGCLASS_DELETE_RECORD(V_BIGCLASS_REC_ID);
 
     UPDATE BG00MAC102.T_ADS_DIM_LCA_BIGCLASS_CALC_RECORD
     SET IS_CURRENT = FALSE
@@ -99,9 +109,15 @@ BEGIN
       AND COMPANY_CODE = V_COMPANY_CODE
       AND START_YM = V_START_YM
       AND END_YM = V_END_YM
-      AND CERTIFICATION_NUMBER = V_CERTIFICATION_NUMBER
+      AND (
+        CERTIFICATION_NUMBER = V_CERTIFICATION_NUMBER
+            OR (CERTIFICATION_NUMBER IS NULL AND V_CERTIFICATION_NUMBER IS NULL)
+        )
       AND USING_GREEN_ELECTRICITY = V_USING_GREEN_ELECTRICITY
-      AND GREEN_ELECTRICITY_PROPORTION = V_GREEN_ELECTRICITY_PROPORTION;
+      AND (
+        GREEN_ELECTRICITY_PROPORTION = V_GREEN_ELECTRICITY_PROPORTION
+            OR (GREEN_ELECTRICITY_PROPORTION IS NULL AND V_GREEN_ELECTRICITY_PROPORTION IS NULL)
+        );
 
     INSERT INTO BG00MAC102.T_ADS_DIM_LCA_BIGCLASS_CALC_RECORD (BIGCLASS_REC_ID, PCR, DATABASE_VERSION, COMPANY_CODE,
                                                                START_YM, END_YM, CERTIFICATION_NUMBER,
@@ -221,7 +237,7 @@ BEGIN
                                B.PROC_KEY_AFTER,
                                B.PROC_CODE_AFTER,
                                B.PROC_NAME_AFTER,
-                               B.ALLOCATION_FACTOR * CAST(A.ITEM_VALUE AS DECIMAL(20, 10)) /
+                               CAST(B.ALLOCATION_FACTOR AS DOUBLE) * CAST(A.ITEM_VALUE AS DOUBLE) /
                                SUM(A.ITEM_VALUE) OVER (PARTITION BY A.PROC_KEY, B.PRODUCT_CATEGORY) AS ALLOCATION_FACTOR
                         FROM SESSION.PROC_DATA_ORIGINAL A
                                  JOIN ALLOCATION1 B ON A.PROC_KEY = B.PROC_KEY_BEFORE
@@ -315,7 +331,7 @@ BEGIN
                                            WHEN UNIT = 'nm' THEN 'km'
                                            ELSE UNIT END            AS UNIT_NAME
                                 FROM BG00MAC102.T_ADS_FACT_RAW_MATERIAL_TRANSPORTATION_DATA_MERGE
-                                WHERE YEAR = '2025'
+                                WHERE YEAR = V_TRANSPORT_VERSION
                                   AND ORG_CODE = V_COMPANY_CODE),
          TRANSPORT_PROCESS AS (SELECT *
                                FROM UNIT_PROCESS
@@ -393,7 +409,7 @@ BEGIN
                                              NULL                         AS ELEMENTARY_FLOW_ID,
                                              C.IMPACT_INDICATOR_ID,
                                              D.PCR_INDICATOR_ID,
-                                             CAST(B.CONVERSION_FACTOR AS DOUBLE) * CAST(C.AMOUNT AS DOUBLE) *
+                                             -CAST(B.CONVERSION_FACTOR AS DOUBLE) * CAST(C.AMOUNT AS DOUBLE) *
                                              CAST(A.ITEM_VALUE AS DOUBLE) AS IMPACT_AMOUNT
                                       FROM CO_PRODUCT_OUTPUT A
                                                JOIN ITEM_UNIT_PROCESS B
@@ -430,52 +446,36 @@ BEGIN
                         SELECT *
                         FROM TRANSPORT_IMPACT),
          IMPACT_ALLOCATION AS (SELECT PROC_KEY,
-                                      PROC_CODE,
-                                      PROC_NAME,
-                                      PRODUCT_CODE,
-                                      PRODUCT_NAME,
-                                      PRODUCT_VALUE,
-                                      PRODUCT_UNIT,
                                       ITEM_CAT_CODE,
                                       ITEM_CAT_NAME,
                                       ITEM_CODE,
                                       ITEM_NAME,
-                                      SUM(ITEM_VALUE)    AS ITEM_VALUE,
+                                      SUM(ITEM_VALUE)              AS ITEM_VALUE,
                                       ITEM_UNIT,
                                       IMPACT_CATEGORY,
                                       UNIT_PROCESS_ID,
                                       ELEMENTARY_FLOW_ID,
                                       IMPACT_INDICATOR_ID,
                                       PCR_INDICATOR_ID,
-                                      SUM(IMPACT_AMOUNT) AS IMPACT_AMOUNT
-                               FROM (SELECT B.PROC_KEY_AFTER                      AS PROC_KEY,
-                                            B.PROC_CODE_AFTER                     AS PROC_CODE,
-                                            B.PROC_NAME_AFTER                     AS PROC_NAME,
-                                            B.PRODUCT_CODE_AFTER                  AS PRODUCT_CODE,
-                                            B.PRODUCT_NAME_AFTER                  AS PRODUCT_NAME,
-                                            B.PRODUCT_VALUE_AFTER                 AS PRODUCT_VALUE,
-                                            B.PRODUCT_UNIT_AFTER                  AS PRODUCT_UNIT,
+                                      SUM(IMPACT_AMOUNT)           AS IMPACT_AMOUNT,
+                                      SUM(IMPACT_PER_UNIT_PRODUCT) AS IMPACT_PER_UNIT_PRODUCT
+                               FROM (SELECT B.PROC_KEY_AFTER                                              AS PROC_KEY,
                                             A.ITEM_CAT_CODE,
                                             A.ITEM_CAT_NAME,
                                             A.ITEM_CODE,
                                             A.ITEM_NAME,
-                                            A.ITEM_VALUE * B.ALLOCATION_FACTOR    AS ITEM_VALUE,
+                                            A.ITEM_VALUE * B.ALLOCATION_FACTOR                            AS ITEM_VALUE,
                                             A.ITEM_UNIT,
                                             A.IMPACT_CATEGORY,
                                             A.UNIT_PROCESS_ID,
                                             A.ELEMENTARY_FLOW_ID,
                                             A.IMPACT_INDICATOR_ID,
                                             A.PCR_INDICATOR_ID,
-                                            A.IMPACT_AMOUNT * B.ALLOCATION_FACTOR AS IMPACT_AMOUNT
+                                            A.IMPACT_AMOUNT * B.ALLOCATION_FACTOR                         AS IMPACT_AMOUNT,
+                                            A.IMPACT_AMOUNT * B.ALLOCATION_FACTOR / B.PRODUCT_VALUE_AFTER AS IMPACT_PER_UNIT_PRODUCT
                                      FROM IMPACT_ALL A
                                               JOIN SESSION.ALLOCATION B ON A.PROC_KEY = B.PROC_KEY)
                                GROUP BY PROC_KEY,
-                                        PROC_CODE,
-                                        PROC_NAME,
-                                        PRODUCT_CODE,
-                                        PRODUCT_NAME,
-                                        PRODUCT_VALUE,
-                                        PRODUCT_UNIT,
                                         ITEM_CAT_CODE,
                                         ITEM_CAT_NAME,
                                         ITEM_CODE,
@@ -487,12 +487,6 @@ BEGIN
                                         IMPACT_INDICATOR_ID,
                                         PCR_INDICATOR_ID),
          IMPACT_REST AS (SELECT A.PROC_KEY,
-                                A.PROC_CODE,
-                                A.PROC_NAME,
-                                A.PRODUCT_CODE,
-                                A.PRODUCT_NAME,
-                                B.ITEM_VALUE AS PRODUCT_VALUE,
-                                B.ITEM_UNIT  AS PRODUCT_UNIT,
                                 A.ITEM_CAT_CODE,
                                 A.ITEM_CAT_NAME,
                                 A.ITEM_CODE,
@@ -504,7 +498,8 @@ BEGIN
                                 A.ELEMENTARY_FLOW_ID,
                                 A.IMPACT_INDICATOR_ID,
                                 A.PCR_INDICATOR_ID,
-                                A.IMPACT_AMOUNT
+                                A.IMPACT_AMOUNT,
+                                A.IMPACT_AMOUNT / B.ITEM_VALUE AS IMPACT_PER_UNIT_PRODUCT
                          FROM (SELECT *
                                FROM IMPACT_ALL I
                                WHERE NOT EXISTS (SELECT 1
@@ -513,9 +508,8 @@ BEGIN
                                   JOIN (SELECT DISTINCT *
                                         FROM SESSION.PROC_DATA_ORIGINAL
                                         WHERE ITEM_CAT_CODE = '04') B ON A.PROC_KEY = B.PROC_KEY)
-    SELECT V_BIGCLASS_REC_ID             AS BIGCLASS_REC_ID,
-           *,
-           IMPACT_AMOUNT / PRODUCT_VALUE AS IMPACT_PER_UNIT_PRODUCT
+    SELECT V_BIGCLASS_REC_ID AS BIGCLASS_REC_ID,
+           *
     FROM (SELECT *
           FROM IMPACT_ALLOCATION
           UNION ALL
@@ -524,8 +518,7 @@ BEGIN
     WHERE IMPACT_AMOUNT <> 0;
 
 
-    INSERT INTO BG00MAC102.T_ADS_FACT_LCA_BIGCLASS_INPUT_OUTPUT_MATRIX (BIGCLASS_REC_ID, SOURCE_PROC_KEY,
-                                                                        TARGET_PROC_KEY, UNIT_COST, IS_INVERSED)
+    INSERT INTO SESSION.ACTI_LEVEL
     WITH PROCESS_ALLOCATION AS (SELECT PROC_KEY,
                                        PROC_CODE,
                                        PROC_NAME,
@@ -603,26 +596,45 @@ BEGIN
                                                   WHERE A.PROC_KEY = O.PROC_KEY)) A
                                    JOIN (SELECT *
                                          FROM SESSION.PROC_DATA_ORIGINAL
-                                         WHERE ITEM_CAT_CODE = '04') B ON A.PROC_KEY = B.PROC_KEY),
-         PROCESS_ALL AS (SELECT *,
-                                CAST(ITEM_VALUE AS DOUBLE) / CAST(PRODUCT_VALUE AS DOUBLE) AS UNIT_COST
-                         FROM (SELECT *
-                               FROM PROCESS_REST
-                               UNION ALL
-                               SELECT *
-                               FROM PROCESS_ALLOCATION)),
-         PRODUCT AS (SELECT DISTINCT PROC_KEY, PRODUCT_CODE, PRODUCT_NAME, PRODUCT_VALUE, PRODUCT_UNIT
-                     FROM PROCESS_ALL)
+                                         WHERE ITEM_CAT_CODE = '04') B ON A.PROC_KEY = B.PROC_KEY)
+    SELECT *,
+           CAST(ITEM_VALUE AS DOUBLE) / CAST(PRODUCT_VALUE AS DOUBLE) AS UNIT_COST
+    FROM (SELECT *
+          FROM PROCESS_REST
+          UNION ALL
+          SELECT *
+          FROM PROCESS_ALLOCATION);
+
+
+    INSERT INTO BG00MAC102.T_ADS_FACT_LCA_BIGCLASS_ACTIVITY_LEVEL_DATA
+    SELECT V_BIGCLASS_REC_ID, *
+    FROM SESSION.ACTI_LEVEL;
+
+
+    INSERT INTO BG00MAC102.T_ADS_FACT_LCA_BIGCLASS_PROC_PRODUCTION
+    SELECT DISTINCT V_BIGCLASS_REC_ID,
+                    PROC_KEY,
+                    PROC_CODE,
+                    PROC_NAME,
+                    PRODUCT_CODE,
+                    PRODUCT_NAME,
+                    PRODUCT_VALUE,
+                    PRODUCT_UNIT
+    FROM SESSION.ACTI_LEVEL;
+
+    INSERT INTO BG00MAC102.T_ADS_FACT_LCA_BIGCLASS_INPUT_OUTPUT_MATRIX (BIGCLASS_REC_ID, SOURCE_PROC_KEY,
+                                                                        TARGET_PROC_KEY, UNIT_COST, IS_INVERSED)
+    WITH PRODUCT AS (SELECT DISTINCT PROC_KEY, PRODUCT_CODE
+                     FROM SESSION.ACTI_LEVEL)
     SELECT V_BIGCLASS_REC_ID,
            B.PROC_KEY AS SOURCE_PROC_KEY,
            A.PROC_KEY AS TARGET_PROC_KEY,
            A.UNIT_COST,
            FALSE
-    FROM (SELECT * FROM PROCESS_ALL WHERE ITEM_CAT_CODE < '04') A
+    FROM (SELECT * FROM SESSION.ACTI_LEVEL WHERE ITEM_CAT_CODE < '04') A
              JOIN PRODUCT B ON A.ITEM_CODE = B.PRODUCT_CODE;
+
 
     OPEN RES;
 END;
-
-
 
